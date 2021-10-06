@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateEsilosTable extends Migration
+class CreateEstilosTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class CreateEsilosTable extends Migration
      */
     public function up()
     {
-        Schema::create('esilos', function (Blueprint $table) {
+        Schema::create('Estilos', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
         });
@@ -26,6 +26,6 @@ class CreateEsilosTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('esilos');
+        Schema::dropIfExists('Estilos');
     }
 }

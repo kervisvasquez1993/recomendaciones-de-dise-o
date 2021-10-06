@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Esilo;
+use App\Models\Estilo;
 use Illuminate\Http\Request;
 
-class EsiloController extends Controller
+class EstiloController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -41,10 +41,10 @@ class EsiloController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Esilo  $esilo
+     * @param  \App\Models\Estilo  $Estilo
      * @return \Illuminate\Http\Response
      */
-    public function show(Esilo $esilo)
+    public function show(Estilo $Estilo)
     {
         //
     }
@@ -52,10 +52,10 @@ class EsiloController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Esilo  $esilo
+     * @param  \App\Models\Estilo  $Estilo
      * @return \Illuminate\Http\Response
      */
-    public function edit(Esilo $esilo)
+    public function edit(Estilo $Estilo)
     {
         //
     }
@@ -64,10 +64,10 @@ class EsiloController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Esilo  $esilo
+     * @param  \App\Models\Estilo  $Estilo
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Esilo $esilo)
+    public function update(Request $request, Estilo $Estilo)
     {
         //
     }
@@ -75,10 +75,10 @@ class EsiloController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Esilo  $esilo
+     * @param  \App\Models\Estilo  $Estilo
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Esilo $esilo)
+    public function destroy(Estilo $Estilo)
     {
         //
     }
