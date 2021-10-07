@@ -8,4 +8,10 @@ use Illuminate\Database\Eloquent\Model;
 class Fuente extends Model
 {
     use HasFactory;
+    protected $table = 'fuentes';
+    protected $fillable = [
+        'nombre',
+        'src',
+
+    ];
 }

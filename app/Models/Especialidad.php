@@ -8,9 +8,10 @@ use Illuminate\Database\Eloquent\Model;
 class Especialidad extends Model
 {
     use HasFactory;
-
+    protected $table = 'especialidads';
     protected $fillable = [
-        'nombre','etiquetas',
+        'nombre',
+        'etiquetas',
         'descripcion'
     ];
 }
