@@ -53,28 +53,30 @@ function Home() {
     };
 
     return (
-        <div className="screens">
-            <div className="overlay screen-background"></div>
-            {screens.map((Item, index) => {
-                const className =
-                    index === currentScreen
-                        ? "active"
-                        : index < currentScreen
-                        ? "left"
-                        : "right";
+        <div className="home">
+            <div className="screens">
+                <div className="overlay screen-background"></div>
+                {screens.map((Item, index) => {
+                    const className =
+                        index === currentScreen
+                            ? "active"
+                            : index < currentScreen
+                            ? "left"
+                            : "right";
 
-                return (
-                    <PanelScreen key={index} className={className}>
-                        <Item
-                            options={{
-                                ...options,
-                                index,
-                                isActive: index === currentScreen,
-                            }}
-                        />
-                    </PanelScreen>
-                );
-            })}
+                    return (
+                        <PanelScreen key={index} className={className}>
+                            <Item
+                                options={{
+                                    ...options,
+                                    index,
+                                    isActive: index === currentScreen,
+                                }}
+                            />
+                        </PanelScreen>
+                    );
+                })}
+            </div>
         </div>
     );
 }

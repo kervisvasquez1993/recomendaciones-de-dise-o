@@ -1,10 +1,10 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import "./index.css";
 import { createStore } from "redux";
 import { Provider } from "react-redux";
 import rootReducer from "./store/reducers/rootReducer";
-import Home from "./components/Home";
+import { BrowserRouter } from "react-router-dom";
+import App from "./components/App";
 
 export const store = createStore(rootReducer);
 
@@ -12,7 +12,9 @@ function Index() {
     return (
         <React.StrictMode>
             <Provider store={store}>
-                <Home />
+                <BrowserRouter>
+                    <App />
+                </BrowserRouter>
             </Provider>
         </React.StrictMode>
     );
