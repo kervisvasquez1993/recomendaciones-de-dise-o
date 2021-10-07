@@ -22,10 +22,10 @@ use App\Http\Controllers\ResultadoController;
 */
 /* crud de especialidades */
 
-Route::get('/especialidad', [EspecialidadController::class, 'index']);
-Route::post('/especialidad', [EspecialidadController::class, 'store']);
-Route::put('/especialidad/{especialidad}', [EspecialidadController::class, 'update']);
-Route::delete('/especialidad/{especialidad}', [EspecialidadController::class, 'destroy']);
+Route::get('/especialidades', [EspecialidadController::class, 'index']);
+Route::post('/especialidades', [EspecialidadController::class, 'store']);
+Route::put('/especialidades/{especialidad}', [EspecialidadController::class, 'update']);
+Route::delete('/especialidades/{especialidad}', [EspecialidadController::class, 'destroy']);
 /* rutas para estilos */
 Route::get('/estilos', [EstiloController::class, 'index']);
 Route::post('/estilos', [EstiloController::class, 'store']);
