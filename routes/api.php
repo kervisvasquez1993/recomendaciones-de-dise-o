@@ -15,5 +15,8 @@ use App\Http\Controllers\EspecialidadController;
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 */
-
-Route::get('/espelialida', [EspecialidadController::class, 'index']);
+/* crud de especialidades */
+Route::get('/especialidad', [EspecialidadController::class, 'index']);
+Route::post('/especialidad', [EspecialidadController::class, 'store']);
+Route::put('/especialidad/{especialidad}', [EspecialidadController::class, 'update']);
+Route::delete('/especialidad/{especialidad}', [EspecialidadController::class, 'destroy']);
