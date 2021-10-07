@@ -7,6 +7,7 @@ use App\Http\Controllers\FuenteController;
 use App\Http\Controllers\LogotipoController;
 use App\Http\Controllers\IlustracionController;
 use App\Http\Controllers\EspecialidadController;
+use App\Http\Controllers\ResultadoController;
 
 
 /*
@@ -45,3 +46,10 @@ Route::get('/logotipos', [LogotipoController::class, 'index']);
 Route::post('/logotipos', [LogotipoController::class, 'store']);
 Route::put('/logotipos/{logotipo}', [LogotipoController::class, 'update']);
 Route::delete('/logotipos/{logotipo}', [LogotipoController::class, 'destroy']);
+
+
+// resultados
+Route::post('/resultados', [ResultadoController::class, 'store']);
+Route::put('/resultados/{resultado}', [ResultadoController::class, 'update']);
+/* Route::get('/resultados', [ResultadoController::class, 'index']); */
+

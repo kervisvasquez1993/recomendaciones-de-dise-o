@@ -24,4 +24,8 @@ trait ApiResponse
     {
         return $this->successResponse(['data' => $instace], $code);
     }
+    protected function successMessages($data, $code)
+    {
+        return response()->json($data,$code);
+    }
 }

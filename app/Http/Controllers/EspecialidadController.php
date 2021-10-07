@@ -34,6 +34,7 @@ class EspecialidadController extends Controller
 
     public function update(Request $request, Especialidad $especialidad)
     {
+        $this->validate($request, $this->rules);
         $especialidad->update($request->all());
         return $this->showOne($especialidad);
     }
