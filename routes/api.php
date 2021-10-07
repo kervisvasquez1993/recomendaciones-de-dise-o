@@ -4,6 +4,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\EstiloController;
 use App\Http\Controllers\FuenteController;
+use App\Http\Controllers\LogotipoController;
 use App\Http\Controllers\IlustracionController;
 use App\Http\Controllers\EspecialidadController;
 
@@ -39,3 +40,8 @@ Route::get('/ilustraciones', [IlustracionController::class, 'index']);
 Route::post('/ilustraciones', [IlustracionController::class, 'store']);
 Route::post('/ilustraciones/{ilustracion}', [IlustracionController::class, 'update']);
 Route::delete('/ilustraciones/{ilustracion}', [IlustracionController::class, 'destroy']);
+/* logotipo */
+Route::get('/logotipos', [LogotipoController::class, 'index']);
+Route::post('/logotipos', [LogotipoController::class, 'store']);
+Route::put('/logotipos/{logotipo}', [LogotipoController::class, 'update']);
+Route::delete('/logotipos/{logotipo}', [LogotipoController::class, 'destroy']);
