@@ -4,6 +4,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\EstiloController;
 use App\Http\Controllers\FuenteController;
+use App\Http\Controllers\IlustracionController;
 use App\Http\Controllers\EspecialidadController;
 
 
@@ -33,3 +34,8 @@ Route::get('/fuentes', [FuenteController::class, 'index']);
 Route::post('/fuentes', [FuenteController::class, 'store']);
 Route::post('/fuentes/{fuente}', [FuenteController::class, 'update']);
 Route::delete('/fuentes/{fuente}', [FuenteController::class, 'destroy']);
+/* rutas para ilustracion */
+Route::get('/ilustraciones', [IlustracionController::class, 'index']);
+Route::post('/ilustraciones', [IlustracionController::class, 'store']);
+Route::post('/ilustraciones/{ilustracion}', [IlustracionController::class, 'update']);
+Route::delete('/ilustraciones/{ilustracion}', [IlustracionController::class, 'destroy']);
