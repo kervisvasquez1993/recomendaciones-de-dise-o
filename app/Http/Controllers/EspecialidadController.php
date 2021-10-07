@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\ApiController;
 
-class EspecialidadController extends ApiController
+class EspecialidadController extends Controller
 {
     private $rules  = [
         'nombre' => 'required',

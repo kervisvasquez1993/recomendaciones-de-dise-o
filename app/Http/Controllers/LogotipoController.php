@@ -6,7 +6,7 @@ use App\Models\Logotipo;
 use Illuminate\Http\Request;
 use App\Http\Controllers\ApiController;
 
-class LogotipoController extends ApiController
+class LogotipoController extends Controller
 {
 
     private $rules  = [

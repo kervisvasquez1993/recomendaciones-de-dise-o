@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Ilustracion;
 use Illuminate\Http\Request;
 
-class IlustracionController extends ApiController
+class IlustracionController extends Controller
 {
 
     private $rules  = [

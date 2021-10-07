@@ -6,7 +6,7 @@ use App\Models\Estilo;
 use Illuminate\Http\Request;
 use App\Http\Controllers\ApiController;
 
-class EstiloController extends ApiController
+class EstiloController extends Controller
 {
     private $rules  = [
         'nombre' => 'required',

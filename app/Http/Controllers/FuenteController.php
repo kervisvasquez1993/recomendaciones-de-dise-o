@@ -4,13 +4,13 @@ namespace App\Http\Controllers;
 
 use App\Models\Fuente;
 use Illuminate\Http\Request;
-use App\Http\Controllers\ApiController;
 
-class FuenteController extends ApiController
+
+class FuenteController extends Controller
 {
     private $rules  = [
         'nombre' => 'required',
-        'src' => 'required',
+        'src' => 'required | file',
 
     ];
     public function index()
