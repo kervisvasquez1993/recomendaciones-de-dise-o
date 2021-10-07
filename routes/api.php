@@ -2,6 +2,8 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\EspecialidadController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -14,3 +16,4 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+Route::get('/espelialida', [EspecialidadController::class, 'index']);

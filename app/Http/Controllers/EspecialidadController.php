@@ -4,8 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Models\Especialidad;
 use Illuminate\Http\Request;
+use App\Http\Controllers\ApiController;
 
-class EspecialidadController extends Controller
+class EspecialidadController extends ApiController
 {
     /**
      * Display a listing of the resource.
@@ -14,7 +15,7 @@ class EspecialidadController extends Controller
      */
     public function index()
     {
-        //
+        
     }
 
     /**
