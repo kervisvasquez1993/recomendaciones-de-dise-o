@@ -15,6 +15,8 @@ class CreateFuenteResultadosTable extends Migration
     {
         Schema::create('fuente__resultados', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('resultados_id')->references('id')->on('resultados')->onDelete('cascade');
+            $table->foreignId('fuentes_id')->references('id')->on('fuentes')->onDelete('cascade');
             $table->timestamps();
         });
     }

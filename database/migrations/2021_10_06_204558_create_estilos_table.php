@@ -13,12 +13,14 @@ class CreateEstilosTable extends Migration
      */
     public function up()
     {
-        Schema::create('Estilos', function (Blueprint $table) {
+        Schema::create('estilos', function (Blueprint $table) {
             $table->id();
+            $table->string('nombre');
+            $table->string('etiquetas')->notNull();
+            $table->text('descripcion')->notNull();
             $table->timestamps();
         });
     }
-
     /**
      * Reverse the migrations.
      *
@@ -26,6 +28,6 @@ class CreateEstilosTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('Estilos');
+        Schema::dropIfExists('estilos');
     }
 }
