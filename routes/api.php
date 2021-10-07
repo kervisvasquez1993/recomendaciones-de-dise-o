@@ -3,6 +3,7 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\EstiloController;
+use App\Http\Controllers\FuenteController;
 use App\Http\Controllers\EspecialidadController;
 
 
@@ -27,3 +28,8 @@ Route::get('/estilos', [EstiloController::class, 'index']);
 Route::post('/estilos', [EstiloController::class, 'store']);
 Route::put('/estilos/{estilo}', [EstiloController::class, 'update']);
 Route::delete('/estilos/{estilo}', [EstiloController::class, 'destroy']);
+/* rutas para fuentes */
+Route::get('/fuentes', [FuenteController::class, 'index']);
+Route::post('/fuentes', [FuenteController::class, 'store']);
+Route::post('/fuentes/{fuente}', [FuenteController::class, 'update']);
+Route::delete('/fuentes/{fuente}', [FuenteController::class, 'destroy']);
