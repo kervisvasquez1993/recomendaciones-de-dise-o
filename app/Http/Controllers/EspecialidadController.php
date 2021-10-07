@@ -6,6 +6,7 @@ use App\Models\Especialidad;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\ApiController;
+use App\Models\Resultado;
 
 class EspecialidadController extends Controller
 {
@@ -14,8 +15,14 @@ class EspecialidadController extends Controller
         'etiquetas' => 'required',
         'descripcion' => 'required',
     ];
-    public function index()
+    public function index(Request $request)
     {
+        $resultado = $request->con_reultados;
+        if($resultado)
+        {
+            $resultado = Resultado::with('especialidades')->get()->pluck('especialidades')->unique()->values();
+            return $this->showAll($resultado);
+        }
         $especialidad = Especialidad::all();
         return $this->showAll($especialidad);
     }

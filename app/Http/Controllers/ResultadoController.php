@@ -17,12 +17,20 @@ class ResultadoController extends Controller
         'ilustracion_id' => 'required',
         'logotipos_id' => 'required',
         'colores' => 'required',
-        'descripcion' => 'required'
+
 
     ];
-    public function index()
+    public function index(Request $request)
     {
-        //
+        $especialidad = $request->query('especialidad');
+        $estilo = $request->query('estilo');
+        if ($especialidad && $estilo) {
+            return $this->showAll(Resultado::where('especialidades_id', $especialidad)->where('estilos_id', $estilo)->get());
+        }
+
+
+        $resultado = Resultado::all();
+        return $this->showAll($resultado);
     }
 
 
