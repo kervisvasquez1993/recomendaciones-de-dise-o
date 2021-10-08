@@ -16,7 +16,7 @@ class CreateFuentesTable extends Migration
         Schema::create('fuentes', function (Blueprint $table) {
             $table->id();
             $table->string('nombre');
-            $table->string('src')->notNull();
+            $table->string('src');
             $table->timestamps();
         });
     }

@@ -16,7 +16,7 @@ class CreateLogotiposTable extends Migration
         Schema::create('logotipos', function (Blueprint $table) {
             $table->id();
             $table->string('nombre');
-            $table->text('descripcion')->notNull();
+            $table->text('descripcion');
             $table->timestamps();
         });
     }

@@ -16,8 +16,8 @@ class CreateEstilosTable extends Migration
         Schema::create('estilos', function (Blueprint $table) {
             $table->id();
             $table->string('nombre');
-            $table->string('etiquetas')->notNull();
-            $table->text('descripcion')->notNull();
+            $table->string('etiquetas');
+            $table->text('descripcion');
             $table->timestamps();
         });
     }

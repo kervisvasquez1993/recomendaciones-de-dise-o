@@ -13,10 +13,10 @@ class CreateFuenteResultadosTable extends Migration
      */
     public function up()
     {
-        Schema::create('fuente__resultados', function (Blueprint $table) {
+        Schema::create('fuente_resultados', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('resultados_id')->references('id')->on('resultados')->onDelete('cascade');
-            $table->foreignId('fuentes_id')->references('id')->on('fuentes')->onDelete('cascade');
+            $table->foreignId('resultado_id')->references('id')->on('resultados')->onDelete('cascade');
+            $table->foreignId('fuente_id')->references('id')->on('fuentes')->onDelete('cascade');
             $table->timestamps();
         });
     }
@@ -28,6 +28,6 @@ class CreateFuenteResultadosTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('fuente__resultados');
+        Schema::dropIfExists('fuente_resultados');
     }
 }

@@ -12,10 +12,10 @@ use Illuminate\Http\Request;
 class ResultadoController extends Controller
 {
     private $rules = [
-        'especialidades_id' => 'required',
-        'estilos_id' => 'required',
+        'especialidad_id' => 'required',
+        'estilo_id' => 'required',
         'ilustracion_id' => 'required',
-        'logotipos_id' => 'required',
+        'logotipo_id' => 'required',
         'colores' => 'required',
 
 
@@ -25,7 +25,7 @@ class ResultadoController extends Controller
         $especialidad = $request->query('especialidad');
         $estilo = $request->query('estilo');
         if ($especialidad && $estilo) {
-            return $this->showAll(Resultado::where('especialidades_id', $especialidad)->where('estilos_id', $estilo)->get());
+            return $this->showAll(Resultado::where('especialidad_id', $especialidad)->where('estilo_id', $estilo)->get());
         }
 
 
@@ -38,13 +38,13 @@ class ResultadoController extends Controller
     {
         $this->validate($request, $this->rules);
         /* validacion de llaves forey key */
-        $especialida = Especialidad::where('id', $request->especialidades_id)->first();
-        $estilo = Estilo::where('id', $request->estilos_id)->first();
+        $especialida = Especialidad::where('id', $request->especialidad_id)->first();
+        $estilo = Estilo::where('id', $request->estilo_id)->first();
         $ilustracion = Ilustracion::where('id', $request->ilustracion_id)->first();
-        $logotipos_id = Logotipo::where('id', $request->logotipos_id)->first();
+        $logotipo_id = Logotipo::where('id', $request->logotipo_id)->first();
 
 
-        if (!$especialida || !$estilo || !$ilustracion || !$logotipos_id) {
+        if (!$especialida || !$estilo || !$ilustracion || !$logotipo_id) {
 
             return $this->successMessages("Llave forenea incorrecta", 404);
         }
@@ -59,13 +59,13 @@ class ResultadoController extends Controller
     public function update(Request $request, Resultado $resultado)
     {
         $this->validate($request, $this->rules);
-        $especialida = Especialidad::where('id', $request->especialidades_id)->first();
-        $estilo = Estilo::where('id', $request->estilos_id)->first();
+        $especialida = Especialidad::where('id', $request->especialidad_id)->first();
+        $estilo = Estilo::where('id', $request->estilo_id)->first();
         $ilustracion = Ilustracion::where('id', $request->ilustracion_id)->first();
-        $logotipos_id = Logotipo::where('id', $request->logotipos_id)->first();
+        $logotipo_id = Logotipo::where('id', $request->logotipo_id)->first();
 
 
-        if (!$especialida || !$estilo || !$ilustracion || !$logotipos_id) {
+        if (!$especialida || !$estilo || !$ilustracion || !$logotipo_id) {
 
             return $this->successMessages("Llave forenea incorrecta", 404);
         }

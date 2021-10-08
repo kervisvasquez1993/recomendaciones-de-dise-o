@@ -10,10 +10,10 @@ class Resultado extends Model
     use HasFactory;
     protected $table = 'resultados';
     protected $fillable = [
-        'especialidades_id',
-        'estilos_id',
+        'especialidad_id',
+        'estilo_id',
         'ilustracion_id',
-        'logotipos_id',
+        'logotipo_id',
         'colores',
         'descripcion'
 
@@ -23,12 +23,12 @@ class Resultado extends Model
     ];
     public function especialidades()
     {
-        return $this->belongsTo(Especialidad::class, 'especialidades_id');
+        return $this->belongsTo(Especialidad::class, 'especialidad_id');
     }
 
     public function estilos()
     {
-        return $this->belongsTo(Estilo::class, 'estilos_id');
+        return $this->belongsTo(Estilo::class, 'estilo_id');
     }
 
     public function ilustracion()
@@ -38,6 +38,6 @@ class Resultado extends Model
 
     public function logotipos()
     {
-        return $this->belongsTo(Logotipo::class, 'logotipos_id');
+        return $this->belongsTo(Logotipo::class, 'logotipo_id');
     }
 }

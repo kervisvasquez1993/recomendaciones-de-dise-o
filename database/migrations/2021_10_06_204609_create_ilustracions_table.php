@@ -16,8 +16,8 @@ class CreateIlustracionsTable extends Migration
         Schema::create('ilustracions', function (Blueprint $table) {
             $table->id();
             $table->string('nombre');
-            $table->string('src')->notNull();
-            $table->text('descripcion')->notNull();
+            $table->string('src');
+            $table->text('descripcion');
             $table->timestamps();
         });
     }
