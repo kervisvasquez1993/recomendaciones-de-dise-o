@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { lg } from "../../../../boostrapVariables";
 import SidebarLabel from "./SidebarLabel";
 import SidebarLink from "./SidebarLink";
@@ -70,17 +70,17 @@ const Dashboard = () => {
                             icon={<AiOutlineHome />}
                         />
                         <SidebarLink
-                            to="/dashboard"
+                            to="/dashboard/especialidades"
                             label="Especialidades"
                             icon={<MdWorkOutline />}
                         />
                         <SidebarLink
-                            to="/dashboard"
+                            to="/dashboard/estilos"
                             label="Estilos"
                             icon={<RiPaintBrushFill />}
                         />
                         <SidebarLink
-                            to="/dashboard"
+                            to="/dashboard/fuentes"
                             label="Fuentes"
                             icon={<AiOutlineFontSize />}
                         />

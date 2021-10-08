@@ -1,8 +1,10 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Link } from "react-router-dom";
+import { Route, Switch } from "react-router-dom";
 import { lg } from "../../boostrapVariables";
 import { setHideSidebar } from "../../store/actions/layoutReducer";
+import DashboardHome from "./DashboardHome";
+import ErrorPage from "./ErrorPage";
 import Footer from "./Layout/Footer";
 import Header from "./Layout/Header";
 import Sidebar from "./Layout/Sidebar/Sidebar";
@@ -26,42 +28,14 @@ const Dashboard = () => {
 
                 <div className="main-content">
                     <div className="container-fluid">
-                        <div className="page-header">Header</div>
-
-                        <div className="row">
-                            <div className="col-md-12">
-                                <div className="card table-card proj-t-card">
-                                    <div className="card-body">
-                                        <p>
-                                            Lorem ipsum dolor sit amet,
-                                            consectetur adipiscing elit. Nulla
-                                            vitae suscipit leo. Nullam interdum
-                                            augue ac lacinia mattis. Nunc vel
-                                            bibendum nunc. Ut tempor rhoncus
-                                            tortor ut rutrum. Etiam pretium dui
-                                            ac sapien dignissim, sit amet
-                                            pellentesque dui convallis. Maecenas
-                                            lorem nisl, aliquam id faucibus
-                                            vitae, auctor quis enim. Donec
-                                            posuere dolor ac lectus finibus
-                                            tincidunt. Ut ac odio risus. Sed
-                                            pharetra tortor ut arcu lacinia
-                                            mattis. Morbi et varius nibh, ut
-                                            aliquam odio.
-                                            <code>larave-permissions</code>
-                                            Read larave-permissions{" "}
-                                            <Link
-                                                className="text-red"
-                                                to="https://docs.spatie.be/laravel-permission/v3/introduction/"
-                                            >
-                                                documentation
-                                            </Link>
-                                            .
-                                        </p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                        <Switch>
+                            <Route path="/dashboard" exact>
+                                <DashboardHome />
+                            </Route>
+                            <Route path="*">
+                                <ErrorPage />
+                            </Route>
+                        </Switch>
                     </div>
                 </div>
 
