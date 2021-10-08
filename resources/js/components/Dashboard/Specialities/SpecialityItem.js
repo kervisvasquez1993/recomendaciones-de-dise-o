@@ -1,16 +1,19 @@
 import React from "react";
 import { FiEdit, FiTrash2 } from "react-icons/fi";
+import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
+import { deleteSpeciality } from "../../../store/actions/specialityActions";
 import { deletingConfirmationMessage } from "../../../text";
 
 const SpecialityItem = ({ speciality }) => {
     const { id, nombre, etiqueta, descripcion } = speciality;
+    const dispatch = useDispatch();
 
     const handleDelete = (e) => {
         e.preventDefault();
 
         if (confirm(deletingConfirmationMessage)) {
-            // Handle delete
+            dispatch(deleteSpeciality(speciality));
         }
     };
 

@@ -1,11 +1,13 @@
 import React from "react";
 
-const ErrorPage = () => {
+const ErrorPage = ({ message }) => {
     return (
-        <>
-            <div className="px-4 text-lg">404</div>
-            <div className="ml-4 text-lg">Not Found</div>
-        </>
+        <div className="row">
+            <div className="col">
+                <h2>Hubo un error</h2>
+                <p className="ml-4 text-lg">{message}</p>
+            </div>
+        </div>
     );
 };
 

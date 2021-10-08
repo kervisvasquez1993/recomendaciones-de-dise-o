@@ -24,6 +24,7 @@ use App\Http\Controllers\ResultadoController;
 
 Route::get('/especialidades', [EspecialidadController::class, 'index']);
 Route::post('/especialidades', [EspecialidadController::class, 'store']);
+Route::get('/especialidades/{especialidad}', [EspecialidadController::class, 'show']);
 Route::put('/especialidades/{especialidad}', [EspecialidadController::class, 'update']);
 Route::delete('/especialidades/{especialidad}', [EspecialidadController::class, 'destroy']);
 /* rutas para estilos */

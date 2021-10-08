@@ -2,15 +2,14 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Especialidad;
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Http\Controllers\ApiController;
+use App\Models\Especialidad;
 use App\Models\Resultado;
+use Illuminate\Http\Request;
 
 class EspecialidadController extends Controller
 {
-    private $rules  = [
+    private $rules = [
         'nombre' => 'required',
         'etiqueta' => 'required',
         'descripcion' => 'required',
@@ -18,8 +17,7 @@ class EspecialidadController extends Controller
     public function index(Request $request)
     {
         $resultado = $request->con_reultados;
-        if($resultado)
-        {
+        if ($resultado) {
             $resultado = Resultado::with('especialidades')->get()->pluck('especialidades')->unique()->values();
             return $this->showAll($resultado);
         }
@@ -27,6 +25,10 @@ class EspecialidadController extends Controller
         return $this->showAll($especialidad);
     }
 
+    public function show(Request $request, Especialidad $especialidad)
+    {
+        return $this->showOne($especialidad);
+    }
 
     public function store(Request $request)
     {
@@ -37,7 +39,6 @@ class EspecialidadController extends Controller
         );
         return $this->showOne($especialidad, 201);
     }
-
 
     public function update(Request $request, Especialidad $especialidad)
     {
