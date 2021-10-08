@@ -2,83 +2,83 @@ import axios from "axios";
 import { API_URL } from "../../components/App";
 import { genericFormSubmit } from "./genericFormActions";
 
-export function getStyles() {
+export function getFonts() {
     return async (dispatch, getState) => {
-        dispatch({ type: "GET_STYLES_REQUEST" });
+        dispatch({ type: "GET_FONTS_REQUEST" });
 
         try {
-            let response = await axios.get(`${API_URL}/estilos`);
+            let response = await axios.get(`${API_URL}/fuentes`);
 
             dispatch({
-                type: "GET_STYLES_SUCCESS",
+                type: "GET_FONTS_SUCCESS",
                 payload: response.data.data,
             });
         } catch (e) {
             dispatch({
-                type: "GET_STYLES_FAILURE",
+                type: "GET_FONTS_FAILURE",
             });
         }
     };
 }
 
-export function getStyle(id) {
+export function getFont(id) {
     return async (dispatch, getState) => {
-        dispatch({ type: "GET_STYLE_REQUEST" });
+        dispatch({ type: "GET_FONT_REQUEST" });
 
         try {
-            let response = await axios.get(`${API_URL}/estilos/${id}`);
+            let response = await axios.get(`${API_URL}/fuentes/${id}`);
 
             dispatch({
-                type: "GET_STYLE_SUCCESS",
+                type: "GET_FONT_SUCCESS",
                 payload: response.data.data,
             });
         } catch (e) {
             console.log(e);
             console.log(e.response);
             dispatch({
-                type: "GET_STYLE_FAILURE",
+                type: "GET_FONT_FAILURE",
                 error: "No se puede encontrar esta especialidad",
             });
         }
     };
 }
 
-export function createStyle(data, onSuccess) {
+export function createFont(data, onSuccess) {
     return (dispatch) => {
         return genericFormSubmit(dispatch, () =>
-            axios.post(`${API_URL}/estilos`, data)
+            axios.post(`${API_URL}/fuentes`, data)
         ).then((response) => {
             onSuccess();
         });
     };
 }
 
-export function updateStyle(data, onSuccess) {
+export function updateFont(data, onSuccess) {
     return (dispatch) => {
         return genericFormSubmit(dispatch, () =>
-            axios.put(`${API_URL}/estilos/${data.id}`, data)
+            axios.post(`${API_URL}/fuentes/${data.get("id")}`, data)
         ).then((response) => {
             onSuccess();
         });
     };
 }
 
-export function deleteStyle(data) {
+export function deleteFont(data) {
     return async (dispatch, getState) => {
-        dispatch({ type: "DELETE_STYLE_REQUEST" });
+        dispatch({ type: "DELETE_FONT_REQUEST" });
 
         try {
-            let response = await axios.delete(`${API_URL}/estilos/${data.id}`);
+            let response = await axios.delete(`${API_URL}/fuentes/${data.id}`);
 
             dispatch({
-                type: "DELETE_STYLE_SUCCESS",
+                type: "DELETE_FONT_SUCCESS",
                 payload: response.data.data,
             });
         } catch (e) {
             console.log(e);
             console.log(e.response);
             dispatch({
-                type: "DELETE_STYLE_FAILURE",
+                type: "DELETE_FONT_FAILURE",
             });
         }
     };

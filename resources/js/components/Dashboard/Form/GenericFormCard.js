@@ -8,7 +8,6 @@ const GenericFormCard = ({
     onSubmit,
     onCancel = undefined,
     methods = undefined,
-    afterChange = undefined,
     children,
     submitButtonText = "Enviar",
 }) => {
@@ -30,21 +29,25 @@ const GenericFormCard = ({
                 [id]: value,
             };
 
-            if (afterChange) {
-                newData = afterChange(newData);
-            }
-
             return newData;
         });
     };
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        const result = onSubmit(data);
+
+        let formData = new FormData();
+        Object.keys(data).forEach((key) => formData.append(key, data[key]));
+
+        const result = onSubmit(data, formData);
 
         if (result) {
             setData(result);
         }
+    };
+
+    const handleDropFiles = (id, files) => {
+        console.log(id, files);
     };
 
     if (methods) {
@@ -71,6 +74,7 @@ const GenericFormCard = ({
                         // error={error}
                         setData={setData}
                         hideButtons
+                        onDropFiles={handleDropFiles}
                     >
                         {children}
                     </GenericForm>

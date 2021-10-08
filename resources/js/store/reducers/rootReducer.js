@@ -1,5 +1,6 @@
 import { combineReducers } from "redux";
 import companyReducer from "./companyReducer";
+import fontReducer from "./fontReducer";
 import genericFormReducer from "./genericFormReducer";
 import layoutReducer from "./layoutReducer";
 import screenReducer from "./screenReducer";
@@ -13,6 +14,7 @@ const rootReducer = combineReducers({
     speciality: specialityReducer,
     genericForm: genericFormReducer,
     style: styleReducer,
+    font: fontReducer,
 });
 
 export default rootReducer;

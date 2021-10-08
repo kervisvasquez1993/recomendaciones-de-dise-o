@@ -36,6 +36,7 @@ Route::delete('/estilos/{estilo}', [EstiloController::class, 'destroy']);
 /* rutas para fuentes */
 Route::get('/fuentes', [FuenteController::class, 'index']);
 Route::post('/fuentes', [FuenteController::class, 'store']);
+Route::get('/fuentes/{fuente}', [FuenteController::class, 'show']);
 Route::post('/fuentes/{fuente}', [FuenteController::class, 'update']);
 Route::delete('/fuentes/{fuente}', [FuenteController::class, 'destroy']);
 /* rutas para ilustracion */

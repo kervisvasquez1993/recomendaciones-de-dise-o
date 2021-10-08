@@ -11,23 +11,30 @@ import {
     getStyle,
     updateStyle,
 } from "../../../store/actions/styleActions";
+import { BASE_PATH } from "./FontList";
+import {
+    createFont,
+    getFont,
+    updateFont,
+} from "../../../store/actions/fontActions";
+import InputDropzone from "../Form/InputDropzone";
 
-const StyleForm = ({ isEditor = false }) => {
+const FontForm = ({ isEditor = false }) => {
     const dispatch = useDispatch();
     const history = useHistory();
 
     // @ts-ignore
     const { id } = useParams();
     // @ts-ignore
-    const data = useSelector((state) => state.style.item);
+    const data = useSelector((state) => state.font.item);
     // @ts-ignore
-    const isLoading = useSelector((state) => state.style.isLoadingItem);
+    const isLoading = useSelector((state) => state.font.isLoadingItem);
     // @ts-ignore
-    const error = useSelector((state) => state.style.itemError);
+    const error = useSelector((state) => state.font.itemError);
 
     useEffect(() => {
         if (isEditor) {
-            dispatch(getStyle(id));
+            dispatch(getFont(id));
         }
     }, []);
 
@@ -40,14 +47,14 @@ const StyleForm = ({ isEditor = false }) => {
     }
 
     const onSuccess = () => {
-        history.push("/dashboard/estilos");
+        history.push(`/dashboard/${BASE_PATH}`);
     };
 
-    const handleSubmit = (data) => {
+    const handleSubmit = (data, formData) => {
         if (isEditor) {
-            dispatch(updateStyle(data, onSuccess));
+            dispatch(updateFont(formData, onSuccess));
         } else {
-            dispatch(createStyle(data, onSuccess));
+            dispatch(createFont(formData, onSuccess));
         }
     };
 
@@ -58,10 +65,10 @@ const StyleForm = ({ isEditor = false }) => {
     return (
         <>
             <PageHeader
-                title={`${isEditor ? "Editar" : "Crear"} Estilo`}
+                title={`${isEditor ? "Editar" : "Crear"} Fuente`}
                 description={`Utilice el formulario para ${
-                    isEditor ? "editar el" : "crear un nuevo"
-                }  estilo de logotipo`}
+                    isEditor ? "editar la" : "crear una nueva"
+                }  fuente`}
                 icon={<MdWorkOutline />}
             />
 
@@ -73,11 +80,12 @@ const StyleForm = ({ isEditor = false }) => {
                         onCancel={handleCancel}
                     >
                         <InputText id="nombre" label="Nombre"></InputText>
-                        <InputText id="etiqueta" label="Etiqueta"></InputText>
-                        <InputText
-                            id="descripcion"
-                            label="Descripción"
-                        ></InputText>
+                        <InputDropzone
+                            id="src"
+                            label="Archivo de la fuente"
+                            options={{ accept: ".otf,.ttf,woff", maxFiles: 1 }}
+                            dropzoneMessage="Arrastre un archivo o haga clic aquí (Formatos soportados: otf, ttf y woff)"
+                        />
                     </GenericFormCard>
                 </div>
             </div>
@@ -85,4 +93,4 @@ const StyleForm = ({ isEditor = false }) => {
     );
 };
 
-export default StyleForm;
+export default FontForm;

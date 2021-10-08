@@ -2,19 +2,21 @@ import React, { useEffect } from "react";
 import { RiAddCircleLine, RiPaintBrushFill } from "react-icons/ri";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import { getStyles } from "../../../store/actions/styleActions";
+import { getFonts } from "../../../store/actions/fontActions";
 import PageHeader from "../Layout/PageHeader";
-import StyleItem from "./StyleItem";
+import FontItem from "./FontItem";
 
-const StyleList = () => {
+export const BASE_PATH = "fuentes";
+
+const FontList = () => {
     const dispatch = useDispatch();
     // @ts-ignore
-    const list = useSelector((state) => state.style.list);
+    const list = useSelector((state) => state.font.list);
     // @ts-ignore
-    const isLoading = useSelector((state) => state.style.isLoadingList);
+    const isLoading = useSelector((state) => state.font.isLoadingList);
 
     useEffect(() => {
-        dispatch(getStyles());
+        dispatch(getFonts());
     }, []);
 
     if (isLoading) {
@@ -24,8 +26,8 @@ const StyleList = () => {
     return (
         <>
             <PageHeader
-                title="Estilos"
-                description="Esta seccion sirve para crear, editar o eliminar los estilos de logo"
+                title="Fuentes"
+                description="Esta seccion sirve para crear, editar o eliminar fuentes"
                 icon={<RiPaintBrushFill />}
             />
 
@@ -41,15 +43,13 @@ const StyleList = () => {
                                     <thead>
                                         <tr>
                                             <th>Nombre</th>
-                                            <th>Etiqueta</th>
-                                            <th>Descripción</th>
-                                            <th>Action</th>
+                                            <th>Ejemplo</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         {list.map((item) => {
                                             return (
-                                                <StyleItem
+                                                <FontItem
                                                     key={item.id}
                                                     data={item}
                                                 />
@@ -63,12 +63,12 @@ const StyleList = () => {
                             <div className="d-flex flex-wrap justify-content-between">
                                 <p>{list.length} elementos</p>
                                 <Link
-                                    to="estilos/crear"
+                                    to={`${BASE_PATH}/crear`}
                                     type="submit"
                                     className="btn btn-success mr-2"
                                 >
                                     <RiAddCircleLine className="mr-1" />
-                                    Agregar Estilo
+                                    Agregar Fuente
                                 </Link>
                             </div>
                         </div>
@@ -79,4 +79,4 @@ const StyleList = () => {
     );
 };
 
-export default StyleList;
+export default FontList;

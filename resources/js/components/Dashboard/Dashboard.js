@@ -12,6 +12,8 @@ import SpecialityForm from "./Specialities/SpecialityForm";
 import SpecialityList from "./Specialities/SpecialityList";
 import StyleList from "./Styles/StyleList";
 import StyleForm from "./Styles/StyleForm";
+import FontList from "./Fonts/FontList";
+import FontForm from "./Fonts/FontForm";
 
 const Dashboard = () => {
     const dispatch = useDispatch();
@@ -53,6 +55,15 @@ const Dashboard = () => {
                             </Route>
                             <Route path="/dashboard/estilos/:id" exact>
                                 <StyleForm isEditor={true} />
+                            </Route>
+                            <Route path="/dashboard/fuentes" exact>
+                                <FontList />
+                            </Route>
+                            <Route path="/dashboard/fuentes/crear" exact>
+                                <FontForm />
+                            </Route>
+                            <Route path="/dashboard/fuentes/:id" exact>
+                                <FontForm isEditor={true} />
                             </Route>
                             <Route path="*">
                                 <NotFoundError />
