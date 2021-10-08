@@ -3,6 +3,8 @@ import { Route, Switch } from "react-router-dom";
 import Dashboard from "./Dashboard/Dashboard";
 import Home from "./Home";
 
+export const apiURL = process.env.MIX_APP_API_URL || "/api";
+
 const App = () => {
     return (
         <Switch>

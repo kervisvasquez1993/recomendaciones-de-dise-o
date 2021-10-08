@@ -8,6 +8,7 @@ import ErrorPage from "./ErrorPage";
 import Footer from "./Layout/Footer";
 import Header from "./Layout/Header";
 import Sidebar from "./Layout/Sidebar/Sidebar";
+import SpecialityList from "./Specialities/SpecialityList";
 
 const Dashboard = () => {
     const dispatch = useDispatch();
@@ -31,6 +32,9 @@ const Dashboard = () => {
                         <Switch>
                             <Route path="/dashboard" exact>
                                 <DashboardHome />
+                            </Route>
+                            <Route path="/dashboard/especialidades" exact>
+                                <SpecialityList />
                             </Route>
                             <Route path="*">
                                 <ErrorPage />
