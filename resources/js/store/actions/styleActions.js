@@ -2,83 +2,85 @@ import axios from "axios";
 import { API_URL } from "../../components/App";
 import { genericFormSubmit } from "./genericFormActions";
 
-export function getSpecialities() {
+export function getStyles() {
     return async (dispatch, getState) => {
-        dispatch({ type: "GET_SPECIALITIES_REQUEST" });
+        dispatch({ type: "GET_STYLES_REQUEST" });
 
         try {
-            let response = await axios.get(`${API_URL}/especialidades`);
+            let response = await axios.get(`${API_URL}/estilos`);
 
             dispatch({
-                type: "GET_SPECIALITIES_SUCCESS",
+                type: "GET_STYLES_SUCCESS",
                 payload: response.data.data,
             });
         } catch (e) {
             dispatch({
-                type: "GET_SPECIALITIES_FAILURE",
+                type: "GET_STYLES_FAILURE",
             });
         }
     };
 }
 
-export function getSpeciality(id) {
+export function getStyle(id) {
     return async (dispatch, getState) => {
-        dispatch({ type: "GET_SPECIALITY_REQUEST" });
+        dispatch({ type: "GET_STYLE_REQUEST" });
 
         try {
-            let response = await axios.get(`${API_URL}/especialidades/${id}`);
+            let response = await axios.get(`${API_URL}/estilos/${id}`);
+
+            console.log(response);
 
             dispatch({
-                type: "GET_SPECIALITY_SUCCESS",
+                type: "GET_STYLE_SUCCESS",
                 payload: response.data.data,
             });
         } catch (e) {
-            // console.log(e);
-            // console.log(e.response);
+            console.log(e);
+            console.log(e.response);
             dispatch({
-                type: "GET_SPECIALITY_FAILURE",
+                type: "GET_STYLE_FAILURE",
                 error: "No se puede encontrar esta especialidad",
             });
         }
     };
 }
 
-export function createSpeciality(data, onSuccess) {
+export function createStyle(data, onSuccess) {
     return (dispatch) => {
         return genericFormSubmit(dispatch, () =>
-            axios.post(`${API_URL}/especialidades`, data)
+            axios.post(`${API_URL}/estilos`, data)
         ).then((response) => {
             onSuccess();
         });
     };
 }
 
-export function updateSpeciality(data, onSuccess) {
+export function updateStyle(data, onSuccess) {
     return (dispatch) => {
         return genericFormSubmit(dispatch, () =>
-            axios.put(`${API_URL}/especialidades/${data.id}`, data)
+            axios.put(`${API_URL}/estilos/${data.id}`, data)
         ).then((response) => {
             onSuccess();
         });
     };
 }
 
-export function deleteSpeciality(data) {
+export function deleteStyle(data) {
     return async (dispatch, getState) => {
-        dispatch({ type: "DELETE_SPECIALITY_REQUEST" });
+        dispatch({ type: "DELETE_STYLE_REQUEST" });
 
         try {
-            let response = await axios.delete(
-                `${API_URL}/especialidades/${data.id}`
-            );
+            let response = await axios.delete(`${API_URL}/estilos/${data.id}`);
 
             dispatch({
-                type: "DELETE_SPECIALITY_SUCCESS",
+                type: "DELETE_STYLE_SUCCESS",
                 payload: response.data.data,
             });
         } catch (e) {
+            console.log(e);
+            console.log(e.response);
             dispatch({
-                type: "DELETE_SPECIALITY_FAILURE",
+                type: "DELETE_STYLE_FAILURE",
             });
         }
     };

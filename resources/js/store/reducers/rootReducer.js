@@ -4,6 +4,7 @@ import genericFormReducer from "./genericFormReducer";
 import layoutReducer from "./layoutReducer";
 import screenReducer from "./screenReducer";
 import specialityReducer from "./specialityReducer";
+import styleReducer from "./styleReducer";
 
 const rootReducer = combineReducers({
     screen: screenReducer,
@@ -11,6 +12,7 @@ const rootReducer = combineReducers({
     layout: layoutReducer,
     speciality: specialityReducer,
     genericForm: genericFormReducer,
+    style: styleReducer,
 });
 
 export default rootReducer;

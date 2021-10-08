@@ -2,33 +2,32 @@ import React, { useEffect } from "react";
 import { MdWorkOutline } from "react-icons/md";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory, useParams } from "react-router";
-import {
-    createSpeciality,
-    getSpeciality,
-    updateSpeciality,
-} from "../../../store/actions/specialityActions";
-import NotFoundError from "../NotFoundError";
 import GenericFormCard from "../Form/GenericFormCard";
 import InputText from "../Form/InputText";
 import PageHeader from "../Layout/PageHeader";
 import ErrorPage from "../ErrorPage";
+import {
+    createStyle,
+    getStyle,
+    updateStyle,
+} from "../../../store/actions/styleActions";
 
-const SpecialityForm = ({ isEditor = false }) => {
+const StyleForm = ({ isEditor = false }) => {
     const dispatch = useDispatch();
     const history = useHistory();
 
     // @ts-ignore
     const { id } = useParams();
     // @ts-ignore
-    const speciality = useSelector((state) => state.speciality.item);
+    const style = useSelector((state) => state.style.item);
     // @ts-ignore
-    const isLoading = useSelector((state) => state.speciality.isLoadingItem);
+    const isLoading = useSelector((state) => state.style.isLoadingItem);
     // @ts-ignore
-    const error = useSelector((state) => state.speciality.itemError);
+    const error = useSelector((state) => state.style.itemError);
 
     useEffect(() => {
         if (isEditor) {
-            dispatch(getSpeciality(id));
+            dispatch(getStyle(id));
         }
     }, []);
 
@@ -41,14 +40,14 @@ const SpecialityForm = ({ isEditor = false }) => {
     }
 
     const onSuccess = () => {
-        history.push("/dashboard/especialidades");
+        history.push("/dashboard/estilos");
     };
 
     const handleSubmit = (data) => {
         if (isEditor) {
-            dispatch(updateSpeciality(data, onSuccess));
+            dispatch(updateStyle(data, onSuccess));
         } else {
-            dispatch(createSpeciality(data, onSuccess));
+            dispatch(createStyle(data, onSuccess));
         }
     };
 
@@ -59,17 +58,17 @@ const SpecialityForm = ({ isEditor = false }) => {
     return (
         <>
             <PageHeader
-                title={`${isEditor ? "Editar" : "Crear"} Especialidad`}
+                title={`${isEditor ? "Editar" : "Crear"} Estilo`}
                 description={`Utilice el formulario para ${
-                    isEditor ? "editar la" : "crear una nueva"
-                } area de emprendimiento`}
+                    isEditor ? "editar el" : "crear un nuevo"
+                }  estilo de logotipo`}
                 icon={<MdWorkOutline />}
             />
 
             <div className="row">
                 <div className="col-md-8">
                     <GenericFormCard
-                        formData={isEditor && speciality}
+                        formData={isEditor && style}
                         onSubmit={handleSubmit}
                         onCancel={handleCancel}
                     >
@@ -86,4 +85,4 @@ const SpecialityForm = ({ isEditor = false }) => {
     );
 };
 
-export default SpecialityForm;
+export default StyleForm;

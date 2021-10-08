@@ -8,18 +8,18 @@ const defaultState = {
     itemError: null,
 };
 
-const specialityReducer = (state = defaultState, action) => {
+const styleReducer = (state = defaultState, action) => {
     const { type, payload, error } = action;
 
-    if (type === "GET_SPECIALITIES_REQUEST") {
+    if (type === "GET_STYLES_REQUEST") {
         return { ...state, isLoadingList: true, listError: null };
     }
 
-    if (type === "GET_SPECIALITIES_FAILURE") {
+    if (type === "GET_STYLES_FAILURE") {
         return { ...state, isLoadingList: false, listError: payload };
     }
 
-    if (type === "GET_SPECIALITIES_SUCCESS") {
+    if (type === "GET_STYLES_SUCCESS") {
         return {
             ...state,
             list: payload,
@@ -28,15 +28,15 @@ const specialityReducer = (state = defaultState, action) => {
         };
     }
 
-    if (type === "GET_SPECIALITY_REQUEST") {
+    if (type === "GET_STYLE_REQUEST") {
         return { ...state, isLoadingItem: true, itemError: null };
     }
 
-    if (type === "GET_SPECIALITY_FAILURE") {
+    if (type === "GET_STYLE_FAILURE") {
         return { ...state, isLoadingItem: false, itemError: error };
     }
 
-    if (type === "GET_SPECIALITY_SUCCESS") {
+    if (type === "GET_STYLE_SUCCESS") {
         return {
             ...state,
             item: payload,
@@ -45,7 +45,7 @@ const specialityReducer = (state = defaultState, action) => {
         };
     }
 
-    if (type === "DELETE_SPECIALITY_SUCCESS") {
+    if (type === "DELETE_STYLE_SUCCESS") {
         const newList = state.list.filter((item) => item.id != payload.id);
 
         return {
@@ -57,4 +57,4 @@ const specialityReducer = (state = defaultState, action) => {
     return state;
 };
 
-export default specialityReducer;
+export default styleReducer;

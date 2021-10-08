@@ -30,6 +30,7 @@ Route::delete('/especialidades/{especialidad}', [EspecialidadController::class, 
 /* rutas para estilos */
 Route::get('/estilos', [EstiloController::class, 'index']);
 Route::post('/estilos', [EstiloController::class, 'store']);
+Route::get('/estilos/{estilo}', [EstiloController::class, 'show']);
 Route::put('/estilos/{estilo}', [EstiloController::class, 'update']);
 Route::delete('/estilos/{estilo}', [EstiloController::class, 'destroy']);
 /* rutas para fuentes */

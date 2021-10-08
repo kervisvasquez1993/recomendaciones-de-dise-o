@@ -3,14 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Models\Estilo;
-use Illuminate\Http\Request;
-use App\Http\Controllers\ApiController;
-use App\Models\Especialidad;
 use App\Models\Resultado;
+use Illuminate\Http\Request;
 
 class EstiloController extends Controller
 {
-    private $rules  = [
+    private $rules = [
         'nombre' => 'required',
         'etiqueta' => 'required',
         'descripcion' => 'required',
@@ -23,11 +21,9 @@ class EstiloController extends Controller
             return $this->showAll($resultado);
         }
 
-
-        $estilos =   Estilo::all();
+        $estilos = Estilo::all();
         return $this->showAll($estilos);
     }
-
 
     public function store(Request $request)
     {
@@ -38,9 +34,10 @@ class EstiloController extends Controller
         return $this->showOne($estilo, 201);
     }
 
-
-
-
+    public function show(Request $request, Estilo $estilo)
+    {
+        return $this->showOne($estilo);
+    }
 
     public function update(Request $request, Estilo $estilo)
     {
@@ -49,7 +46,6 @@ class EstiloController extends Controller
 
         return $this->showOne($estilo);
     }
-
 
     public function destroy(Estilo $estilo)
     {

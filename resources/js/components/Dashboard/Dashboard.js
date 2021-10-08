@@ -10,6 +10,8 @@ import Header from "./Layout/Header";
 import Sidebar from "./Layout/Sidebar/Sidebar";
 import SpecialityForm from "./Specialities/SpecialityForm";
 import SpecialityList from "./Specialities/SpecialityList";
+import StyleList from "./Styles/StyleList";
+import StyleForm from "./Styles/StyleForm";
 
 const Dashboard = () => {
     const dispatch = useDispatch();
@@ -42,6 +44,15 @@ const Dashboard = () => {
                             </Route>
                             <Route path="/dashboard/especialidades/:id" exact>
                                 <SpecialityForm isEditor={true} />
+                            </Route>
+                            <Route path="/dashboard/estilos" exact>
+                                <StyleList />
+                            </Route>
+                            <Route path="/dashboard/estilos/crear" exact>
+                                <StyleForm />
+                            </Route>
+                            <Route path="/dashboard/estilos/:id" exact>
+                                <StyleForm isEditor={true} />
                             </Route>
                             <Route path="*">
                                 <NotFoundError />
