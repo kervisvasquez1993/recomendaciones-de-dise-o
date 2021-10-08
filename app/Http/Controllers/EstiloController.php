@@ -12,7 +12,7 @@ class EstiloController extends Controller
 {
     private $rules  = [
         'nombre' => 'required',
-        'etiquetas' => 'required',
+        'etiqueta' => 'required',
         'descripcion' => 'required',
     ];
     public function index(Request $request)

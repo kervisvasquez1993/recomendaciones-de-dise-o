@@ -11,7 +11,7 @@ class Estilo extends Model
     protected $table = 'estilos';
     protected $fillable = [
         'nombre',
-        'etiquetas',
+        'etiqueta',
         'descripcion'
     ];
 }
