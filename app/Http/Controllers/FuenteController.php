@@ -25,7 +25,7 @@ class FuenteController extends Controller
         $this->validate($request, $this->rules);
         $fuente = new Fuente();
         $fuente->nombre = $request->nombre;
-        $fuente->src = $request->file('src')->store('fuentes');
+        $fuente->src = $request->file('src')->store('fuentes', 'public');
         $fuente->save();
         return $this->showOne($fuente, 201);
     }
@@ -39,7 +39,7 @@ class FuenteController extends Controller
     {
         $this->validate($request, $this->rules);
         $fuente->nombre = $request->nombre;
-        $fuente->src = $request->file('src')->store('fuentes');
+        $fuente->src = $request->file('src')->store('fuentes', 'public');
         $fuente->update();
         return $this->showOne($fuente, 201);
     }

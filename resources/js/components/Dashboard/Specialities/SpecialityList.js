@@ -44,7 +44,7 @@ const SpecialityList = () => {
                                             <th>Nombre</th>
                                             <th>Etiqueta</th>
                                             <th>Descripción</th>
-                                            <th>Action</th>
+                                            <th>Acciones</th>
                                         </tr>
                                     </thead>
                                     <tbody>

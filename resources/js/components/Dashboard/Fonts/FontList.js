@@ -44,6 +44,7 @@ const FontList = () => {
                                         <tr>
                                             <th>Nombre</th>
                                             <th>Ejemplo</th>
+                                            <th>Acciones</th>
                                         </tr>
                                     </thead>
                                     <tbody>

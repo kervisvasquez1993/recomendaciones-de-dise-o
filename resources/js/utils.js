@@ -17,6 +17,19 @@ export const loadFont = (name) => {
     return false;
 };
 
+export const loadFontWithUrl = (name, url) => {
+    var newStyle = document.createElement("style");
+    newStyle.appendChild(
+        document.createTextNode(
+            `@font-face {font-family: "${name}"; src: url("${url}");}`
+        )
+    );
+    document.head.appendChild(newStyle);
+    // fontData.loaded = true;
+
+    return newStyle;
+};
+
 export const copyToClipboard = (text) => {
     const el = document.createElement("textarea");
     el.value = text;
