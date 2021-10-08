@@ -18,6 +18,8 @@
     <!-- Styles -->
     <!-- CSS only -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link rel="stylesheet" href="{{ asset('all.css') }}">
+    <link rel="stylesheet" href="{{ asset('dist/css/theme.css') }}">
 
     <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
 
