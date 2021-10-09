@@ -16,3 +16,6 @@ use Illuminate\Support\Facades\Route;
 Route::view('/{path?}', 'index')
     ->where('path', '^(?!api).*$')
     ->name('react');
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

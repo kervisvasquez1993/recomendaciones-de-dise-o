@@ -21,6 +21,7 @@ use App\Http\Controllers\ResultadoController;
 |
 */
 /* crud de especialidades */
+Route::post('login', [AuthController::class, 'login']);
 
 Route::get('/especialidades', [EspecialidadController::class, 'index']);
 Route::post('/especialidades', [EspecialidadController::class, 'store']);
