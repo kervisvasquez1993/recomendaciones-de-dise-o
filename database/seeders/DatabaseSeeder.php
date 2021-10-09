@@ -1,8 +1,8 @@
 <?php
 
-use App\ProduccionTransito;
-use App\ValidacionBocetoStatu;
-use App\ValidacionFichaStatu;
+namespace Database\Seeders;
+
+use UserSeeder;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -14,7 +14,6 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        
-        $this->call(UserSeeder::class);
+        $this->call(UsuarioSeeder::class);
     }
 }
