@@ -57,3 +57,12 @@ Route::post('/resultados', [ResultadoController::class, 'store']);
 Route::put('/resultados/{resultado}', [ResultadoController::class, 'update']);
 /* Route::get('/resultados', [ResultadoController::class, 'index']); */
 
+//user_resultado acciones
+
+Route::get('/user_resultados', [ResultadoController::class, 'resultado_user_index']);
+Route::post('/user_resultados', [ResultadoController::class, 'resultado_user_store']);
+Route::get('/user_resultados/{user_resultado}', [ResultadoController::class, 'resultado_user_show']);
+Route::delete('/user_resultados/{user_resultado}', [ResultadoController::class, 'resultado_user_delete']);
+
+
+

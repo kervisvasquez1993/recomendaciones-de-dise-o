@@ -2,12 +2,14 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Especialidad;
 use App\Models\Estilo;
-use App\Models\Ilustracion;
 use App\Models\Logotipo;
 use App\Models\Resultado;
+use App\Models\Ilustracion;
+use App\Models\Especialidad;
 use Illuminate\Http\Request;
+use App\Models\UserResultado;
+use Illuminate\Support\Facades\Auth;
 
 class ResultadoController extends Controller
 {
@@ -79,4 +81,36 @@ class ResultadoController extends Controller
     {
         //
     }
+
+    // resultado asociado a cada usuario
+
+    public function resultado_user_store(Request $request, Resultado $resultado)
+    {
+        $user_resultado = new UserResultado();
+        $resultado = $request->query('resultado');
+        $user_resultado->user_id = Auth::user()->id;
+        $user_resultado->resultado_id = $resultado;
+        $user_resultado->logo_empresa = $request->file('logo')->store("logo-empresa", 'public');
+        $user_resultado->nombre_empresa = $request->nombre_empresa;
+        $user_resultado->save();
+        return $this->showOne($user_resultado);
+    }
+
+    public function resultado_user_show(UserResultado $user_resultado)
+    {
+        return $this->showOne($user_resultado);
+    }
+
+    public function resultado_user_delete(UserResultado $user_resultado)
+    {
+        $user_resultado->delete();
+        return $this->showOne($user_resultado);
+    }
+
+    public function resultado_user_index(Request $request)
+    {
+            // mostrar resultado cuando exista un login 
+    }
+
+    
 }
