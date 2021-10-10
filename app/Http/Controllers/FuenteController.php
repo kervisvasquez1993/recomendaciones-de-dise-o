@@ -32,7 +32,7 @@ class FuenteController extends Controller
 
     public function show(Fuente $fuente)
     {
-        return $this->showOne($fuente, 201);
+        return $this->showOne($fuente);
     }
 
     public function update(Request $request, Fuente $fuente)

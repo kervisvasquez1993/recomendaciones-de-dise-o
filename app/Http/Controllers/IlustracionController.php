@@ -8,10 +8,10 @@ use Illuminate\Http\Request;
 class IlustracionController extends Controller
 {
 
-    private $rules  = [
+    private $rules = [
         'nombre' => 'required',
         'src' => 'required',
-        'descripcion' => 'required'
+        'descripcion' => 'required',
 
     ];
     public function index()
@@ -26,24 +26,26 @@ class IlustracionController extends Controller
         $this->validate($request, $this->rules);
         $ilustracion = new Ilustracion();
         $ilustracion->nombre = $request->nombre;
-        $ilustracion->src = $request->file('src')->store('ilustraciones');
+        $ilustracion->src = $request->file('src')->store('ilustraciones', 'public');
         $ilustracion->descripcion = $request->descripcion;
         $ilustracion->save();
         return $this->showOne($ilustracion, 201);
     }
 
-
+    public function show(Ilustracion $ilustracion)
+    {
+        return $this->showOne($ilustracion);
+    }
 
     public function update(Request $request, Ilustracion $ilustracion)
     {
         $this->validate($request, $this->rules);
         $ilustracion->nombre = $request->nombre;
-        $ilustracion->src = $request->file('src')->store('ilustraciones');
+        $ilustracion->src = $request->file('src')->store('ilustraciones', 'public');
         $ilustracion->descripcion = $request->descripcion;
         $ilustracion->update();
         return $this->showOne($ilustracion, 201);
     }
-
 
     public function destroy(Ilustracion $ilustracion)
     {
