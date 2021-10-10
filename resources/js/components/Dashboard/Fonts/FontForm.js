@@ -6,18 +6,14 @@ import GenericFormCard from "../Form/GenericFormCard";
 import InputText from "../Form/InputText";
 import PageHeader from "../Layout/PageHeader";
 import ErrorPage from "../ErrorPage";
-import {
-    createStyle,
-    getStyle,
-    updateStyle,
-} from "../../../store/actions/styleActions";
 import { BASE_PATH } from "./FontList";
-import {
-    createFont,
-    getFont,
-    updateFont,
-} from "../../../store/actions/fontActions";
+// import {
+//     createFont,
+//     getFont,
+//     updateFont,
+// } from "../../../store/actions/fontActions";
 import InputDropzone from "../Form/InputDropzone";
+import FontActions from "../../../store/actions/fontActions";
 
 const FontForm = ({ isEditor = false }) => {
     const dispatch = useDispatch();
@@ -34,7 +30,8 @@ const FontForm = ({ isEditor = false }) => {
 
     useEffect(() => {
         if (isEditor) {
-            dispatch(getFont(id));
+            // dispatch(getFont(id));
+            dispatch(FontActions.get(id));
         }
     }, []);
 
@@ -52,9 +49,11 @@ const FontForm = ({ isEditor = false }) => {
 
     const handleSubmit = (data, formData) => {
         if (isEditor) {
-            dispatch(updateFont(formData, onSuccess));
+            // dispatch(updateFont(formData, onSuccess));
+            dispatch(FontActions.update(id, formData, onSuccess));
         } else {
-            dispatch(createFont(formData, onSuccess));
+            // dispatch(createFont(formData, onSuccess));
+            dispatch(FontActions.create(formData, onSuccess));
         }
     };
 

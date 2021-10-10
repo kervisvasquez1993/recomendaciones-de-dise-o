@@ -2,7 +2,8 @@ import React, { useEffect } from "react";
 import { RiAddCircleLine, RiPaintBrushFill } from "react-icons/ri";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import { getFonts } from "../../../store/actions/fontActions";
+import FontActions from "../../../store/actions/fontActions";
+// import { getFonts } from "../../../store/actions/fontActions";
 import PageHeader from "../Layout/PageHeader";
 import FontItem from "./FontItem";
 
@@ -16,7 +17,8 @@ const FontList = () => {
     const isLoading = useSelector((state) => state.font.isLoadingList);
 
     useEffect(() => {
-        dispatch(getFonts());
+        // dispatch(getFonts());
+        dispatch(FontActions.getList());
     }, []);
 
     if (isLoading) {
@@ -34,9 +36,6 @@ const FontList = () => {
             <div className="row">
                 <div className="col">
                     <div className="card table-card">
-                        {/* <div className="card-header">
-                            <h3>Especialidades</h3>
-                        </div> */}
                         <div className="card-block">
                             <div className="table-responsive">
                                 <table className="table table-hover mb-0">

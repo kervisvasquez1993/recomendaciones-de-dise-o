@@ -2,9 +2,11 @@ import React, { useEffect } from "react";
 import { FiEdit, FiTrash2 } from "react-icons/fi";
 import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
-import { deleteFont } from "../../../store/actions/fontActions";
+import FontActions from "../../../store/actions/fontActions";
+// import { deleteFont } from "../../../store/actions/fontActions";
 import { deletingConfirmationMessage } from "../../../text";
 import { loadFontWithUrl } from "../../../utils";
+import { BASE_PATH } from "./FontList";
 
 const FontItem = ({ data }) => {
     const { id, nombre, src } = data;
@@ -14,7 +16,8 @@ const FontItem = ({ data }) => {
         e.preventDefault();
 
         if (confirm(deletingConfirmationMessage)) {
-            dispatch(deleteFont(data));
+            // dispatch(deleteFont(data));
+            dispatch(FontActions.delete(id));
         }
     };
 
@@ -34,7 +37,7 @@ const FontItem = ({ data }) => {
                 <h3 style={{ fontFamily: nombre }}>Lorem Ipsum</h3>
             </td>
             <td>
-                <Link to={`/dashboard/fuentes/${id}`}>
+                <Link to={`/dashboard/${BASE_PATH}/${id}`}>
                     <FiEdit className="f-16 mr-15 text-green" />
                 </Link>
 

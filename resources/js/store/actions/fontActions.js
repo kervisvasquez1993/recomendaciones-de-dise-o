@@ -1,85 +1,86 @@
-import axios from "axios";
-import { API_URL } from "../../components/App";
-import { genericFormSubmit } from "./genericFormActions";
+import GenericCrudActions from "./GenericCrudActions";
 
-export function getFonts() {
-    return async (dispatch, getState) => {
-        dispatch({ type: "GET_FONTS_REQUEST" });
+const FontActions = new GenericCrudActions("FONT", "fuentes");
+export default FontActions;
 
-        try {
-            let response = await axios.get(`${API_URL}/fuentes`);
+// export function getFonts() {
+//     return async (dispatch, getState) => {
+//         dispatch({ type: "GET_FONTS_REQUEST" });
 
-            dispatch({
-                type: "GET_FONTS_SUCCESS",
-                payload: response.data.data,
-            });
-        } catch (e) {
-            dispatch({
-                type: "GET_FONTS_FAILURE",
-            });
-        }
-    };
-}
+//         try {
+//             let response = await axios.get(`${API_URL}/fuentes`);
 
-export function getFont(id) {
-    return async (dispatch, getState) => {
-        dispatch({ type: "GET_FONT_REQUEST" });
+//             dispatch({
+//                 type: "GET_FONTS_SUCCESS",
+//                 payload: response.data.data,
+//             });
+//         } catch (e) {
+//             dispatch({
+//                 type: "GET_FONTS_FAILURE",
+//             });
+//         }
+//     };
+// }
 
-        try {
-            let response = await axios.get(`${API_URL}/fuentes/${id}`);
+// export function getFont(id) {
+//     return async (dispatch, getState) => {
+//         dispatch({ type: "GET_FONT_REQUEST" });
 
-            dispatch({
-                type: "GET_FONT_SUCCESS",
-                payload: response.data.data,
-            });
-        } catch (e) {
-            console.log(e);
-            console.log(e.response);
-            dispatch({
-                type: "GET_FONT_FAILURE",
-                error: "No se puede encontrar esta especialidad",
-            });
-        }
-    };
-}
+//         try {
+//             let response = await axios.get(`${API_URL}/fuentes/${id}`);
 
-export function createFont(data, onSuccess) {
-    return (dispatch) => {
-        return genericFormSubmit(dispatch, () =>
-            axios.post(`${API_URL}/fuentes`, data)
-        ).then((response) => {
-            onSuccess();
-        });
-    };
-}
+//             dispatch({
+//                 type: "GET_FONT_SUCCESS",
+//                 payload: response.data.data,
+//             });
+//         } catch (e) {
+//             console.log(e);
+//             console.log(e.response);
+//             dispatch({
+//                 type: "GET_FONT_FAILURE",
+//                 error: "No se puede encontrar esta especialidad",
+//             });
+//         }
+//     };
+// }
 
-export function updateFont(data, onSuccess) {
-    return (dispatch) => {
-        return genericFormSubmit(dispatch, () =>
-            axios.post(`${API_URL}/fuentes/${data.get("id")}`, data)
-        ).then((response) => {
-            onSuccess();
-        });
-    };
-}
+// export function createFont(data, onSuccess) {
+//     return (dispatch) => {
+//         return genericFormSubmit(dispatch, () =>
+//             axios.post(`${API_URL}/fuentes`, data)
+//         ).then((response) => {
+//             onSuccess();
+//         });
+//     };
+// }
 
-export function deleteFont(data) {
-    return async (dispatch, getState) => {
-        dispatch({ type: "DELETE_FONT_REQUEST" });
+// export function updateFont(data, onSuccess) {
+//     return (dispatch) => {
+//         return genericFormSubmit(dispatch, () =>
+//             axios.post(`${API_URL}/fuentes/${data.get("id")}`, data)
+//         ).then((response) => {
+//             onSuccess();
+//         });
+//     };
+// }
 
-        try {
-            let response = await axios.delete(`${API_URL}/fuentes/${data.id}`);
+// export function deleteFont(data) {
+//     return async (dispatch, getState) => {
+//         dispatch({ type: "DELETE_FONT_REQUEST" });
 
-            dispatch({
-                type: "DELETE_FONT_SUCCESS",
-                payload: response.data.data,
-            });
-        } catch (e) {
-            console.log(e);
-            console.log(e.response);
-            dispatch({
-                type: "DELETE_FONT_FAILURE",
-            });
-        }
-    };
-}
+//         try {
+//             let response = await axios.delete(`${API_URL}/fuentes/${data.id}`);
+
+//             dispatch({
+//                 type: "DELETE_FONT_SUCCESS",
+//                 payload: response.data.data,
+//             });
+//         } catch (e) {
+//             console.log(e);
+//             console.log(e.response);
+//             dispatch({
+//                 type: "DELETE_FONT_FAILURE",
+//             });
+//         }
+//     };
+// }
