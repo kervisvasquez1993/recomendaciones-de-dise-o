@@ -10,6 +10,7 @@ use App\Models\Especialidad;
 use Illuminate\Http\Request;
 use App\Models\UserResultado;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 
 class ResultadoController extends Controller
 {
@@ -103,7 +104,8 @@ class ResultadoController extends Controller
 
         $user_resultado->user_id = auth()->user()->id;
         $user_resultado->resultado_id = $resultado;
-        $user_resultado->logo_empresa = $request->file('logo_empresa')->store("logo-empresa", 's3');
+        $user_resultado->logo_empresa = Storage::disk('s3')->put("ilustraciones", $request->file('logo_empresa'), 'public');
+
         $user_resultado->nombre_empresa = $request->nombre_empresa;
         $user_resultado->save();
         return $this->showOne($user_resultado);
@@ -122,8 +124,8 @@ class ResultadoController extends Controller
 
     public function resultado_user_index(Request $request)
     {
-        
-        if(auth()->user()->rol === "admin" ){
+
+        if (auth()->user()->rol === "admin") {
             return $this->showAll(UserResultado::all());
         }
         return $this->showAll(auth()->user()->UserResultado);
