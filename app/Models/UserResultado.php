@@ -11,6 +11,9 @@ class UserResultado extends Model
 {
     use HasFactory;
     protected $table = 'user_resultados';
+    protected $casts = [
+        'fuentes' => 'array'
+    ];
     
 
     public function resultado(){

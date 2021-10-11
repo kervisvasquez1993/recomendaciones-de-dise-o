@@ -2,13 +2,15 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Especialidad;
+use Carbon\Carbon;
 use App\Models\Estilo;
-use App\Models\Ilustracion;
 use App\Models\Logotipo;
 use App\Models\Resultado;
-use App\Models\UserResultado;
+use App\Models\Ilustracion;
+use App\Models\Especialidad;
 use Illuminate\Http\Request;
+use App\Models\UserResultado;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 
@@ -62,6 +64,14 @@ class ResultadoController extends Controller
         $resultado = Resultado::create(
             $request->all(),
         );
+        
+        foreach($request->fuentes as $e){
+            DB::table('fuente_resultados')->insert([
+                'resultado_id' => $resultado->id,
+                'fuente_id' => $e,
+                'created_at' => Carbon::now()
+            ]);
+        }
         return $this->showOne($resultado, 201);
     }
 
@@ -88,6 +98,8 @@ class ResultadoController extends Controller
         }
 
         $resultado->update($request->all());
+
+        
         return $this->showOne($resultado);
     }
 
