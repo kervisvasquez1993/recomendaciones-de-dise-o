@@ -61,11 +61,15 @@ class GenericCrudActions {
         };
     }
 
-    update(id, data, onSuccess) {
+    update(id, data, onSuccess, usePost = false) {
         return (dispatch) => {
-            return genericFormSubmit(dispatch, () =>
-                axios.post(`${API_URL}/${this.apiPath}/${id}`, data)
-            ).then((response) => {
+            return genericFormSubmit(dispatch, () => {
+                if (usePost) {
+                    return axios.post(`${API_URL}/${this.apiPath}/${id}`, data);
+                }
+
+                return axios.put(`${API_URL}/${this.apiPath}/${id}`, data);
+            }).then((response) => {
                 onSuccess(response);
             });
         };

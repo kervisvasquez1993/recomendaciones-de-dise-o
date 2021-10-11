@@ -4,6 +4,7 @@ import SidebarLabel from "./SidebarLabel";
 import SidebarLink from "./SidebarLink";
 import {
     AiOutlineClose,
+    AiOutlineFileImage,
     AiOutlineFontSize,
     AiOutlineHome,
 } from "react-icons/ai";
@@ -13,6 +14,7 @@ import { MdWorkOutline } from "react-icons/md";
 import logo from "../../../../../images/logo.png";
 import { useDispatch, useSelector } from "react-redux";
 import { setHideSidebar } from "../../../../store/actions/layoutReducer";
+import { FaPencilAlt } from "react-icons/fa";
 
 const Dashboard = () => {
     const dispatch = useDispatch();
@@ -83,6 +85,16 @@ const Dashboard = () => {
                             to="/dashboard/fuentes"
                             label="Fuentes"
                             icon={<AiOutlineFontSize />}
+                        />
+                        <SidebarLink
+                            to="/dashboard/ilustraciones"
+                            label="Ilustraciones"
+                            icon={<AiOutlineFileImage />}
+                        />
+                        <SidebarLink
+                            to="/dashboard/logotipos"
+                            label="Tipos de Logo"
+                            icon={<FaPencilAlt />}
                         />
 
                         <SidebarLabel label="Documentation" />

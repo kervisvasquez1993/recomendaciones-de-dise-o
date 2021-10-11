@@ -4,12 +4,11 @@ namespace App\Http\Controllers;
 
 use App\Models\Logotipo;
 use Illuminate\Http\Request;
-use App\Http\Controllers\ApiController;
 
 class LogotipoController extends Controller
 {
 
-    private $rules  = [
+    private $rules = [
         'nombre' => 'required',
         'descripcion' => 'required',
     ];
@@ -18,8 +17,6 @@ class LogotipoController extends Controller
         $logotipo = Logotipo::all();
         return $this->showAll($logotipo);
     }
-
-
 
     public function store(Request $request)
     {
@@ -30,7 +27,10 @@ class LogotipoController extends Controller
         return $this->showOne($logotipo, 201);
     }
 
-
+    public function show(Logotipo $logotipo)
+    {
+        return $this->showOne($logotipo);
+    }
 
     public function update(Request $request, Logotipo $logotipo)
     {
