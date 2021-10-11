@@ -20,6 +20,24 @@ const ResultList = () => {
         dispatch(ResultActions.getList());
     }, []);
 
+    useEffect(() => {
+        // const styles = {};
+
+        // list.forEach((result) => {
+        //     result.fuentes.forEach((font) => {
+        //         if (!styles[font.nombre]) {
+        //             styles[font.nombre] =
+        //         }
+        //         console.log(font);
+        //     });
+        // });
+        // const style = loadFontWithUrl(nombre, relativePathToS3(src));
+
+        return () => {
+            // style.remove();
+        };
+    }, [list]);
+
     if (isLoading) {
         return <div></div>;
     }

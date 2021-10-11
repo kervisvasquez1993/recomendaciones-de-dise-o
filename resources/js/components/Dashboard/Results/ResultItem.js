@@ -9,8 +9,15 @@ import ResultColors from "./ResultColors";
 import { BASE_PATH } from "./ResultList";
 
 const ResultItem = ({ data }) => {
-    const { id, especialidad, estilo, descripcion, logotipo, ilustracion } =
-        data;
+    const {
+        id,
+        especialidad,
+        estilo,
+        descripcion,
+        logotipo,
+        ilustracion,
+        fuentes,
+    } = data;
 
     const dispatch = useDispatch();
 
@@ -26,7 +33,13 @@ const ResultItem = ({ data }) => {
         <tr>
             <td>{especialidad.etiqueta}</td>
             <td>{estilo.etiqueta}</td>
-            <td>*Fuentes</td>
+            <td>
+                {fuentes.map((item, index) => (
+                    <div key={index} style={{ fontFamily: item.nombre }}>
+                        {item.nombre}
+                    </div>
+                ))}
+            </td>
             <td>
                 <ResultColors colors={data.colores} />
             </td>
