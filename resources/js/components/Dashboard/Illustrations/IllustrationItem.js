@@ -4,6 +4,7 @@ import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 import IllustrationActions from "../../../store/actions/IllustrationActions";
 import { deletingConfirmationMessage } from "../../../text";
+import { relativePathToS3 } from "../../../utils";
 import { BASE_PATH } from "./IllustrationList";
 
 const IllustrationItem = ({ data }) => {
@@ -25,7 +26,7 @@ const IllustrationItem = ({ data }) => {
             <td>
                 <img
                     className="table-img"
-                    src={`/storage/${src}`}
+                    src={relativePathToS3(src)}
                     alt={nombre}
                 />
             </td>

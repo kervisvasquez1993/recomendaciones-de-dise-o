@@ -41,7 +41,6 @@ const SpecialityList = () => {
                                 <table className="table table-hover mb-0">
                                     <thead>
                                         <tr>
-                                            <th>Nombre</th>
                                             <th>Etiqueta</th>
                                             <th>Descripción</th>
                                             <th>Acciones</th>

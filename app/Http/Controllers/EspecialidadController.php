@@ -10,10 +10,10 @@ use Illuminate\Http\Request;
 class EspecialidadController extends Controller
 {
     private $rules = [
-        'nombre' => 'required',
         'etiqueta' => 'required',
         'descripcion' => 'required',
     ];
+    
     public function index(Request $request)
     {
         $resultado = $request->con_reultados;

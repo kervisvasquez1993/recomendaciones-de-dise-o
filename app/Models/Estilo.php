@@ -10,7 +10,6 @@ class Estilo extends Model
     use HasFactory;
     protected $table = 'estilos';
     protected $fillable = [
-        'nombre',
         'etiqueta',
         'descripcion'
     ];

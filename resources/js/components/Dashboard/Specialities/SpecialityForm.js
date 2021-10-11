@@ -73,7 +73,6 @@ const SpecialityForm = ({ isEditor = false }) => {
                         onSubmit={handleSubmit}
                         onCancel={handleCancel}
                     >
-                        <InputText id="nombre" label="Nombre"></InputText>
                         <InputText id="etiqueta" label="Etiqueta"></InputText>
                         <InputText
                             id="descripcion"

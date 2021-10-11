@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 import FontActions from "../../../store/actions/fontActions";
 // import { deleteFont } from "../../../store/actions/fontActions";
 import { deletingConfirmationMessage } from "../../../text";
-import { loadFontWithUrl } from "../../../utils";
+import { loadFontWithUrl, relativePathToS3 } from "../../../utils";
 import { BASE_PATH } from "./FontList";
 
 const FontItem = ({ data }) => {
@@ -22,7 +22,7 @@ const FontItem = ({ data }) => {
     };
 
     useEffect(() => {
-        const style = loadFontWithUrl(nombre, `/storage/${src}`);
+        const style = loadFontWithUrl(nombre, relativePathToS3(src));
 
         return () => {
             style.remove();

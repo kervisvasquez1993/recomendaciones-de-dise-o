@@ -14,6 +14,7 @@ import { getStyles } from "../../../store/actions/styleActions";
 import LogoTypeActions from "../../../store/actions/LogoTypeActions";
 import IllustrationActions from "../../../store/actions/IllustrationActions";
 import { ChromePicker } from "react-color";
+import { relativePathToS3 } from "../../../utils";
 
 const ResultForm = ({ isEditor = false }) => {
     const dispatch = useDispatch();
@@ -86,7 +87,7 @@ const ResultForm = ({ isEditor = false }) => {
     const ilustrationPreview = ilustration && (
         <img
             className="form-img"
-            src={`/storage/${ilustration.src}`}
+            src={relativePathToS3(ilustration.src)}
             alt={ilustration.nombre}
         />
     );
@@ -130,10 +131,10 @@ const ResultForm = ({ isEditor = false }) => {
                         </InputSelect>
 
                         <InputText id="colores" label="Colores"></InputText>
-                        <ChromePicker
+                        {/* <ChromePicker
                             color={color}
                             onChange={handleChangeComplete}
-                        />
+                        /> */}
 
                         <InputText
                             id="descripcion"

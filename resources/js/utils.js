@@ -38,3 +38,9 @@ export const copyToClipboard = (text) => {
     document.execCommand("copy");
     document.body.removeChild(el);
 };
+
+export const relativePathToS3 = (path) => {
+    const s3Url = process.env.MIX_S3_URL || "http://localhost:3000";
+
+    return `${s3Url}/${path}`;
+};
