@@ -14,7 +14,7 @@ import { MdWorkOutline } from "react-icons/md";
 import logo from "../../../../../images/logo.png";
 import { useDispatch, useSelector } from "react-redux";
 import { setHideSidebar } from "../../../../store/actions/layoutReducer";
-import { FaPencilAlt } from "react-icons/fa";
+import { FaClipboardCheck, FaPencilAlt } from "react-icons/fa";
 
 const Dashboard = () => {
     const dispatch = useDispatch();
@@ -95,6 +95,11 @@ const Dashboard = () => {
                             to="/dashboard/logotipos"
                             label="Tipos de Logo"
                             icon={<FaPencilAlt />}
+                        />
+                        <SidebarLink
+                            to="/dashboard/resultados"
+                            label="Resultados"
+                            icon={<FaClipboardCheck />}
                         />
 
                         <SidebarLabel label="Documentation" />

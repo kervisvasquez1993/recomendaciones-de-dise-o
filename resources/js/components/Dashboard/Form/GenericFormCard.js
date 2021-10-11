@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import GenericForm from "./GenericForm";
 
@@ -7,6 +7,7 @@ const GenericFormCard = ({
     formData = {},
     onSubmit,
     onCancel = undefined,
+    afterChange = undefined,
     methods = undefined,
     children,
     submitButtonText = "Enviar",
@@ -19,6 +20,12 @@ const GenericFormCard = ({
     const errors = useSelector((state) => state.genericForm.errors);
     // @ts-ignore
     // const error = useSelector((state) => state.genericForm.error);
+
+    useEffect(() => {
+        if (afterChange) {
+            afterChange(data);
+        }
+    }, [data]);
 
     const handleChange = (e) => {
         const { id, value } = e.target;

@@ -64,6 +64,15 @@ class ResultadoController extends Controller
         return $this->showOne($resultado, 201);
     }
 
+    public function show(Resultado $resultado)
+    {
+        return $this->showOne($resultado->with("especialidad")
+                ->with("estilo")
+                ->with("estilo")
+                ->with("ilustracion")
+                ->with("logotipo")->first());
+    }
+
     public function update(Request $request, Resultado $resultado)
     {
         $this->validate($request, $this->rules);

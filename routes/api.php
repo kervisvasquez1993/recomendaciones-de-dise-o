@@ -62,6 +62,7 @@ Route::delete('/logotipos/{logotipo}', [LogotipoController::class, 'destroy']);
 // resultados
 Route::get('/resultados', [ResultadoController::class, 'index']);
 Route::post('/resultados', [ResultadoController::class, 'store']);
+Route::get('/resultados/{resultado}', [ResultadoController::class, 'show']);
 Route::put('/resultados/{resultado}', [ResultadoController::class, 'update']);
 /* Route::get('/resultados', [ResultadoController::class, 'index']); */
 

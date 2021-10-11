@@ -18,6 +18,8 @@ import IllustrationList from "./Illustrations/IllustrationList";
 import IllustrationForm from "./Illustrations/IllustrationForm";
 import LogoTypeList from "./LogoTypes/LogoTypeList";
 import LogoTypeForm from "./LogoTypes/LogoTypeForm";
+import ResultList from "./Results/ResultList";
+import ResultForm from "./Results/ResultForm";
 
 const Dashboard = () => {
     const dispatch = useDispatch();
@@ -86,6 +88,15 @@ const Dashboard = () => {
                             </Route>
                             <Route path="/dashboard/logotipos/:id" exact>
                                 <LogoTypeForm isEditor={true} />
+                            </Route>
+                            <Route path="/dashboard/resultados" exact>
+                                <ResultList />
+                            </Route>
+                            <Route path="/dashboard/resultados/crear" exact>
+                                <ResultForm />
+                            </Route>
+                            <Route path="/dashboard/resultados/:id" exact>
+                                <ResultForm isEditor={true} />
                             </Route>
                             <Route path="*">
                                 <NotFoundError />

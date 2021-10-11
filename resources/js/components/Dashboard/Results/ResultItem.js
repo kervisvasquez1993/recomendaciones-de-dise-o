@@ -1,32 +1,43 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { FiEdit, FiTrash2 } from "react-icons/fi";
 import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
-import IllustrationActions from "../../../store/actions/IllustrationActions";
+import LogoTypeActions from "../../../store/actions/LogoTypeActions";
 import { deletingConfirmationMessage } from "../../../text";
-import { BASE_PATH } from "./IllustrationList";
+import ResultColors from "./ResultColors";
+import { BASE_PATH } from "./ResultList";
 
-const IllustrationItem = ({ data }) => {
-    const { id, nombre, descripcion, src } = data;
+const ResultItem = ({ data }) => {
+    const { id, especialidad, estilo, descripcion, logotipo, ilustracion } =
+        data;
+
     const dispatch = useDispatch();
 
     const handleDelete = (e) => {
         e.preventDefault();
 
         if (confirm(deletingConfirmationMessage)) {
-            dispatch(IllustrationActions.delete(id));
+            dispatch(LogoTypeActions.delete(id));
         }
     };
 
+    const colores = JSON.parse(data.colores);
+
     return (
         <tr>
-            <td>{nombre}</td>
+            <td>{especialidad.nombre}</td>
+            <td>{estilo.nombre}</td>
+            <td>*Fuentes</td>
+            <td>
+                <ResultColors colors={colores} />
+            </td>
             <td>{descripcion}</td>
+            <td>{logotipo.nombre}</td>
             <td>
                 <img
                     className="table-img"
-                    src={`/storage/${src}`}
-                    alt={nombre}
+                    src={`/storage/${ilustracion.src}`}
+                    alt={ilustracion.nombre}
                 />
             </td>
             <td>
@@ -42,4 +53,4 @@ const IllustrationItem = ({ data }) => {
     );
 };
 
-export default IllustrationItem;
+export default ResultItem;

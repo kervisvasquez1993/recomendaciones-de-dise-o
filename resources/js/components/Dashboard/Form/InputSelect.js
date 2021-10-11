@@ -8,14 +8,15 @@ const InputSelect = ({
     value = "",
     className = "",
     children,
-    includeDefaultOption = true
+    includeDefaultOption = true,
+    after = null,
 }) => {
     const { onChange, values, errors } = useContext(FormContext);
 
     const error = extractError(errors, id);
 
     return (
-        <div className={`form-group col ${className}`}>
+        <div className={`form-group ${className}`}>
             <label htmlFor={id}>{label}</label>
 
             <select
@@ -37,6 +38,8 @@ const InputSelect = ({
                     <strong>{error}</strong>
                 </div>
             )}
+
+            {after}
         </div>
     );
 };
