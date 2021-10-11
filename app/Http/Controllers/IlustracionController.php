@@ -26,7 +26,7 @@ class IlustracionController extends Controller
         $this->validate($request, $this->rules);
         $ilustracion = new Ilustracion();
         $ilustracion->nombre = $request->nombre;
-        $ilustracion->src = $request->file('src')->store('ilustraciones', 'public');
+        $ilustracion->src = $request->file('src')->store('ilustraciones', 's3');
         $ilustracion->descripcion = $request->descripcion;
         $ilustracion->save();
         return $this->showOne($ilustracion, 201);
