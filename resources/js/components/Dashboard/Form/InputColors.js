@@ -51,6 +51,7 @@ const InputColors = ({ id, label, colors: initialColors = ["#fff"] }) => {
                                 onChange={(targetColor) =>
                                     handleChangeColor(index, targetColor)
                                 }
+                                disableAlpha={true}
                             />
                         </div>
                     );
