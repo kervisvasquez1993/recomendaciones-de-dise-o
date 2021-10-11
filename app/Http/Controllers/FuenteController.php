@@ -25,7 +25,8 @@ class FuenteController extends Controller
         $this->validate($request, $this->rules);
         $fuente = new Fuente();
         $fuente->nombre = $request->nombre;
-        $fuente->src = $request->file('src')->store('fuentes', 'public');
+        $fuente->src = $request->file('src')->store('fuentes', 's3');
+        // $pivot_file->url = Storage::disk('s3')->put("negociacion_archivos",  $file, 'public');
         $fuente->save();
         return $this->showOne($fuente, 201);
     }
@@ -39,7 +40,7 @@ class FuenteController extends Controller
     {
         $this->validate($request, $this->rules);
         $fuente->nombre = $request->nombre;
-        $fuente->src = $request->file('src')->store('fuentes', 'public');
+        $fuente->src = $request->file('src')->store('fuentes', 's3');
         $fuente->update();
         return $this->showOne($fuente, 201);
     }
