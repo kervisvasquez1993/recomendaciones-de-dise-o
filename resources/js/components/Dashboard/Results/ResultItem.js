@@ -1,8 +1,8 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { FiEdit, FiTrash2 } from "react-icons/fi";
 import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
-import LogoTypeActions from "../../../store/actions/LogoTypeActions";
+import ResultActions from "../../../store/actions/ResultActions";
 import { deletingConfirmationMessage } from "../../../text";
 import { relativePathToS3 } from "../../../utils";
 import ResultColors from "./ResultColors";
@@ -25,7 +25,7 @@ const ResultItem = ({ data }) => {
         e.preventDefault();
 
         if (confirm(deletingConfirmationMessage)) {
-            dispatch(LogoTypeActions.delete(id));
+            dispatch(ResultActions.delete(id));
         }
     };
 

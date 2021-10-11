@@ -63,10 +63,6 @@ const ResultForm = ({ isEditor = false }) => {
         return <ErrorPage message={error} />;
     }
 
-    if (!data) {
-        return null;
-    }
-
     const onSuccess = () => {
         history.push(`/dashboard/${BASE_PATH}`);
     };
@@ -100,7 +96,7 @@ const ResultForm = ({ isEditor = false }) => {
     );
 
     const beforeInitData = (data) => {
-        if (data.fuentes) {
+        if (isEditor && data.fuentes) {
             data.fuentes = [...data.fuentes.values()].map((item) => item.id);
         }
         return data;
@@ -152,7 +148,9 @@ const ResultForm = ({ isEditor = false }) => {
                         <InputColors
                             id="colores"
                             label="Colores"
-                            colors={data.colores}
+                            colors={
+                                (isEditor && data && data.colores) || ["#fff"]
+                            }
                         />
 
                         <InputText

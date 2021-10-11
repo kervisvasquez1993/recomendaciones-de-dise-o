@@ -41,7 +41,9 @@ const InputSelect = ({
                 id={id}
                 name={id}
                 onChange={handleChange}
-                value={(values && values[id]) || value || ""}
+                value={
+                    (values && values[id]) || value || (multiple && []) || ""
+                }
             >
                 {includeDefaultOption && (
                     <option value="">Selecciona...</option>
