@@ -11,8 +11,15 @@ const GenericFormCard = ({
     methods = undefined,
     children,
     submitButtonText = "Enviar",
+    beforeInitData = undefined,
 }) => {
-    const [data, setData] = useState({ ...formData });
+    const [data, setData] = useState(() => {
+        let data = { ...formData };
+        if (beforeInitData) {
+            data = beforeInitData(data);
+        }
+        return data;
+    });
 
     // @ts-ignore
     const isEditing = useSelector((state) => state.genericForm.isEditing);

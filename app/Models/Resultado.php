@@ -15,11 +15,11 @@ class Resultado extends Model
         'ilustracion_id',
         'logotipo_id',
         'colores',
-        'descripcion'
+        'descripcion',
 
     ];
     protected $casts = [
-        'colores' => 'array'
+        'colores' => 'array',
     ];
 
     public function especialidad()
@@ -40,5 +40,10 @@ class Resultado extends Model
     public function logotipo()
     {
         return $this->belongsTo(Logotipo::class, 'logotipo_id');
+    }
+
+    public function fuentes()
+    {
+        return $this->belongsToMany(Fuente::class, 'fuente_resultados');
     }
 }

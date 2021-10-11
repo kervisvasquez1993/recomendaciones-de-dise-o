@@ -45,13 +45,14 @@ const InputColors = ({ id, label, colors: initialColors = ["#fff"] }) => {
             <div className="d-flex flex-wrap">
                 {colors.map((item, index) => {
                     return (
-                        <ChromePicker
-                            key={index}
-                            color={item}
-                            onChange={(targetColor) =>
-                                handleChangeColor(index, targetColor)
-                            }
-                        />
+                        <div key={index} className="p5">
+                            <ChromePicker
+                                color={item}
+                                onChange={(targetColor) =>
+                                    handleChangeColor(index, targetColor)
+                                }
+                            />
+                        </div>
                     );
                 })}
             </div>
@@ -70,7 +71,8 @@ const InputColors = ({ id, label, colors: initialColors = ["#fff"] }) => {
                     className="btn btn-success"
                     onClick={handleAddColor}
                 >
-                    <BsPlusLg />
+                    <BsPlusLg className="mr-2" />
+                    Agregar color
                 </button>
             </div>
 

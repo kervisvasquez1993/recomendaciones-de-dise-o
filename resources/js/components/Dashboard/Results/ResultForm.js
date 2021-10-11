@@ -13,9 +13,9 @@ import { getSpecialities } from "../../../store/actions/specialityActions";
 import { getStyles } from "../../../store/actions/styleActions";
 import LogoTypeActions from "../../../store/actions/LogoTypeActions";
 import IllustrationActions from "../../../store/actions/IllustrationActions";
-import { ChromePicker } from "react-color";
 import { relativePathToS3 } from "../../../utils";
 import InputColors from "../Form/InputColors";
+import FontActions from "../../../store/actions/fontActions";
 
 const ResultForm = ({ isEditor = false }) => {
     const dispatch = useDispatch();
@@ -38,6 +38,8 @@ const ResultForm = ({ isEditor = false }) => {
     const logoTypes = useSelector((state) => state.logoType.list);
     // @ts-ignore
     const illustrations = useSelector((state) => state.illustration.list);
+    // @ts-ignore
+    const fonts = useSelector((state) => state.font.list);
 
     const [ilustrationId, setIlustrationId] = useState(null);
 
@@ -46,6 +48,7 @@ const ResultForm = ({ isEditor = false }) => {
         dispatch(getStyles());
         dispatch(LogoTypeActions.getList());
         dispatch(IllustrationActions.getList());
+        dispatch(FontActions.getList());
 
         if (isEditor) {
             dispatch(ResultActions.get(id));
@@ -69,7 +72,6 @@ const ResultForm = ({ isEditor = false }) => {
     };
 
     const handleSubmit = (data, formData) => {
-        console.log(data);
         if (isEditor) {
             dispatch(ResultActions.update(id, data, onSuccess));
         } else {
@@ -97,9 +99,12 @@ const ResultForm = ({ isEditor = false }) => {
         />
     );
 
-    // const handleChangeComplete = (color) => {
-    //     setColor(color.hex);
-    // };
+    const beforeInitData = (data) => {
+        if (data.fuentes) {
+            data.fuentes = [...data.fuentes.values()].map((item) => item.id);
+        }
+        return data;
+    };
 
     return (
         <>
@@ -118,6 +123,7 @@ const ResultForm = ({ isEditor = false }) => {
                         onSubmit={handleSubmit}
                         onCancel={handleCancel}
                         afterChange={handleAfterChange}
+                        beforeInitData={beforeInitData}
                     >
                         <InputSelect id="especialidad_id" label="Especialidad">
                             {specialities.map((item) => (
@@ -131,6 +137,14 @@ const ResultForm = ({ isEditor = false }) => {
                             {styles.map((item) => (
                                 <option key={item.id} value={item.id}>
                                     {item.etiqueta}
+                                </option>
+                            ))}
+                        </InputSelect>
+
+                        <InputSelect id="fuentes" label="Fuente" multiple>
+                            {fonts.map((item) => (
+                                <option key={item.id} value={item.id}>
+                                    {item.nombre}
                                 </option>
                             ))}
                         </InputSelect>
