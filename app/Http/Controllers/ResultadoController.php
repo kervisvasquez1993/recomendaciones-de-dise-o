@@ -2,16 +2,17 @@
 
 namespace App\Http\Controllers;
 
-use Carbon\Carbon;
+use App\Http\Resources\ResultadoResource;
+use App\Models\Especialidad;
 use App\Models\Estilo;
+use App\Models\Ilustracion;
 use App\Models\Logotipo;
 use App\Models\Resultado;
-use App\Models\Ilustracion;
-use App\Models\Especialidad;
-use Illuminate\Http\Request;
 use App\Models\UserResultado;
-use Illuminate\Support\Facades\DB;
+use Carbon\Carbon;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 
 class ResultadoController extends Controller
@@ -31,7 +32,7 @@ class ResultadoController extends Controller
             DB::table('fuente_resultados')->insert([
                 'resultado_id' => $resultado->id,
                 'fuente_id' => $e,
-                'created_at' => Carbon::now()
+                'created_at' => Carbon::now(),
             ]);
         }
     }
@@ -41,21 +42,14 @@ class ResultadoController extends Controller
         $especialidad = $request->query('especialidad');
         $estilo = $request->query('estilo');
 
-        $especialidades = Resultado::with("especialidad")
-            ->with("estilo")
-            ->with("estilo")
-            ->with("ilustracion")
-            ->with("logotipo");
-
         if ($especialidad && $estilo) {
-            $especialidades = $especialidades
-                ->where('especialidad_id', $especialidad)
-                ->where('estilo_id', $estilo);
+            $resultados = Resultado::where('especialidad_id', $especialidad)
+                ->where('estilo_id', $estilo)->get();
+        } else {
+            $resultados = Resultado::all();
         }
 
-        $especialidades = $especialidades->get();
-
-        return $this->showAll($especialidades);
+        return $this->showAllResources(ResultadoResource::collection($resultados));
     }
 
     public function store(Request $request)
@@ -78,17 +72,12 @@ class ResultadoController extends Controller
 
         // $this->fuentes($request->fuentes, $resultado);
 
-
-        return $this->showOne($resultado, 201);
+        return $this->showOneResource(new ResultadoResource($resultado), 201);
     }
 
     public function show(Resultado $resultado)
     {
-        return $this->showOne($resultado->with("especialidad")
-            ->with("estilo")
-            ->with("estilo")
-            ->with("ilustracion")
-            ->with("logotipo")->first());
+        return $this->showOneResource(new ResultadoResource($resultado));
     }
 
     public function update(Request $request, Resultado $resultado)
@@ -110,25 +99,25 @@ class ResultadoController extends Controller
         // $this->fuentes($request->fuentes, $resultado);
 
         // hola
-        return $this->showOne($resultado);
+        return $this->showOneResource(new ResultadoResource($resultado));
     }
 
     public function destroy(Resultado $resultado)
     {
-        //
+        $resultado->delete();
+        return $this->showOneResource(new ResultadoResource($resultado));
     }
 
     // resultado asociado a cada usuario
 
     private $rules2 = [
         'nombre_empresa' => 'required',
-        "logo_empresa" => 'required'
+        "logo_empresa" => 'required',
     ];
     public function resultado_user_store(Request $request, Resultado $resultado)
     {
         $this->validate($request, $this->rules2);
         $resultado = $request->query('resultado');
-
 
         if (empty($resultado)) {
             return $this->successMessages("Debe pasar el argumento de resultado como parametro", 401);

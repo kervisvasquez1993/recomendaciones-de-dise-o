@@ -1,10 +1,10 @@
 import React from "react";
 
 const ResultColors = ({ colors }) => {
-    return colors.map((color) => {
+    return colors.map((color, index) => {
         return (
             <div
-                key={color}
+                key={index}
                 className="color-sample"
                 style={{ backgroundColor: color }}
             ></div>

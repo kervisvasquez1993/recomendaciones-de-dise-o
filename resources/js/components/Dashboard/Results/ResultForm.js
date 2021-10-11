@@ -15,6 +15,7 @@ import LogoTypeActions from "../../../store/actions/LogoTypeActions";
 import IllustrationActions from "../../../store/actions/IllustrationActions";
 import { ChromePicker } from "react-color";
 import { relativePathToS3 } from "../../../utils";
+import InputColors from "../Form/InputColors";
 
 const ResultForm = ({ isEditor = false }) => {
     const dispatch = useDispatch();
@@ -39,7 +40,6 @@ const ResultForm = ({ isEditor = false }) => {
     const illustrations = useSelector((state) => state.illustration.list);
 
     const [ilustrationId, setIlustrationId] = useState(null);
-    const [color, setColor] = useState("#fff");
 
     useEffect(() => {
         dispatch(getSpecialities());
@@ -60,11 +60,16 @@ const ResultForm = ({ isEditor = false }) => {
         return <ErrorPage message={error} />;
     }
 
+    if (!data) {
+        return null;
+    }
+
     const onSuccess = () => {
         history.push(`/dashboard/${BASE_PATH}`);
     };
 
     const handleSubmit = (data, formData) => {
+        console.log(data);
         if (isEditor) {
             dispatch(ResultActions.update(id, data, onSuccess));
         } else {
@@ -92,9 +97,9 @@ const ResultForm = ({ isEditor = false }) => {
         />
     );
 
-    const handleChangeComplete = (color) => {
-        setColor(color.hex);
-    };
+    // const handleChangeComplete = (color) => {
+    //     setColor(color.hex);
+    // };
 
     return (
         <>
@@ -130,11 +135,11 @@ const ResultForm = ({ isEditor = false }) => {
                             ))}
                         </InputSelect>
 
-                        <InputText id="colores" label="Colores"></InputText>
-                        {/* <ChromePicker
-                            color={color}
-                            onChange={handleChangeComplete}
-                        /> */}
+                        <InputColors
+                            id="colores"
+                            label="Colores"
+                            colors={data.colores}
+                        />
 
                         <InputText
                             id="descripcion"

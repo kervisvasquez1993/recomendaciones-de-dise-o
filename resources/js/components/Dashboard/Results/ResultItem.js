@@ -22,15 +22,13 @@ const ResultItem = ({ data }) => {
         }
     };
 
-    const colores = JSON.parse(data.colores);
-
     return (
         <tr>
             <td>{especialidad.etiqueta}</td>
             <td>{estilo.etiqueta}</td>
             <td>*Fuentes</td>
             <td>
-                <ResultColors colors={colores} />
+                <ResultColors colors={data.colores} />
             </td>
             <td>{descripcion}</td>
             <td>{logotipo.nombre}</td>
