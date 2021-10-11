@@ -21,12 +21,13 @@ class Resultado extends Model
     protected $casts = [
         'colores' => 'array'
     ];
-    public function especialidades()
+
+    public function especialidad()
     {
         return $this->belongsTo(Especialidad::class, 'especialidad_id');
     }
 
-    public function estilos()
+    public function estilo()
     {
         return $this->belongsTo(Estilo::class, 'estilo_id');
     }
@@ -36,7 +37,7 @@ class Resultado extends Model
         return $this->belongsTo(Ilustracion::class, 'ilustracion_id');
     }
 
-    public function logotipos()
+    public function logotipo()
     {
         return $this->belongsTo(Logotipo::class, 'logotipo_id');
     }

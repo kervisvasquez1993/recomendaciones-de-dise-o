@@ -2,13 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Especialidad;
 use App\Models\Estilo;
+use App\Models\Ilustracion;
 use App\Models\Logotipo;
 use App\Models\Resultado;
-use App\Models\Ilustracion;
-use App\Models\Especialidad;
-use Illuminate\Http\Request;
 use App\Models\UserResultado;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class ResultadoController extends Controller
@@ -19,22 +19,30 @@ class ResultadoController extends Controller
         'ilustracion_id' => 'required',
         'logotipo_id' => 'required',
         'colores' => 'required',
-
-
+        'descripcion' => 'required',
     ];
+
     public function index(Request $request)
     {
         $especialidad = $request->query('especialidad');
         $estilo = $request->query('estilo');
+
+        $especialidades = Resultado::with("especialidad")
+            ->with("estilo")
+            ->with("estilo")
+            ->with("ilustracion")
+            ->with("logotipo");
+
         if ($especialidad && $estilo) {
-            return $this->showAll(Resultado::where('especialidad_id', $especialidad)->where('estilo_id', $estilo)->get());
+            $especialidades = $especialidades
+                ->where('especialidad_id', $especialidad)
+                ->where('estilo_id', $estilo);
         }
 
+        $especialidades = $especialidades->get();
 
-        $resultado = Resultado::all();
-        return $this->showAll($resultado);
+        return $this->showAll($especialidades);
     }
-
 
     public function store(Request $request)
     {
@@ -45,12 +53,10 @@ class ResultadoController extends Controller
         $ilustracion = Ilustracion::where('id', $request->ilustracion_id)->first();
         $logotipo_id = Logotipo::where('id', $request->logotipo_id)->first();
 
-
         if (!$especialida || !$estilo || !$ilustracion || !$logotipo_id) {
 
             return $this->successMessages("Llave forenea incorrecta", 404);
         }
-
 
         $resultado = Resultado::create(
             $request->all(),
@@ -66,7 +72,6 @@ class ResultadoController extends Controller
         $ilustracion = Ilustracion::where('id', $request->ilustracion_id)->first();
         $logotipo_id = Logotipo::where('id', $request->logotipo_id)->first();
 
-
         if (!$especialida || !$estilo || !$ilustracion || !$logotipo_id) {
 
             return $this->successMessages("Llave forenea incorrecta", 404);
@@ -75,7 +80,6 @@ class ResultadoController extends Controller
         $resultado->update($request->all());
         return $this->showOne($resultado);
     }
-
 
     public function destroy(Resultado $resultado)
     {
@@ -109,8 +113,7 @@ class ResultadoController extends Controller
 
     public function resultado_user_index(Request $request)
     {
-            // mostrar resultado cuando exista un login 
+        // mostrar resultado cuando exista un login
     }
 
-    
 }
