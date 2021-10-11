@@ -19,7 +19,6 @@ const SpecialityItem = ({ speciality }) => {
 
     return (
         <tr>
-            <td>{nombre}</td>
             <td>{etiqueta}</td>
             <td>{descripcion}</td>
             <td>

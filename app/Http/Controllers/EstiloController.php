@@ -9,15 +9,15 @@ use Illuminate\Http\Request;
 class EstiloController extends Controller
 {
     private $rules = [
-        'nombre' => 'required',
         'etiqueta' => 'required',
         'descripcion' => 'required',
     ];
     public function index(Request $request)
     {
         $especialidad = $request->query('especialidad');
+        
         if ($especialidad) {
-            $resultado = Resultado::where('especialidad_id', $especialidad)->with('estilos')->get()->pluck('estilos')->unique("nombre");
+            $resultado = Resultado::where('especialidad_id', $especialidad)->with('estilos')->get()->pluck('estilos')->unique("id");
             return $this->showAll($resultado);
         }
 

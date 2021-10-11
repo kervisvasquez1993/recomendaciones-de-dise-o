@@ -76,7 +76,7 @@ class ResultadoController extends Controller
             $request->all(),
         );
 
-        $this->fuentes($request->fuentes, $resultado);
+        // $this->fuentes($request->fuentes, $resultado);
 
 
         return $this->showOne($resultado, 201);
@@ -106,8 +106,8 @@ class ResultadoController extends Controller
 
         $resultado->update($request->all());
 
-        DB::table('fuente_resultados')->where('resultado_id', $resultado->id)->delete();
-        $this->fuentes($request->fuentes, $resultado);
+        // DB::table('fuente_resultados')->where('resultado_id', $resultado->id)->delete();
+        // $this->fuentes($request->fuentes, $resultado);
 
         // hola
         return $this->showOne($resultado);

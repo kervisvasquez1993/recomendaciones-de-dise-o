@@ -4,6 +4,7 @@ import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 import LogoTypeActions from "../../../store/actions/LogoTypeActions";
 import { deletingConfirmationMessage } from "../../../text";
+import { relativePathToS3 } from "../../../utils";
 import ResultColors from "./ResultColors";
 import { BASE_PATH } from "./ResultList";
 
@@ -36,7 +37,7 @@ const ResultItem = ({ data }) => {
             <td>
                 <img
                     className="table-img"
-                    src={`/storage/${ilustracion.src}`}
+                    src={relativePathToS3(ilustracion.src)}
                     alt={ilustracion.nombre}
                 />
             </td>
