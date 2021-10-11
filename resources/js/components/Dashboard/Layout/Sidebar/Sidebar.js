@@ -4,6 +4,7 @@ import SidebarLabel from "./SidebarLabel";
 import SidebarLink from "./SidebarLink";
 import {
     AiOutlineClose,
+    AiOutlineFileImage,
     AiOutlineFontSize,
     AiOutlineHome,
 } from "react-icons/ai";
@@ -83,6 +84,11 @@ const Dashboard = () => {
                             to="/dashboard/fuentes"
                             label="Fuentes"
                             icon={<AiOutlineFontSize />}
+                        />
+                        <SidebarLink
+                            to="/dashboard/ilustraciones"
+                            label="Ilustraciones"
+                            icon={<AiOutlineFileImage />}
                         />
 
                         <SidebarLabel label="Documentation" />
