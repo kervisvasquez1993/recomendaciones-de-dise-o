@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Ilustracion;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class IlustracionController extends Controller
 {
@@ -26,7 +27,8 @@ class IlustracionController extends Controller
         $this->validate($request, $this->rules);
         $ilustracion = new Ilustracion();
         $ilustracion->nombre = $request->nombre;
-        $ilustracion->src = $request->file('src')->store('ilustraciones', 'public');
+        $ilustracion->src =  Storage::disk('s3')->put("ilustraciones", $request->file('src'), 'public');
+        
         $ilustracion->descripcion = $request->descripcion;
         $ilustracion->save();
         return $this->showOne($ilustracion, 201);
@@ -41,7 +43,7 @@ class IlustracionController extends Controller
     {
         $this->validate($request, $this->rules);
         $ilustracion->nombre = $request->nombre;
-        $ilustracion->src = $request->file('src')->store('ilustraciones', 'public');
+        $ilustracion->src = Storage::disk('s3')->put("ilustraciones", $request->file('src'), 'public');
         $ilustracion->descripcion = $request->descripcion;
         $ilustracion->update();
         return $this->showOne($ilustracion, 201);
