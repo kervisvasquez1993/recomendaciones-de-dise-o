@@ -99,7 +99,7 @@ class ResultadoController extends Controller
 
         $resultado->update($request->all());
 
-        
+        // hola
         return $this->showOne($resultado);
     }
 
