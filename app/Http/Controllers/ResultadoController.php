@@ -25,6 +25,17 @@ class ResultadoController extends Controller
         'descripcion' => 'required',
     ];
 
+    private function fuentes($fuentes, $resultado)
+    {
+        foreach ($fuentes as $e) {
+            DB::table('fuente_resultados')->insert([
+                'resultado_id' => $resultado->id,
+                'fuente_id' => $e,
+                'created_at' => Carbon::now()
+            ]);
+        }
+    }
+
     public function index(Request $request)
     {
         $especialidad = $request->query('especialidad');
@@ -64,24 +75,20 @@ class ResultadoController extends Controller
         $resultado = Resultado::create(
             $request->all(),
         );
-        
-        foreach($request->fuentes as $e){
-            DB::table('fuente_resultados')->insert([
-                'resultado_id' => $resultado->id,
-                'fuente_id' => $e,
-                'created_at' => Carbon::now()
-            ]);
-        }
+
+        $this->fuentes($request->fuentes, $resultado);
+
+
         return $this->showOne($resultado, 201);
     }
 
     public function show(Resultado $resultado)
     {
         return $this->showOne($resultado->with("especialidad")
-                ->with("estilo")
-                ->with("estilo")
-                ->with("ilustracion")
-                ->with("logotipo")->first());
+            ->with("estilo")
+            ->with("estilo")
+            ->with("ilustracion")
+            ->with("logotipo")->first());
     }
 
     public function update(Request $request, Resultado $resultado)
@@ -98,6 +105,9 @@ class ResultadoController extends Controller
         }
 
         $resultado->update($request->all());
+
+        DB::table('fuente_resultados')->where('resultado_id', $resultado->id)->delete();
+        $this->fuentes($request->fuentes, $resultado);
 
         // hola
         return $this->showOne($resultado);
