@@ -22,6 +22,8 @@ class ResultadoController extends Controller
 
 
     ];
+
+
     public function index(Request $request)
     {
         $especialidad = $request->query('especialidad');
@@ -84,13 +86,24 @@ class ResultadoController extends Controller
 
     // resultado asociado a cada usuario
 
+    private $rules2 = [
+        'nombre_empresa' => 'required',
+        "logo_empresa" => 'required'
+    ];
     public function resultado_user_store(Request $request, Resultado $resultado)
     {
-        $user_resultado = new UserResultado();
+        $this->validate($request, $this->rules2);
         $resultado = $request->query('resultado');
-        $user_resultado->user_id = Auth::user()->id;
+
+
+        if (empty($resultado)) {
+            return $this->successMessages("Debe pasar el argumento de resultado como parametro", 401);
+        }
+        $user_resultado = new UserResultado();
+
+        $user_resultado->user_id = auth()->user()->id;
         $user_resultado->resultado_id = $resultado;
-        $user_resultado->logo_empresa = $request->file('logo')->store("logo-empresa", 'public');
+        $user_resultado->logo_empresa = $request->file('logo_empresa')->store("logo-empresa", 's3');
         $user_resultado->nombre_empresa = $request->nombre_empresa;
         $user_resultado->save();
         return $this->showOne($user_resultado);
@@ -109,8 +122,10 @@ class ResultadoController extends Controller
 
     public function resultado_user_index(Request $request)
     {
-            // mostrar resultado cuando exista un login 
+        
+        if(auth()->user()->rol === "admin" ){
+            return $this->showAll(UserResultado::all());
+        }
+        return $this->showAll(auth()->user()->UserResultado);
     }
-
-    
 }
