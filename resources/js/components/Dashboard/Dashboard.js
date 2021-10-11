@@ -16,6 +16,8 @@ import FontList from "./Fonts/FontList";
 import FontForm from "./Fonts/FontForm";
 import IllustrationList from "./Illustrations/IllustrationList";
 import IllustrationForm from "./Illustrations/IllustrationForm";
+import LogoTypeList from "./LogoTypes/LogoTypeList";
+import LogoTypeForm from "./LogoTypes/LogoTypeForm";
 
 const Dashboard = () => {
     const dispatch = useDispatch();
@@ -75,6 +77,15 @@ const Dashboard = () => {
                             </Route>
                             <Route path="/dashboard/ilustraciones/:id" exact>
                                 <IllustrationForm isEditor={true} />
+                            </Route>
+                            <Route path="/dashboard/logotipos" exact>
+                                <LogoTypeList />
+                            </Route>
+                            <Route path="/dashboard/logotipos/crear" exact>
+                                <LogoTypeForm />
+                            </Route>
+                            <Route path="/dashboard/logotipos/:id" exact>
+                                <LogoTypeForm isEditor={true} />
                             </Route>
                             <Route path="*">
                                 <NotFoundError />

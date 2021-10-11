@@ -43,7 +43,7 @@ const IllustrationForm = ({ isEditor = false }) => {
 
     const handleSubmit = (data, formData) => {
         if (isEditor) {
-            dispatch(IllustrationActions.update(id, formData, onSuccess));
+            dispatch(IllustrationActions.update(id, formData, onSuccess, true));
         } else {
             dispatch(IllustrationActions.create(formData, onSuccess));
         }

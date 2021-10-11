@@ -1,37 +1,31 @@
 import React, { useEffect } from "react";
-import { MdWorkOutline } from "react-icons/md";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory, useParams } from "react-router";
 import GenericFormCard from "../Form/GenericFormCard";
 import InputText from "../Form/InputText";
 import PageHeader from "../Layout/PageHeader";
 import ErrorPage from "../ErrorPage";
-import { BASE_PATH } from "./FontList";
-// import {
-//     createFont,
-//     getFont,
-//     updateFont,
-// } from "../../../store/actions/fontActions";
+import { BASE_PATH } from "./LogoTypeList";
 import InputDropzone from "../Form/InputDropzone";
-import FontActions from "../../../store/actions/fontActions";
+import { AiFillFileImage } from "react-icons/ai";
+import LogoTypeActions from "../../../store/actions/LogoTypeActions";
 
-const FontForm = ({ isEditor = false }) => {
+const LogoTypeForm = ({ isEditor = false }) => {
     const dispatch = useDispatch();
     const history = useHistory();
 
     // @ts-ignore
     const { id } = useParams();
     // @ts-ignore
-    const data = useSelector((state) => state.font.item);
+    const data = useSelector((state) => state.logoType.item);
     // @ts-ignore
-    const isLoading = useSelector((state) => state.font.isLoadingItem);
+    const isLoading = useSelector((state) => state.logoType.isLoadingItem);
     // @ts-ignore
-    const error = useSelector((state) => state.font.itemError);
+    const error = useSelector((state) => state.logoType.itemError);
 
     useEffect(() => {
         if (isEditor) {
-            // dispatch(getFont(id));
-            dispatch(FontActions.get(id));
+            dispatch(LogoTypeActions.get(id));
         }
     }, []);
 
@@ -49,11 +43,9 @@ const FontForm = ({ isEditor = false }) => {
 
     const handleSubmit = (data, formData) => {
         if (isEditor) {
-            // dispatch(updateFont(formData, onSuccess));
-            dispatch(FontActions.update(id, formData, onSuccess, true));
+            dispatch(LogoTypeActions.update(id, data, onSuccess));
         } else {
-            // dispatch(createFont(formData, onSuccess));
-            dispatch(FontActions.create(formData, onSuccess));
+            dispatch(LogoTypeActions.create(data, onSuccess));
         }
     };
 
@@ -64,11 +56,11 @@ const FontForm = ({ isEditor = false }) => {
     return (
         <>
             <PageHeader
-                title={`${isEditor ? "Editar" : "Crear"} Fuente`}
+                title={`${isEditor ? "Editar" : "Crear"} Logotipo`}
                 description={`Utilice el formulario para ${
-                    isEditor ? "editar la" : "crear una nueva"
-                }  fuente`}
-                icon={<MdWorkOutline />}
+                    isEditor ? "editar el" : "crear un nuevo"
+                }  tipo de logotipo`}
+                icon={<AiFillFileImage />}
             />
 
             <div className="row">
@@ -79,12 +71,10 @@ const FontForm = ({ isEditor = false }) => {
                         onCancel={handleCancel}
                     >
                         <InputText id="nombre" label="Nombre"></InputText>
-                        <InputDropzone
-                            id="src"
-                            label="Archivo de la fuente"
-                            options={{ accept: ".otf,.ttf,woff", maxFiles: 1 }}
-                            dropzoneMessage="Arrastre un archivo o haga clic aquí (Formatos soportados: otf, ttf y woff)"
-                        />
+                        <InputText
+                            id="descripcion"
+                            label="Descripción"
+                        ></InputText>
                     </GenericFormCard>
                 </div>
             </div>
@@ -92,4 +82,4 @@ const FontForm = ({ isEditor = false }) => {
     );
 };
 
-export default FontForm;
+export default LogoTypeForm;

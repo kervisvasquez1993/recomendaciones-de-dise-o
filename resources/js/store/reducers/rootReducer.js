@@ -4,6 +4,7 @@ import fontReducer from "./fontReducer";
 import genericFormReducer from "./genericFormReducer";
 import illustrationReducer from "./illustrationReducer";
 import layoutReducer from "./layoutReducer";
+import logoTypeReducer from "./logoTypeReducer";
 import screenReducer from "./screenReducer";
 import specialityReducer from "./specialityReducer";
 import styleReducer from "./styleReducer";
@@ -17,6 +18,7 @@ const rootReducer = combineReducers({
     style: styleReducer,
     font: fontReducer,
     illustration: illustrationReducer,
+    logoType: logoTypeReducer
 });
 
 export default rootReducer;
