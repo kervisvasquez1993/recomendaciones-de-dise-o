@@ -13,6 +13,7 @@ import { getSpecialities } from "../../../store/actions/specialityActions";
 import { getStyles } from "../../../store/actions/styleActions";
 import LogoTypeActions from "../../../store/actions/LogoTypeActions";
 import IllustrationActions from "../../../store/actions/IllustrationActions";
+import { ChromePicker } from "react-color";
 
 const ResultForm = ({ isEditor = false }) => {
     const dispatch = useDispatch();
@@ -37,6 +38,7 @@ const ResultForm = ({ isEditor = false }) => {
     const illustrations = useSelector((state) => state.illustration.list);
 
     const [ilustrationId, setIlustrationId] = useState(null);
+    const [color, setColor] = useState("#fff");
 
     useEffect(() => {
         dispatch(getSpecialities());
@@ -89,6 +91,10 @@ const ResultForm = ({ isEditor = false }) => {
         />
     );
 
+    const handleChangeComplete = (color) => {
+        setColor(color.hex);
+    };
+
     return (
         <>
             <PageHeader
@@ -114,6 +120,7 @@ const ResultForm = ({ isEditor = false }) => {
                                 </option>
                             ))}
                         </InputSelect>
+
                         <InputSelect id="estilo_id" label="Estilo">
                             {styles.map((item) => (
                                 <option key={item.id} value={item.id}>
@@ -121,11 +128,18 @@ const ResultForm = ({ isEditor = false }) => {
                                 </option>
                             ))}
                         </InputSelect>
+
                         <InputText id="colores" label="Colores"></InputText>
+                        <ChromePicker
+                            color={color}
+                            onChange={handleChangeComplete}
+                        />
+
                         <InputText
                             id="descripcion"
                             label="Descripción"
                         ></InputText>
+
                         <InputSelect id="logotipo_id" label="Tipo de Logotipo">
                             {logoTypes.map((item) => (
                                 <option key={item.id} value={item.id}>

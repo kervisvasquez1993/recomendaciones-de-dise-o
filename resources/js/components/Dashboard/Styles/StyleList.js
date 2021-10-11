@@ -68,7 +68,7 @@ const StyleList = () => {
                                     className="btn btn-success mr-2"
                                 >
                                     <RiAddCircleLine className="mr-1" />
-                                    Agregar Estilo
+                                    Agregar
                                 </Link>
                             </div>
                         </div>

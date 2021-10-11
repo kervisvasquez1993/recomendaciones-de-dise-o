@@ -69,7 +69,7 @@ const SpecialityList = () => {
                                     className="btn btn-success mr-2"
                                 >
                                     <RiAddCircleLine className="mr-1" />
-                                    Agregar Especialidad
+                                    Agregar
                                 </Link>
                             </div>
                         </div>

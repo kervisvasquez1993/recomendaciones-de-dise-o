@@ -25,8 +25,8 @@ const ResultItem = ({ data }) => {
 
     return (
         <tr>
-            <td>{especialidad.nombre}</td>
-            <td>{estilo.nombre}</td>
+            <td>{especialidad.etiqueta}</td>
+            <td>{estilo.etiqueta}</td>
             <td>*Fuentes</td>
             <td>
                 <ResultColors colors={colores} />

@@ -72,7 +72,7 @@ const ResultList = () => {
                                     className="btn btn-success mr-2"
                                 >
                                     <RiAddCircleLine className="mr-1" />
-                                    Agregar Fuente
+                                    Agregar
                                 </Link>
                             </div>
                         </div>
