@@ -16,9 +16,8 @@ class EspecialidadController extends Controller
     
     public function index(Request $request)
     {
-        $resultado = $request->con_reultados;
-        if ($resultado) {
-            $resultado = Resultado::with('especialidades')->get()->pluck('especialidades')->unique()->values();
+        if ($request->con_resultados) {
+            $resultado = Resultado::with('especialidad')->get()->pluck('especialidad')->unique()->values();
             return $this->showAll($resultado);
         }
         $especialidad = Especialidad::all();

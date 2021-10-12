@@ -9,13 +9,13 @@ import { BASE_PATH } from "./ResultList";
 import { FaClipboardCheck } from "react-icons/fa";
 import ResultActions from "../../../store/actions/ResultActions";
 import InputSelect from "../Form/InputSelect";
-import { getSpecialities } from "../../../store/actions/specialityActions";
 import { getStyles } from "../../../store/actions/styleActions";
 import LogoTypeActions from "../../../store/actions/LogoTypeActions";
 import IllustrationActions from "../../../store/actions/IllustrationActions";
 import { relativePathToS3 } from "../../../utils";
 import InputColors from "../Form/InputColors";
 import FontActions from "../../../store/actions/fontActions";
+import SpecialityActions from "../../../store/actions/SpecialityActions";
 
 const ResultForm = ({ isEditor = false }) => {
     const dispatch = useDispatch();
@@ -44,7 +44,7 @@ const ResultForm = ({ isEditor = false }) => {
     const [ilustrationId, setIlustrationId] = useState(null);
 
     useEffect(() => {
-        dispatch(getSpecialities());
+        dispatch(SpecialityActions.getList());
         dispatch(getStyles());
         dispatch(LogoTypeActions.getList());
         dispatch(IllustrationActions.getList());

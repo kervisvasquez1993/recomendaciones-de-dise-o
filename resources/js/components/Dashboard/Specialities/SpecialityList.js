@@ -3,7 +3,7 @@ import { MdWorkOutline } from "react-icons/md";
 import { RiAddCircleLine } from "react-icons/ri";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import { getSpecialities } from "../../../store/actions/specialityActions";
+import SpecialityActions from "../../../store/actions/SpecialityActions";
 import PageHeader from "../Layout/PageHeader";
 import SpecialityItem from "./SpecialityItem";
 
@@ -15,7 +15,7 @@ const SpecialityList = () => {
     const isLoading = useSelector((state) => state.speciality.isLoadingList);
 
     useEffect(() => {
-        dispatch(getSpecialities());
+        dispatch(SpecialityActions.getList());
     }, []);
 
     if (isLoading) {

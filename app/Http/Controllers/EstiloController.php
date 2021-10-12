@@ -17,7 +17,7 @@ class EstiloController extends Controller
         $especialidad = $request->query('especialidad');
         
         if ($especialidad) {
-            $resultado = Resultado::where('especialidad_id', $especialidad)->with('estilos')->get()->pluck('estilos')->unique("id");
+            $resultado = Resultado::where('especialidad_id', $especialidad)->with('estilo')->get()->pluck('estilo')->unique("id");
             return $this->showAll($resultado);
         }
 

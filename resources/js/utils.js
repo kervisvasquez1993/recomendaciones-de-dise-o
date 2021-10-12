@@ -1,22 +1,21 @@
 import { useSelector } from "react-redux";
-import { fonts } from "./db";
 
-export const loadFont = (name) => {
-    const fontData = fonts.find((item) => item.name === name);
+// export const loadFont = (name) => {
+//     const fontData = fonts.find((item) => item.name === name);
 
-    if (fontData) {
-        if (!fontData.loaded) {
-            var newStyle = document.createElement("style");
-            newStyle.appendChild(document.createTextNode(fontData.rule));
-            document.head.appendChild(newStyle);
-            fontData.loaded = true;
-        }
+//     if (fontData) {
+//         if (!fontData.loaded) {
+//             var newStyle = document.createElement("style");
+//             newStyle.appendChild(document.createTextNode(fontData.rule));
+//             document.head.appendChild(newStyle);
+//             fontData.loaded = true;
+//         }
 
-        return true;
-    }
+//         return true;
+//     }
 
-    return false;
-};
+//     return false;
+// };
 
 export const loadFontWithUrl = (name, url) => {
     var newStyle = document.createElement("style");

@@ -1,13 +1,15 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { styles } from "../../../db";
 import { findTranslation } from "../../../localization";
 import { setStyle } from "../../../store/actions/companyActions";
+import { getStyles } from "../../../store/actions/styleActions";
 import Buttons from "./Panels/Buttons";
 
 const StyleScreen = ({ options }) => {
     // @ts-ignore
     const style = useSelector((state) => state.company.style);
+    // @ts-ignore
+    const styles = useSelector((state) => state.style.list);
     // @ts-ignore
     const type = useSelector((state) => state.company.type);
     const dispatch = useDispatch();
@@ -15,6 +17,10 @@ const StyleScreen = ({ options }) => {
     const handleChange = (e) => {
         dispatch(setStyle(e.target.value));
     };
+
+    useEffect(() => {
+        dispatch(getStyles({ speciality: type }));
+    }, [type]);
 
     if (!type) {
         return null;
@@ -29,9 +35,9 @@ const StyleScreen = ({ options }) => {
                     </label>
                     <select name="type" onChange={handleChange} value={style}>
                         <option value=""></option>
-                        {styles[type].map((item, index) => (
-                            <option value={item} key={index}>
-                                {findTranslation(item)}
+                        {styles.map(({ etiqueta, id }) => (
+                            <option value={id} key={id}>
+                                {etiqueta}
                             </option>
                         ))}
                     </select>

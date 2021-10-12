@@ -2,12 +2,16 @@ import axios from "axios";
 import { API_URL } from "../../components/App";
 import { genericFormSubmit } from "./genericFormActions";
 
-export function getStyles() {
+export function getStyles({ speciality = null } = {}) {
     return async (dispatch, getState) => {
         dispatch({ type: "GET_STYLES_REQUEST" });
 
         try {
-            let response = await axios.get(`${API_URL}/estilos`);
+            let response = await axios.get(
+                `${API_URL}/estilos?${
+                    speciality ? "especialidad=" + speciality : ""
+                }`
+            );
 
             dispatch({
                 type: "GET_STYLES_SUCCESS",

@@ -2,16 +2,11 @@ import React, { useEffect } from "react";
 import { MdWorkOutline } from "react-icons/md";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory, useParams } from "react-router";
-import {
-    createSpeciality,
-    getSpeciality,
-    updateSpeciality,
-} from "../../../store/actions/specialityActions";
-import NotFoundError from "../NotFoundError";
 import GenericFormCard from "../Form/GenericFormCard";
 import InputText from "../Form/InputText";
 import PageHeader from "../Layout/PageHeader";
 import ErrorPage from "../ErrorPage";
+import SpecialityActions from "../../../store/actions/SpecialityActions";
 
 const SpecialityForm = ({ isEditor = false }) => {
     const dispatch = useDispatch();
@@ -28,7 +23,7 @@ const SpecialityForm = ({ isEditor = false }) => {
 
     useEffect(() => {
         if (isEditor) {
-            dispatch(getSpeciality(id));
+            dispatch(SpecialityActions.get(id));
         }
     }, []);
 
@@ -46,9 +41,9 @@ const SpecialityForm = ({ isEditor = false }) => {
 
     const handleSubmit = (data) => {
         if (isEditor) {
-            dispatch(updateSpeciality(data, onSuccess));
+            dispatch(SpecialityActions.update(data.id, data, onSuccess));
         } else {
-            dispatch(createSpeciality(data, onSuccess));
+            dispatch(SpecialityActions.create(data, onSuccess));
         }
     };
 

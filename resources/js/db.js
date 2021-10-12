@@ -1,4 +1,4 @@
-export const fonts = [
+const fonts = [
   {
     name: "Iconic",
     rule: `@font-face {
@@ -497,7 +497,7 @@ export const fonts = [
   },
 ];
 
-export const db = [
+const db = [
   //   Tecnologia
   {
     type: "technology",
@@ -709,9 +709,9 @@ export const db = [
 
 const tempTypes = new Set();
 db.forEach(({ type }) => tempTypes.add(type));
-export const types = Array.from(tempTypes);
+const types = Array.from(tempTypes);
 
-export const styles = {};
+const styles = {};
 types.forEach((type) => {
   const items = db.filter((item) => item.type === type);
   const temp = new Set();

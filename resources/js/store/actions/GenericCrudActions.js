@@ -8,12 +8,14 @@ class GenericCrudActions {
         this.apiPath = apiPath;
     }
 
-    getList() {
+    getList(params = undefined) {
         return async (dispatch, getState) => {
             dispatch({ type: `GET_${this.name}S_REQUEST` });
 
             try {
-                let response = await axios.get(`${API_URL}/${this.apiPath}`);
+                let response = await axios.get(`${API_URL}/${this.apiPath}`, {
+                    params,
+                });
 
                 dispatch({
                     type: `GET_${this.name}S_SUCCESS`,
@@ -27,13 +29,16 @@ class GenericCrudActions {
         };
     }
 
-    get(id) {
+    get(id, params = undefined) {
         return async (dispatch, getState) => {
             dispatch({ type: `GET_${this.name}_REQUEST` });
 
             try {
                 let response = await axios.get(
-                    `${API_URL}/${this.apiPath}/${id}`
+                    `${API_URL}/${this.apiPath}/${id}`,
+                    {
+                        params,
+                    }
                 );
 
                 dispatch({

@@ -6,9 +6,6 @@
     box-sizing: border-box;
 }
 
-$gray-text: #ffffff;
-$dark-text: #ffffff;
-
 .screens,
 input,
 select {
@@ -18,7 +15,7 @@ select {
 .screens {
     margin: 0;
     font-family: "Roboto", sans-serif;
-    color: $dark-text;
+    color: white;
     overflow: hidden;
 }
 
@@ -29,6 +26,12 @@ select {
     // overflow: hidden;
     position: relative;
     height: 100vh;
+
+    .btn {
+        &.btn-link {
+            color: white;
+        }
+    }
 }
 
 .screen {
@@ -170,7 +173,7 @@ form input,
 form select:not(option) {
     border: none;
     outline: none;
-    border-bottom: 2px solid $gray-text;
+    border-bottom: 2px solid white;
     background: transparent;
     font-size: calc(1.4rem + 1vw);
     padding: 0.5rem;
@@ -182,7 +185,7 @@ form select:not(option) {
 
 form input:hover,
 form select:hover {
-    border-bottom: 4px solid $gray-text;
+    border-bottom: 4px solid white;
 }
 
 form select:hover option {
