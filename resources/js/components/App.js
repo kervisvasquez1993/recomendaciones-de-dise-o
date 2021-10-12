@@ -21,10 +21,10 @@ const App = () => {
             <Route path="/" exact>
                 <HomePage />
             </Route>
-            <Route path="/login">
+            <Route path="/login" key="login">
                 <Login />
             </Route>
-            <Route path="/register">
+            <Route path="/register" key="register">
                 <Login signUp={true} />
             </Route>
             <Route path="/old" exact>

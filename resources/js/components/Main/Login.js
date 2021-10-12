@@ -1,9 +1,11 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import { AiFillLock, AiOutlineIdcard } from "react-icons/ai";
+import { BsFillEnvelopeFill } from "react-icons/bs";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, Redirect } from "react-router-dom";
 // @ts-ignore
 import iconsb from "../../../images/iconsb.png";
-import { login } from "../../store/actions/authActions";
+import { clearErrors, login } from "../../store/actions/authActions";
 import { useUser } from "../../utils";
 import { extractError } from "../Dashboard/Form/utils";
 
@@ -15,6 +17,7 @@ const Login = ({ signUp = false }) => {
     const errors = useSelector((state) => state.auth.errors);
     const errorEmail = extractError(errors, "email");
     const errorName = extractError(errors, "name");
+    const errorPassword = extractError(errors, "password");
     const user = useUser();
 
     const [data, setData] = useState({
@@ -36,6 +39,10 @@ const Login = ({ signUp = false }) => {
             [id]: e.target.value,
         });
     };
+
+    useEffect(() => {
+        dispatch(clearErrors());
+    }, []);
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -79,11 +86,17 @@ const Login = ({ signUp = false }) => {
                                             className="form-control"
                                             placeholder="Nombre"
                                             id="name"
-                                            required
                                             onChange={handleChange}
                                             value={data.name}
                                         />
-                                        <i className="ik ik-user"></i>
+                                        <i>
+                                            <AiOutlineIdcard className="ik" />
+                                        </i>
+                                        {errorName && (
+                                            <div className="text-danger">
+                                                <strong>{errorName}</strong>
+                                            </div>
+                                        )}
                                     </div>
                                 )}
 
@@ -93,11 +106,12 @@ const Login = ({ signUp = false }) => {
                                         className="form-control"
                                         placeholder="Email"
                                         id="email"
-                                        required
                                         onChange={handleChange}
                                         value={data.email}
                                     />
-                                    <i className="fa fa-envelope"></i>
+                                    <i>
+                                        <BsFillEnvelopeFill className="ik" />
+                                    </i>
                                     {errorEmail && (
                                         <div className="text-danger">
                                             <strong>{errorEmail}</strong>
@@ -110,11 +124,17 @@ const Login = ({ signUp = false }) => {
                                         className="form-control"
                                         placeholder="Contraseña"
                                         id="password"
-                                        required
                                         onChange={handleChange}
                                         value={data.password}
                                     />
-                                    <i className="ik ik-lock"></i>
+                                    <i>
+                                        <AiFillLock className="ik" />
+                                    </i>
+                                    {errorPassword && (
+                                        <div className="text-danger">
+                                            <strong>{errorPassword}</strong>
+                                        </div>
+                                    )}
                                 </div>
 
                                 {error && (

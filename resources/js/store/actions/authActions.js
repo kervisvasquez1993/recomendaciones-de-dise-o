@@ -13,7 +13,7 @@ export function login(user, register = false) {
             } else {
                 response = await axios.post(`${API_URL}/login`, user);
             }
-            
+
             // Get the token and save it
             const token = response.data.access_token;
             localStorage.setItem("auth", token);
@@ -70,6 +70,14 @@ export function logout(user) {
 
         dispatch({
             type: "LOGOUT",
+        });
+    };
+}
+
+export function clearErrors(user) {
+    return async (dispatch, getState) => {
+        dispatch({
+            type: "CLEAR_AUTH_ERRORS",
         });
     };
 }

@@ -53,6 +53,12 @@ const authReducer = (state = defaultState, action) => {
                 ...state,
                 user: null,
             };
+        case "CLEAR_AUTH_ERRORS":
+            return {
+                ...state,
+                errors: {},
+                error: "",
+            };
         default:
             return state;
     }
