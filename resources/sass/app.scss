@@ -1,11 +1,11 @@
 // Fonts
 @import url("https://fonts.googleapis.com/css?family=Nunito");
 
+// Bootstrap
+// @import "~bootstrap/scss/bootstrap";
+
 // Variables
 @import "variables";
-
-// Bootstrap
-@import "~bootstrap/scss/bootstrap";
 
 @import "dropzone";
 
@@ -14,3 +14,9 @@
 .home {
     @import "home";
 }
+
+.home-page {
+    @import "home_page";
+}
+
+@import "material-icons";
