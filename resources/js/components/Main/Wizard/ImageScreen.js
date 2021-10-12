@@ -1,11 +1,14 @@
 import React, { useEffect } from "react";
 import { useDropzone } from "react-dropzone";
 import { useDispatch, useSelector } from "react-redux";
+import { Link, Redirect } from "react-router-dom";
 import { setImage } from "../../../store/actions/companyActions";
 import Buttons from "./Panels/Buttons";
 
-const ImageScreen = ({ options }) => {
+const ImageScreen = () => {
     const dispatch = useDispatch();
+    // @ts-ignore
+    const name = useSelector((state) => state.company.name);
 
     const { acceptedFiles, getRootProps, getInputProps, isDragActive } =
         useDropzone({
@@ -15,6 +18,7 @@ const ImageScreen = ({ options }) => {
 
     // @ts-ignore
     const image = useSelector((state) => state.company.image);
+    console.log(image);
 
     useEffect(() => {
         if (acceptedFiles.length > 0) {
@@ -23,6 +27,10 @@ const ImageScreen = ({ options }) => {
 
         return () => {};
     }, [acceptedFiles, dispatch]);
+
+    if (!name) {
+        return <Redirect to="/proceso/nombre" />;
+    }
 
     return (
         <div className="screen">
@@ -35,7 +43,7 @@ const ImageScreen = ({ options }) => {
                     })}
                 >
                     <input name="import" {...getInputProps()} />
-                    {acceptedFiles.length > 0 ? (
+                    {image ? (
                         <React.Fragment>
                             {image && (
                                 <img
@@ -52,10 +60,15 @@ const ImageScreen = ({ options }) => {
                     )}
                 </div>
 
-                <Buttons
-                    options={options}
-                    disableForwardButton={acceptedFiles.length === 0}
-                />
+                <div className="buttons">
+                    <Link to="/proceso/nombre" className="btn btn-link">
+                        Ir Atrás
+                    </Link>
+
+                    <Link to="/proceso/sector" className="btn">
+                        Siguiente
+                    </Link>
+                </div>
             </div>
         </div>
     );

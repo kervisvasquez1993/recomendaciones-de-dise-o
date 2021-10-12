@@ -24,7 +24,7 @@ const HomePage = () => {
     const handleSubmit = (e) => {
         e.preventDefault();
 
-        history.push(`/proceso?nombre=${name}`);
+        history.push("/proceso/imagen");
     };
 
     return (

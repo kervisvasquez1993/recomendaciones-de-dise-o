@@ -4,10 +4,11 @@ import Buttons from "./Panels/Buttons";
 import ColorSample from "./ColorSample";
 import ResultActions from "../../../store/actions/ResultActions";
 import { loadFontWithUrl, relativePathToS3 } from "../../../utils";
+import { Link, Redirect } from "react-router-dom";
 
 const fontTime = 3000;
 
-const ResultScreen = ({ options }) => {
+const ResultScreen = () => {
     const dispatch = useDispatch();
     // @ts-ignore
     const type = useSelector((state) => state.company.type);
@@ -40,6 +41,10 @@ const ResultScreen = ({ options }) => {
             );
         }
     }, [type, style]);
+
+    if (!name) {
+        return <Redirect to="/proceso/nombre" />;
+    }
 
     if (!type || !style) {
         return null;
@@ -88,7 +93,13 @@ const ResultScreen = ({ options }) => {
                         <ColorSample color={color} key={index} />
                     ))}
                 </div>
-                <Buttons options={options} backwardSkip={2} />
+
+                <div className="buttons">
+                    <Link to="/proceso/estilo" className="btn btn-link">
+                        Ir Atrás
+                    </Link>
+                    <div></div>
+                </div>
             </div>
         </div>
     );

@@ -14,7 +14,6 @@ export const API_URL = process.env.MIX_APP_API_URL || "/api";
 
 const App = () => {
     const dispatch = useDispatch();
-    const user = useUser();
 
     useEffect(() => {
         dispatch(getMyUser());
@@ -35,7 +34,7 @@ const App = () => {
                         <Route path="/login" key="login">
                             <Login />
                         </Route>
-                        <Route path="/logout" key="login">
+                        <Route path="/logout">
                             <Logout />
                         </Route>
                         <Route path="/register" key="register">
