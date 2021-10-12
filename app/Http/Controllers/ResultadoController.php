@@ -112,8 +112,8 @@ class ResultadoController extends Controller
 
     private $rules2 = [
         'resultado_id' => 'required',
-        'nombre_empresa' => 'required',
-        "logo_empresa" => 'required',
+        'nombre_empresa' => 'required'
+
     ];
     public function resultado_user_store(Request $request)
     {
@@ -124,11 +124,9 @@ class ResultadoController extends Controller
             return $this->successMessages("Debe pasar el argumento de resultado como parametro", 401);
         }
         $user_resultado = new UserResultado();
-
         $user_resultado->user_id = auth()->user()->id;
         $user_resultado->resultado_id = $resultado->id;
         $user_resultado->logo_empresa = Storage::disk('s3')->put("ilustraciones", $request->file('logo_empresa'), 'public');
-
         $user_resultado->nombre_empresa = $request->nombre_empresa;
         $user_resultado->save();
         return $this->showOne($user_resultado);
