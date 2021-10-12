@@ -1,9 +1,9 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { types } from "../../db";
-import { findTranslation } from "../../localization";
-import { setType } from "../../store/actions/companyActions";
-import Buttons from "../Panels/Buttons";
+import { types } from "../../../db";
+import { findTranslation } from "../../../localization";
+import { setType } from "../../../store/actions/companyActions";
+import Buttons from "./Panels/Buttons";
 
 const TypeScreen = ({ options }) => {
     // @ts-ignore

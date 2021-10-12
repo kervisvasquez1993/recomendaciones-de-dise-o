@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
-import { db } from "../../db";
-import { loadFont } from "../../utils";
-import Buttons from "../Panels/Buttons";
+import { db } from "../../../db";
+import { loadFont } from "../../../utils";
+import Buttons from "./Panels/Buttons";
 import ColorSample from "./ColorSample";
 
 const fontTime = 3000;

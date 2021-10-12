@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { FaClipboard, FaClipboardCheck } from "react-icons/fa";
-import { copyToClipboard } from "../../utils";
+import { copyToClipboard } from "../../../utils";
 const convert = require("color-convert");
 
 const ColorSample = ({ color }) => {

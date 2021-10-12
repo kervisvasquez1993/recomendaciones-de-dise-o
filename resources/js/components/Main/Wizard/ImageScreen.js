@@ -1,8 +1,8 @@
 import React, { useEffect } from "react";
 import { useDropzone } from "react-dropzone";
 import { useDispatch, useSelector } from "react-redux";
-import { setImage } from "../../store/actions/companyActions";
-import Buttons from "../Panels/Buttons";
+import { setImage } from "../../../store/actions/companyActions";
+import Buttons from "./Panels/Buttons";
 
 const ImageScreen = ({ options }) => {
     const dispatch = useDispatch();

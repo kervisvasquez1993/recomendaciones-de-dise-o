@@ -4,7 +4,7 @@ import { Route, Switch } from "react-router-dom";
 import { getMyUser } from "../store/actions/authActions";
 import { useUser } from "../utils";
 import Dashboard from "./Dashboard/Dashboard";
-import Wizard from "./Wizard/Wizard";
+import Wizard from "./Main/Wizard/Wizard";
 import HomePage from "./Main/HomePage";
 import Header from "./Main/Layout/Header";
 import Login from "./Main/Login";

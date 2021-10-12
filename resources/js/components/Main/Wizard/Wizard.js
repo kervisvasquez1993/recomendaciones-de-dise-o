@@ -2,7 +2,7 @@ import React from "react";
 import { useState } from "react";
 import { useSelector } from "react-redux";
 import { Redirect } from "react-router";
-import PanelScreen from "../Panels/PanelScreen";
+import PanelScreen from "./Panels/PanelScreen";
 import ImageScreen from "./ImageScreen";
 import LoadingScreen from "./LoadingScreen";
 import ResultScreen from "./ResultScreen";

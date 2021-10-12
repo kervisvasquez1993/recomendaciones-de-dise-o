@@ -1,7 +1,7 @@
 import React, { useEffect, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { setCompanyName } from "../../store/actions/companyActions";
-import Buttons from "../Panels/Buttons";
+import { setCompanyName } from "../../../store/actions/companyActions";
+import Buttons from "./Panels/Buttons";
 
 const NameScreen = ({ options }) => {
     const { currentScreen, index } = options;

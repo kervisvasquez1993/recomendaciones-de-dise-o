@@ -1,9 +1,9 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { styles } from "../../db";
-import { findTranslation } from "../../localization";
-import { setStyle } from "../../store/actions/companyActions";
-import Buttons from "../Panels/Buttons";
+import { styles } from "../../../db";
+import { findTranslation } from "../../../localization";
+import { setStyle } from "../../../store/actions/companyActions";
+import Buttons from "./Panels/Buttons";
 
 const StyleScreen = ({ options }) => {
     // @ts-ignore
