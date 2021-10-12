@@ -45,7 +45,7 @@ const HomePage = () => {
                     </h2>
 
                     <div className="max-width-md">
-                        <p className="mb-5">
+                        <p className="mb-4">
                             Pruebe nuestro nuevo sistema de evaluación de Imagen
                             Corporativa (Logotipo), el cual les recomendará
                             parámetros estéticos de diseño que mejorará el
