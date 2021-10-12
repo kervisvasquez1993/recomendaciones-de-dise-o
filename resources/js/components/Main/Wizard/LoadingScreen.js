@@ -5,18 +5,23 @@ import successAnimation from "../../../lotties/68994-success.json";
 import Buttons from "./Panels/Buttons";
 
 const LoadingScreen = ({ options }) => {
+    const { isActive } = options;
+
     return (
         <div className="screen">
             <div className="overlay transition-all">
                 <div className={`overlay-lottie`}>
-                    <Lottie
-                        options={{
-                            loop: true,
-                            autoplay: true,
-                            animationData: successAnimation,
-                        }}
-                        style={{ maxWidth: "450px" }}
-                    />
+                    {isActive && (
+                        <Lottie
+                            options={{
+                                loop: true,
+                                autoplay: true,
+                                animationData: successAnimation,
+                            }}
+                            style={{ maxWidth: "450px" }}
+                        />
+                    )}
+
                     <p>
                         ¡El análisis está listo! Haga clic en "Siguiente" para
                         ver los parámetros estéticos recomendados según las

@@ -26,11 +26,6 @@ const TypeScreen = ({ options }) => {
                     <label htmlFor="">¿Que tipo de empresa es?</label>
                     <select name="type" onChange={handleChange} value={type}>
                         <option value=""></option>
-                        {/* {types.map((item, index) => (
-                            <option value={item} key={index}>
-                                {findTranslation(item)}
-                            </option>
-                        ))} */}
                         {specialities.map((item, index) => (
                             <option value={item.id} key={index}>
                                 {item.etiqueta}
