@@ -3,8 +3,18 @@ import { Link } from "react-router-dom";
 import { TiThMenu } from "react-icons/ti";
 // @ts-ignore
 import logo from "../../../images/logo.png";
+import { useUser } from "../../utils";
+import { useSelector } from "react-redux";
 
 const HomePage = () => {
+    const user = useUser();
+    // @ts-ignore
+    const isLoadingUser = useSelector((state) => state.auth.isLoadingUser);
+
+    if (isLoadingUser) {
+        return null;
+    }
+
     return (
         <div className="home-page">
             <header className="header">
@@ -24,18 +34,20 @@ const HomePage = () => {
                         involucramos con nuevas tecnologías para asegurar
                         resultados óptimos en nuestros servicios
                     </p>
-                    <div>
-                        <Link to="/login">
-                            <button className="btn btn-primary btn-lg btn-decoration">
-                                Iniciar Sesión
-                            </button>
-                        </Link>
-                        <Link to="/register">
-                            <button className="btn btn-secondary btn-lg">
-                                Registrarse
-                            </button>
-                        </Link>
-                    </div>
+                    {!user && (
+                        <div>
+                            <Link to="/login">
+                                <button className="btn btn-primary btn-lg btn-decoration">
+                                    Iniciar Sesión
+                                </button>
+                            </Link>
+                            <Link to="/register">
+                                <button className="btn btn-secondary btn-lg">
+                                    Registrarse
+                                </button>
+                            </Link>
+                        </div>
+                    )}
                 </div>
             </div>
             <div className="section section-padding">

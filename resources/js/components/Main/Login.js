@@ -5,14 +5,20 @@ import { Link, Redirect } from "react-router-dom";
 import iconsb from "../../../images/iconsb.png";
 import { login } from "../../store/actions/authActions";
 import { useUser } from "../../utils";
+import { extractError } from "../Dashboard/Form/utils";
 
 const Login = ({ signUp = false }) => {
     const dispatch = useDispatch();
     // @ts-ignore
     const error = useSelector((state) => state.auth.error);
+    // @ts-ignore
+    const errors = useSelector((state) => state.auth.errors);
+    const errorEmail = extractError(errors, "email");
+    const errorName = extractError(errors, "name");
     const user = useUser();
 
     const [data, setData] = useState({
+        name: "",
         email: "",
         password: "",
     });
@@ -35,6 +41,7 @@ const Login = ({ signUp = false }) => {
         e.preventDefault();
 
         if (signUp) {
+            dispatch(login(data, true));
         } else {
             dispatch(login(data));
         }
@@ -68,11 +75,13 @@ const Login = ({ signUp = false }) => {
                                 {signUp && (
                                     <div className="form-group">
                                         <input
-                                            type="name"
+                                            type="text"
                                             className="form-control"
                                             placeholder="Nombre"
                                             id="name"
                                             required
+                                            onChange={handleChange}
+                                            value={data.name}
                                         />
                                         <i className="ik ik-user"></i>
                                     </div>
@@ -89,6 +98,11 @@ const Login = ({ signUp = false }) => {
                                         value={data.email}
                                     />
                                     <i className="fa fa-envelope"></i>
+                                    {errorEmail && (
+                                        <div className="text-danger">
+                                            <strong>{errorEmail}</strong>
+                                        </div>
+                                    )}
                                 </div>
                                 <div className="form-group">
                                     <input
@@ -102,18 +116,6 @@ const Login = ({ signUp = false }) => {
                                     />
                                     <i className="ik ik-lock"></i>
                                 </div>
-                                {signUp && (
-                                    <div className="form-group">
-                                        <input
-                                            type="password"
-                                            className="form-control"
-                                            placeholder="Confirm Password"
-                                            id="password_confirmation"
-                                            required
-                                        />
-                                        <i className="ik ik-eye-off"></i>
-                                    </div>
-                                )}
 
                                 {error && (
                                     <div className="text-danger">
