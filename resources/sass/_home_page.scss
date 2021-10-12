@@ -101,3 +101,8 @@ footer.section {
 .my-5 {
     margin-bottom: 3rem !important;
 }
+
+
+.auth-wrapper .lavalite-bg {
+    height: calc(100vh - #{$header-height});
+}

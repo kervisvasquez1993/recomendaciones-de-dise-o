@@ -1,17 +1,15 @@
 import React from "react";
 import { useState } from "react";
-import PanelScreen from "./Panels/PanelScreen";
-import HomeScreen from "./Wizard/HomeScreen";
-import ImageScreen from "./Wizard/ImageScreen";
-import LoadingScreen from "./Wizard/LoadingScreen";
-import NameScreen from "./Wizard/NameScreen";
-import ResultScreen from "./Wizard/ResultScreen";
-import StyleScreen from "./Wizard/StyleScreen";
-import TypeScreen from "./Wizard/TypeScreen";
+import PanelScreen from "../Panels/PanelScreen";
+import HomeScreen from "./HomeScreen";
+import ImageScreen from "./ImageScreen";
+import LoadingScreen from "./LoadingScreen";
+import NameScreen from "./NameScreen";
+import ResultScreen from "./ResultScreen";
+import StyleScreen from "./StyleScreen";
+import TypeScreen from "./TypeScreen";
 
-function Home() {
-    // @ts-ignore
-    //   const currentScreen = useSelector((state) => state.screen.currentScreen);
+function Wizard() {
     const [currentScreen, setCurrentScreen] = useState(0);
     const [screens] = useState([
         HomeScreen,
@@ -53,7 +51,7 @@ function Home() {
     };
 
     return (
-        <div className="home">
+        <div className="wizard">
             <div className="screens">
                 <div className="overlay screen-background"></div>
                 {screens.map((Item, index) => {
@@ -81,4 +79,4 @@ function Home() {
     );
 }
 
-export default Home;
+export default Wizard;

@@ -5,6 +5,7 @@ import { TiThMenu } from "react-icons/ti";
 import logo from "../../../images/logo.png";
 import { useUser } from "../../utils";
 import { useSelector } from "react-redux";
+import Header from "./Layout/Header";
 
 const HomePage = () => {
     const user = useUser();
@@ -24,17 +25,7 @@ const HomePage = () => {
     };
 
     return (
-        <div className="home-page">
-            <header className="header">
-                <div className="container">
-                    <div className="d-flex justify-content-between align-items-center">
-                        <Link to="/">
-                            <img className="logo-img" src={logo} />
-                        </Link>
-                        <TiThMenu className="p-2 icon-xl text-primary" />
-                    </div>
-                </div>
-            </header>
+        <>
             <div className="section section-padding background-1">
                 <div className="container h-100 d-flex flex-column justify-content-center background-centered-content text-primary">
                     {user && (
@@ -113,7 +104,7 @@ const HomePage = () => {
                     <p>© Copyright 2021</p>
                 </div>
             </footer>
-        </div>
+        </>
     );
 };
 
