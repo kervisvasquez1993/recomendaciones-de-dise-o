@@ -29,11 +29,6 @@ const Login = ({ signUp = false }) => {
     const handleChange = (e) => {
         const id = e.target.id;
 
-        console.log({
-            ...data,
-            [id]: e.target.value,
-        });
-
         setData({
             ...data,
             [id]: e.target.value,

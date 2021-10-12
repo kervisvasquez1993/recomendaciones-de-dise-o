@@ -1,5 +1,5 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React, { useState } from "react";
+import { Link, useHistory } from "react-router-dom";
 import { TiThMenu } from "react-icons/ti";
 // @ts-ignore
 import logo from "../../../images/logo.png";
@@ -8,12 +8,20 @@ import { useSelector } from "react-redux";
 
 const HomePage = () => {
     const user = useUser();
+    const history = useHistory();
     // @ts-ignore
     const isLoadingUser = useSelector((state) => state.auth.isLoadingUser);
+    const [name, setName] = useState("");
 
     if (isLoadingUser) {
         return null;
     }
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+
+        history.push(`/proceso?nombre=${name}`);
+    };
 
     return (
         <div className="home-page">
@@ -77,7 +85,7 @@ const HomePage = () => {
                             impacto de su empresa/marca hacia su público
                             objetivo.
                         </p>
-                        <form>
+                        <form onSubmit={handleSubmit}>
                             <div className="form-group">
                                 <input
                                     type="text"
@@ -85,10 +93,15 @@ const HomePage = () => {
                                     id="nombre"
                                     name="nombre"
                                     placeholder="Ingresa el nombre de tu empresa"
+                                    value={name}
+                                    onChange={(e) => setName(e.target.value)}
                                 />
                             </div>
 
-                            <button className="btn btn-secondary btn-lg">
+                            <button
+                                className="btn btn-secondary btn-lg"
+                                disabled={!name}
+                            >
                                 Comenzar
                             </button>
                         </form>
