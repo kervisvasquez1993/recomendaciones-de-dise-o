@@ -4,15 +4,18 @@ import { TiThMenu } from "react-icons/ti";
 // @ts-ignore
 import logo from "../../../images/logo.png";
 import { useUser } from "../../utils";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import Header from "./Layout/Header";
+import { setCompanyName } from "../../store/actions/companyActions";
 
 const HomePage = () => {
     const user = useUser();
     const history = useHistory();
+    const dispatch = useDispatch();
     // @ts-ignore
     const isLoadingUser = useSelector((state) => state.auth.isLoadingUser);
-    const [name, setName] = useState("");
+    // @ts-ignore
+    const name = useSelector((state) => state.company.name);
 
     if (isLoadingUser) {
         return null;
@@ -85,7 +88,9 @@ const HomePage = () => {
                                     name="nombre"
                                     placeholder="Ingresa el nombre de tu empresa"
                                     value={name}
-                                    onChange={(e) => setName(e.target.value)}
+                                    onChange={(e) =>
+                                        dispatch(setCompanyName(e.target.value))
+                                    }
                                 />
                             </div>
 

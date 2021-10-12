@@ -1,10 +1,10 @@
 import React from "react";
 import { useState } from "react";
+import { useSelector } from "react-redux";
+import { Redirect } from "react-router";
 import PanelScreen from "../Panels/PanelScreen";
-import HomeScreen from "./HomeScreen";
 import ImageScreen from "./ImageScreen";
 import LoadingScreen from "./LoadingScreen";
-import NameScreen from "./NameScreen";
 import ResultScreen from "./ResultScreen";
 import StyleScreen from "./StyleScreen";
 import TypeScreen from "./TypeScreen";
@@ -12,14 +12,14 @@ import TypeScreen from "./TypeScreen";
 function Wizard() {
     const [currentScreen, setCurrentScreen] = useState(0);
     const [screens] = useState([
-        HomeScreen,
-        NameScreen,
         ImageScreen,
         TypeScreen,
         StyleScreen,
         LoadingScreen,
         ResultScreen,
     ]);
+    // @ts-ignore
+    const name = useSelector((state) => state.company.name);
 
     const nextScreen = () => {
         skipScreens(1);
@@ -49,6 +49,10 @@ function Wizard() {
         currentScreen,
         screenCount: screens.length,
     };
+
+    if (!name) {
+        return <Redirect to="/" />;
+    }
 
     return (
         <div className="wizard">
