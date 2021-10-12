@@ -8,7 +8,7 @@ import { Link, Redirect } from "react-router-dom";
 import { result } from "lodash";
 import { useParams } from "react-router";
 
-const fontTime = 3000;
+export const fontTime = 1500;
 
 const ResultScreen = () => {
     const dispatch = useDispatch();

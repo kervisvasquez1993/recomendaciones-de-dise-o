@@ -355,11 +355,38 @@ p {
 }
 
 .results {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-    gap: 10px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    max-width: 1000px;
 
-    .card {
-        height: 100%;
+    a {
+        min-width: 200px;
+        max-width: 300px;
+        background-color: white;
+        flex-grow: 1;
+        display: inline-block;
+        margin: 0.5rem;
+
+        .result-card {
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+
+            h2 {
+                flex-grow: 1;
+            }
+        }
+
+        .card-colors {
+            display: flex;
+            flex-wrap: wrap;
+
+            .color {
+                flex-grow: 1;
+                height: 2rem;
+                min-width: 2rem;
+            }
+        }
     }
 }

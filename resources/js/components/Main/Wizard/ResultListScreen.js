@@ -61,10 +61,10 @@ const ResultListScreen = () => {
             <div className="overlay">
                 <div className="results">
                     {results.map((item) => (
-                        <ResultCard data={item} key={item.id} />
+                        <ResultCard data={item} key={item.id} name={name} />
                     ))}
                 </div>
-                
+
                 <div className="buttons">
                     <button
                         className="btn btn-link"

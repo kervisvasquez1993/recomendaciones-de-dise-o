@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 
 // export const loadFont = (name) => {
@@ -51,3 +52,24 @@ export function useUser() {
 
     return user;
 }
+
+export const UseAlternator = (elements, time) => {
+    const [elapsedTime, setElapsedTime] = useState(0);
+
+    useEffect(() => {
+        const interval = setInterval(() => {
+            setElapsedTime((item) => item + 100);
+        }, 100);
+
+        return () => {
+            clearInterval(interval);
+        };
+    }, []);
+
+    const period = elements.length * time;
+    const periodCount = Math.floor(elapsedTime / period);
+    const timeSinceLastPeriod = elapsedTime - periodCount * period;
+    const targetIndex = Math.floor(timeSinceLastPeriod / time);
+
+    return elements[targetIndex];
+};
