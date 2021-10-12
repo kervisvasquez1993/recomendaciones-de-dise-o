@@ -26,6 +26,7 @@ Route::post('register', [AuthController::class, 'signUp']);
 Route::middleware('auth:api')->group(function () {
     Route::get('me', [AuthController::class, 'me']);
     Route::get('logout', [AuthController::class, 'logout']);
+
 });
 
 // api rest
@@ -73,3 +74,4 @@ Route::get('/user_resultados', [ResultadoController::class, 'resultado_user_inde
 Route::post('/user_resultados', [ResultadoController::class, 'resultado_user_store']);
 Route::get('/user_resultados/{user_resultado}', [ResultadoController::class, 'resultado_user_show']);
 Route::delete('/user_resultados/{user_resultado}', [ResultadoController::class, 'resultado_user_delete']);
+
