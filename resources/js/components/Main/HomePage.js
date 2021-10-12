@@ -29,12 +29,25 @@ const HomePage = () => {
             </header>
             <div className="section section-padding background-1">
                 <div className="container h-100 d-flex flex-column justify-content-center background-centered-content text-primary">
+                    {user && (
+                        <h2 className="mb-5 font-weight-bold">
+                            !Bienvenido {user.name}!
+                        </h2>
+                    )}
                     <p className="text-primary">
                         En PYPAGE agencia de diseño y marketing digital nos
                         involucramos con nuevas tecnologías para asegurar
                         resultados óptimos en nuestros servicios
                     </p>
-                    {!user && (
+                    {user ? (
+                        <div>
+                            <Link to="/logout">
+                                <button className="btn btn-link btn-lg btn-decoration">
+                                    Cerrar Sesión
+                                </button>
+                            </Link>
+                        </div>
+                    ) : (
                         <div>
                             <Link to="/login">
                                 <button className="btn btn-primary btn-lg btn-decoration">
