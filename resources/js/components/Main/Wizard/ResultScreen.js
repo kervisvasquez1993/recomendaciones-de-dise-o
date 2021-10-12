@@ -42,6 +42,25 @@ const ResultScreen = () => {
         }
     }, [type, style]);
 
+    useEffect(() => {
+        const addedFonts = [];
+
+        results.forEach((resultado) => {
+            resultado.fuentes.forEach(({ nombre, src }) => {
+                const addedFont = loadFontWithUrl(
+                    nombre,
+                    relativePathToS3(src)
+                );
+
+                addedFonts.push(addedFont);
+            });
+        });
+
+        return () => {
+            addedFonts.forEach((font) => font.remove());
+        };
+    }, [results]);
+
     if (!name) {
         return <Redirect to="/proceso/nombre" />;
     }
@@ -74,8 +93,6 @@ const ResultScreen = () => {
 
                 <div className="fonts">
                     {fuentes.map(({ id, src, nombre }, index) => {
-                        loadFontWithUrl(nombre, relativePathToS3(src));
-
                         return (
                             <h2
                                 key={index}
