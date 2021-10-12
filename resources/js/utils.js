@@ -1,3 +1,4 @@
+import { useSelector } from "react-redux";
 import { fonts } from "./db";
 
 export const loadFont = (name) => {
@@ -44,3 +45,10 @@ export const relativePathToS3 = (path) => {
 
     return `${s3Url}/${path}`;
 };
+
+export function useUser() {
+    // @ts-ignore
+    const user = useSelector((state) => state.auth.user);
+
+    return user;
+}

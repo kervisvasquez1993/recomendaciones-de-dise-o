@@ -1,4 +1,5 @@
 import { combineReducers } from "redux";
+import authReducer from "./authReducer";
 import companyReducer from "./companyReducer";
 import fontReducer from "./fontReducer";
 import genericFormReducer from "./genericFormReducer";
@@ -11,6 +12,7 @@ import specialityReducer from "./specialityReducer";
 import styleReducer from "./styleReducer";
 
 const rootReducer = combineReducers({
+    auth: authReducer,
     screen: screenReducer,
     company: companyReducer,
     layout: layoutReducer,
@@ -20,7 +22,7 @@ const rootReducer = combineReducers({
     font: fontReducer,
     illustration: illustrationReducer,
     logoType: logoTypeReducer,
-    result: resultReducer
+    result: resultReducer,
 });
 
 export default rootReducer;

@@ -1,12 +1,48 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React, { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { Link, Redirect } from "react-router-dom";
 // @ts-ignore
 import iconsb from "../../../images/iconsb.png";
+import { login } from "../../store/actions/authActions";
+import { useUser } from "../../utils";
 
 const Login = ({ signUp = false }) => {
+    const dispatch = useDispatch();
+    // @ts-ignore
+    const error = useSelector((state) => state.auth.error);
+    const user = useUser();
+
+    const [data, setData] = useState({
+        email: "",
+        password: "",
+    });
+
+    const handleChange = (e) => {
+        const id = e.target.id;
+
+        console.log({
+            ...data,
+            [id]: e.target.value,
+        });
+
+        setData({
+            ...data,
+            [id]: e.target.value,
+        });
+    };
+
     const handleSubmit = (e) => {
         e.preventDefault();
+
+        if (signUp) {
+        } else {
+            dispatch(login(data));
+        }
     };
+
+    if (user) {
+        return <Redirect to="/" />;
+    }
 
     return (
         <div className="auth-wrapper">
@@ -34,8 +70,8 @@ const Login = ({ signUp = false }) => {
                                         <input
                                             type="name"
                                             className="form-control"
-                                            placeholder="Name"
-                                            name="name"
+                                            placeholder="Nombre"
+                                            id="name"
                                             required
                                         />
                                         <i className="ik ik-user"></i>
@@ -47,8 +83,10 @@ const Login = ({ signUp = false }) => {
                                         type="email"
                                         className="form-control"
                                         placeholder="Email"
-                                        name="email"
+                                        id="email"
                                         required
+                                        onChange={handleChange}
+                                        value={data.email}
                                     />
                                     <i className="fa fa-envelope"></i>
                                 </div>
@@ -56,9 +94,11 @@ const Login = ({ signUp = false }) => {
                                     <input
                                         type="password"
                                         className="form-control"
-                                        placeholder="Password"
-                                        name="password"
+                                        placeholder="Contraseña"
+                                        id="password"
                                         required
+                                        onChange={handleChange}
+                                        value={data.password}
                                     />
                                     <i className="ik ik-lock"></i>
                                 </div>
@@ -68,16 +108,24 @@ const Login = ({ signUp = false }) => {
                                             type="password"
                                             className="form-control"
                                             placeholder="Confirm Password"
-                                            name="password_confirmation"
+                                            id="password_confirmation"
                                             required
                                         />
                                         <i className="ik ik-eye-off"></i>
                                     </div>
                                 )}
 
+                                {error && (
+                                    <div className="text-danger">
+                                        <strong>{error}</strong>
+                                    </div>
+                                )}
+
                                 <div className="sign-btn text-center">
                                     <button className="btn btn-theme">
-                                        Crear Cuenta
+                                        {signUp
+                                            ? "Crear Cuenta"
+                                            : " Iniciar Sesión"}
                                     </button>
                                 </div>
                             </form>
