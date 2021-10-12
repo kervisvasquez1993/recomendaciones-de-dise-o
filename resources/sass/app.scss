@@ -20,3 +20,8 @@
 }
 
 @import "material-icons";
+
+a[disabled],
+a.disabled {
+    pointer-events: none;
+}

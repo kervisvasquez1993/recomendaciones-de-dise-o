@@ -1,14 +1,14 @@
 import React, { useEffect } from "react";
 import { useDropzone } from "react-dropzone";
 import { useDispatch, useSelector } from "react-redux";
-import { Link, Redirect } from "react-router-dom";
+import { Redirect, useHistory } from "react-router-dom";
 import { setImage } from "../../../store/actions/companyActions";
-import Buttons from "./Panels/Buttons";
 
 const ImageScreen = () => {
     const dispatch = useDispatch();
     // @ts-ignore
     const name = useSelector((state) => state.company.name);
+    const history = useHistory();
 
     const { acceptedFiles, getRootProps, getInputProps, isDragActive } =
         useDropzone({
@@ -18,7 +18,6 @@ const ImageScreen = () => {
 
     // @ts-ignore
     const image = useSelector((state) => state.company.image);
-    console.log(image);
 
     useEffect(() => {
         if (acceptedFiles.length > 0) {
@@ -27,6 +26,14 @@ const ImageScreen = () => {
 
         return () => {};
     }, [acceptedFiles, dispatch]);
+
+    const handleNext = () => {
+        history.push("/proceso/sector");
+    };
+
+    const handleBack = () => {
+        history.push("/proceso/nombre");
+    };
 
     if (!name) {
         return <Redirect to="/proceso/nombre" />;
@@ -61,13 +68,21 @@ const ImageScreen = () => {
                 </div>
 
                 <div className="buttons">
-                    <Link to="/proceso/nombre" className="btn btn-link">
+                    <button
+                        className="btn btn-link"
+                        onClick={handleBack}
+                        disabled={!name}
+                    >
                         Ir Atrás
-                    </Link>
+                    </button>
 
-                    <Link to="/proceso/sector" className="btn">
+                    <button
+                        className="btn"
+                        onClick={handleNext}
+                        disabled={!image}
+                    >
                         Siguiente
-                    </Link>
+                    </button>
                 </div>
             </div>
         </div>

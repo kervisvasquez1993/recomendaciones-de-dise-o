@@ -15,8 +15,8 @@ select {
 .screens {
     margin: 0;
     font-family: "Roboto", sans-serif;
-    color: white;
     overflow: hidden;
+    color: white;
 }
 
 .screens {
@@ -352,4 +352,14 @@ label {
 p {
     max-width: 500px;
     font-size: calc(0.8rem + 1vmin);
+}
+
+.results {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 10px;
+
+    .card {
+        height: 100%;
+    }
 }

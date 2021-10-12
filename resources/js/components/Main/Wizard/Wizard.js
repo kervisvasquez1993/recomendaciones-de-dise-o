@@ -2,6 +2,7 @@ import React from "react";
 import { Route, Switch } from "react-router";
 import ImageScreen from "./ImageScreen";
 import NameScreen from "./NameScreen";
+import ResultListScreen from "./ResultListScreen";
 import ResultScreen from "./ResultScreen";
 import StyleScreen from "./StyleScreen";
 import TypeScreen from "./TypeScreen";
@@ -25,6 +26,9 @@ function Wizard() {
                         <StyleScreen />
                     </Route>
                     <Route path="/proceso/resultados">
+                        <ResultListScreen />
+                    </Route>
+                    <Route path="/proceso/resultado/:id">
                         <ResultScreen />
                     </Route>
                 </Switch>

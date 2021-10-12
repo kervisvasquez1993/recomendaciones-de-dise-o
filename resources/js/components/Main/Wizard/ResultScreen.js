@@ -5,22 +5,25 @@ import ColorSample from "./ColorSample";
 import ResultActions from "../../../store/actions/ResultActions";
 import { loadFontWithUrl, relativePathToS3 } from "../../../utils";
 import { Link, Redirect } from "react-router-dom";
+import { result } from "lodash";
+import { useParams } from "react-router";
 
 const fontTime = 3000;
 
 const ResultScreen = () => {
     const dispatch = useDispatch();
     // @ts-ignore
+    const image = useSelector((state) => state.company.image);
+    // @ts-ignore
     const type = useSelector((state) => state.company.type);
     // @ts-ignore
     const style = useSelector((state) => state.company.style);
     // @ts-ignore
-    const image = useSelector((state) => state.company.image);
+    const { id } = useParams();
     // @ts-ignore
     const name = useSelector((state) => state.company.name);
-
     // @ts-ignore
-    const results = useSelector((state) => state.result.list);
+    const result = useSelector((state) => state.result.item);
 
     const [elapsedTime, setElapsedTime] = useState(0);
 
@@ -35,18 +38,14 @@ const ResultScreen = () => {
     }, []);
 
     useEffect(() => {
-        if (type && style) {
-            dispatch(
-                ResultActions.getList({ especialidad: type, estilo: style })
-            );
-        }
+        dispatch(ResultActions.get(id));
     }, [type, style]);
 
     useEffect(() => {
         const addedFonts = [];
 
-        results.forEach((resultado) => {
-            resultado.fuentes.forEach(({ nombre, src }) => {
+        if (result) {
+            result.fuentes.forEach(({ nombre, src }) => {
                 const addedFont = loadFontWithUrl(
                     nombre,
                     relativePathToS3(src)
@@ -54,26 +53,22 @@ const ResultScreen = () => {
 
                 addedFonts.push(addedFont);
             });
-        });
+        }
 
         return () => {
             addedFonts.forEach((font) => font.remove());
         };
-    }, [results]);
+    }, [result]);
 
     if (!name) {
         return <Redirect to="/proceso/nombre" />;
     }
 
-    if (!type || !style) {
+    if (!result) {
         return null;
     }
 
-    if (!results || !results[0]) {
-        return null;
-    }
-
-    const { colores, fuentes } = results[0];
+    const { colores, fuentes } = result;
 
     const period = fuentes.length * fontTime;
     const periodCount = Math.floor(elapsedTime / period);
@@ -112,7 +107,7 @@ const ResultScreen = () => {
                 </div>
 
                 <div className="buttons">
-                    <Link to="/proceso/estilo" className="btn btn-link">
+                    <Link to="/proceso/resultados" className="btn btn-link">
                         Ir Atrás
                     </Link>
                     <div></div>

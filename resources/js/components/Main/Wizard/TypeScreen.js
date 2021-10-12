@@ -1,11 +1,11 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Link, Redirect } from "react-router-dom";
+import { Redirect, useHistory } from "react-router-dom";
 import { setType } from "../../../store/actions/companyActions";
 import SpecialityActions from "../../../store/actions/SpecialityActions";
-import Buttons from "./Panels/Buttons";
 
 const TypeScreen = () => {
+    const history = useHistory();
     // @ts-ignore
     const type = useSelector((state) => state.company.type);
     // @ts-ignore
@@ -26,6 +26,14 @@ const TypeScreen = () => {
         return <Redirect to="/proceso/nombre" />;
     }
 
+    const handleNext = () => {
+        history.push("/proceso/estilo");
+    };
+
+    const handleBack = () => {
+        history.push("/proceso/imagen");
+    };
+
     return (
         <div className="screen">
             <div className="overlay">
@@ -41,15 +49,22 @@ const TypeScreen = () => {
                     </select>
                 </form>
 
-                {/* <Buttons options={options} disableForwardButton={type === ""} /> */}
                 <div className="buttons">
-                    <Link to="/proceso/imagen" className="btn btn-link">
+                    <button
+                        className="btn btn-link"
+                        onClick={handleBack}
+                        disabled={!name}
+                    >
                         Ir Atrás
-                    </Link>
+                    </button>
 
-                    <Link to="/proceso/estilo" className="btn">
+                    <button
+                        className="btn"
+                        onClick={handleNext}
+                        disabled={!type}
+                    >
                         Siguiente
-                    </Link>
+                    </button>
                 </div>
             </div>
         </div>

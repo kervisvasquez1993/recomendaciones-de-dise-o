@@ -19,6 +19,14 @@ const NameScreen = () => {
         inputRef.current.focus({ preventScroll: true });
     }, []);
 
+    const handleNext = () => {
+        history.push("/proceso/imagen");
+    };
+
+    const handleBack = () => {
+        history.push("/proceso/imagen");
+    };
+
     return (
         <div className="screen">
             <div className="overlay">
@@ -38,9 +46,13 @@ const NameScreen = () => {
                 <div className="buttons">
                     <div></div>
 
-                    <Link to="/proceso/imagen" className="btn">
+                    <button
+                        className="btn"
+                        onClick={handleNext}
+                        disabled={!name}
+                    >
                         Siguiente
-                    </Link>
+                    </button>
                 </div>
             </div>
         </div>

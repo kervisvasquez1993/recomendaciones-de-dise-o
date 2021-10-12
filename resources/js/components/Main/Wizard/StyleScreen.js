@@ -1,12 +1,11 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Link, Redirect } from "react-router-dom";
-import { findTranslation } from "../../../localization";
+import { Redirect, useHistory } from "react-router-dom";
 import { setStyle } from "../../../store/actions/companyActions";
 import { getStyles } from "../../../store/actions/styleActions";
-import Buttons from "./Panels/Buttons";
 
 const StyleScreen = () => {
+    const history = useHistory();
     // @ts-ignore
     const style = useSelector((state) => state.company.style);
     // @ts-ignore
@@ -33,6 +32,14 @@ const StyleScreen = () => {
         return null;
     }
 
+    const handleNext = () => {
+        history.push("/proceso/resultados");
+    };
+
+    const handleBack = () => {
+        history.push("/proceso/sector");
+    };
+
     return (
         <div className="screen">
             <div className="overlay">
@@ -51,13 +58,21 @@ const StyleScreen = () => {
                 </form>
 
                 <div className="buttons">
-                    <Link to="/proceso/sector" className="btn btn-link">
+                    <button
+                        className="btn btn-link"
+                        onClick={handleBack}
+                        disabled={!name}
+                    >
                         Ir Atrás
-                    </Link>
+                    </button>
 
-                    <Link to="/proceso/resultados" className="btn">
+                    <button
+                        className="btn"
+                        onClick={handleNext}
+                        disabled={!style}
+                    >
                         Siguiente
-                    </Link>
+                    </button>
                 </div>
             </div>
         </div>
