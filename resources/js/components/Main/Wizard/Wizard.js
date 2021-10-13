@@ -4,6 +4,7 @@ import ImageScreen from "./ImageScreen";
 import NameScreen from "./NameScreen";
 import ResultListScreen from "./ResultListScreen";
 import ResultScreen from "./ResultScreen";
+import SavedResultScreen from "./SavedResultScreen";
 import StyleScreen from "./StyleScreen";
 import TypeScreen from "./TypeScreen";
 
@@ -30,6 +31,9 @@ function Wizard() {
                     </Route>
                     <Route path="/proceso/resultado/:id">
                         <ResultScreen />
+                    </Route>
+                    <Route path="/proceso/resultado_guardado/:id">
+                        <SavedResultScreen />
                     </Route>
                 </Switch>
             </div>

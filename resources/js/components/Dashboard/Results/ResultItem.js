@@ -4,7 +4,7 @@ import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 import ResultActions from "../../../store/actions/ResultActions";
 import { deletingConfirmationMessage } from "../../../text";
-import { relativePathToS3 } from "../../../utils";
+import { loadFonts, relativePathToS3 } from "../../../utils";
 import ResultColors from "./ResultColors";
 import { BASE_PATH } from "./ResultList";
 
@@ -18,6 +18,8 @@ const ResultItem = ({ data }) => {
         ilustracion,
         fuentes,
     } = data;
+
+    loadFonts(fuentes);
 
     const dispatch = useDispatch();
 

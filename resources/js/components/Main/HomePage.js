@@ -1,25 +1,44 @@
-import React, { useState } from "react";
+import React from "react";
 import { Link, useHistory } from "react-router-dom";
-import { TiThMenu } from "react-icons/ti";
-// @ts-ignore
-import logo from "../../../images/logo.png";
 import { useUser } from "../../utils";
 import { useDispatch, useSelector } from "react-redux";
-import Header from "./Layout/Header";
 import { setCompanyName } from "../../store/actions/companyActions";
+import SavedResultList from "./SavedResultList";
+import { MdPhoneIphone } from "react-icons/md";
+import { BsFillEnvelopeFill } from "react-icons/bs";
+import {
+    FaFacebookF,
+    FaLinkedinIn,
+    FaTwitter,
+    FaYoutube,
+} from "react-icons/fa";
+
+const socialMedias = [
+    {
+        icon: <FaTwitter className="icon-md" />,
+        link: "https://twitter.com/pypage",
+    },
+    {
+        icon: <FaYoutube className="icon-md" />,
+        link: "https://www.youtube.com/user/pypage",
+    },
+    {
+        icon: <FaLinkedinIn className="icon-md" />,
+        link: "https://www.linkedin.com/company/pypage",
+    },
+    {
+        icon: <FaFacebookF className="icon-md" />,
+        link: "https://www.facebook.com/pypage",
+    },
+];
 
 const HomePage = () => {
     const user = useUser();
     const history = useHistory();
     const dispatch = useDispatch();
-    // @ts-ignore
-    const isLoadingUser = useSelector((state) => state.auth.isLoadingUser);
+
     // @ts-ignore
     const name = useSelector((state) => state.company.name);
-
-    if (isLoadingUser) {
-        return null;
-    }
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -104,6 +123,52 @@ const HomePage = () => {
                     </div>
                 </div>
             </div>
+
+            <SavedResultList />
+
+            <div className="section section-secondary section-padding">
+                <div className="container text-center">
+                    <h2 className="heading mb-5 text-uppercase font-weight-bold">
+                        Contactanos
+                    </h2>
+                    <div className="contact-list-container">
+                        <div className="contact-item">
+                            <MdPhoneIphone className="icon icon-lg" />
+                            <div className="px-2">
+                                <h3 className="title">Telefono</h3>
+                                <p>0414 4205804</p>
+                            </div>
+                        </div>
+                        <div className="contact-item">
+                            <BsFillEnvelopeFill className="icon icon-lg" />
+                            <div className="px-2">
+                                <h3 className="title">Correo</h3>
+                                <p>pypageagency@gmail.com</p>
+                            </div>
+                        </div>
+                        <div className="contact-item">
+                            <div className="px-2">
+                                <h3 className="title">Redes</h3>
+                                <div>
+                                    {socialMedias.map(
+                                        ({ icon, link }, index) => (
+                                            <a
+                                                key={index}
+                                                href={link}
+                                                target="_blank"
+                                                className="text-white p-2"
+                                            >
+                                                {icon}
+                                            </a>
+                                        )
+                                    )}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
             <footer className="section section-padding">
                 <div className="container text-center">
                     <p>© Copyright 2021</p>

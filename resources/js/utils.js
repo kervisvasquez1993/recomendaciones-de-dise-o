@@ -53,7 +53,7 @@ export function useUser() {
     return user;
 }
 
-export const UseAlternator = (elements, time) => {
+export const useAlternator = (elements, time) => {
     const [elapsedTime, setElapsedTime] = useState(0);
 
     useEffect(() => {
@@ -72,4 +72,34 @@ export const UseAlternator = (elements, time) => {
     const targetIndex = Math.floor(timeSinceLastPeriod / time);
 
     return elements[targetIndex];
+};
+
+export const loadFonts = (fonts) => {
+    useEffect(() => {
+        const addedFonts = [];
+
+        fonts.forEach(({ nombre, src }) => {
+            const addedFont = loadFontWithUrl(nombre, relativePathToS3(src));
+
+            addedFonts.push(addedFont);
+        });
+
+        return () => {
+            addedFonts.forEach((font) => font.remove());
+        };
+    }, [fonts]);
+
+    return null;
+};
+
+export const loadFont = ({ nombre, src }) => {
+    useEffect(() => {
+        const addedFont = loadFontWithUrl(nombre, relativePathToS3(src));
+
+        return () => {
+            addedFont.remove();
+        };
+    }, [nombre, src]);
+
+    return null;
 };

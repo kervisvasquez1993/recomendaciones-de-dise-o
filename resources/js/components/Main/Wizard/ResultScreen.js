@@ -1,17 +1,19 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import Buttons from "./Panels/Buttons";
-import ColorSample from "./ColorSample";
 import ResultActions from "../../../store/actions/ResultActions";
-import { loadFontWithUrl, relativePathToS3 } from "../../../utils";
+import { useUser } from "../../../utils";
 import { Link, Redirect } from "react-router-dom";
-import { result } from "lodash";
 import { useParams } from "react-router";
+import SavedResultActions from "../../../store/actions/SavedResultActions";
+import ResultName from "./Result/ResultName";
+import ResultFonts from "./Result/ResultFonts";
+import ResultColors from "./Result/ResultColors";
 
 export const fontTime = 1500;
 
 const ResultScreen = () => {
     const dispatch = useDispatch();
+    const user = useUser();
     // @ts-ignore
     const image = useSelector((state) => state.company.image);
     // @ts-ignore
@@ -24,41 +26,13 @@ const ResultScreen = () => {
     const name = useSelector((state) => state.company.name);
     // @ts-ignore
     const result = useSelector((state) => state.result.item);
-
-    const [elapsedTime, setElapsedTime] = useState(0);
-
-    useEffect(() => {
-        const interval = setInterval(() => {
-            setElapsedTime((item) => item + 100);
-        }, 100);
-
-        return () => {
-            clearInterval(interval);
-        };
-    }, []);
+    // @ts-ignore
+    const savedResults = useSelector((state) => state.savedResult.list);
 
     useEffect(() => {
         dispatch(ResultActions.get(id));
+        dispatch(SavedResultActions.getList());
     }, [type, style]);
-
-    useEffect(() => {
-        const addedFonts = [];
-
-        if (result) {
-            result.fuentes.forEach(({ nombre, src }) => {
-                const addedFont = loadFontWithUrl(
-                    nombre,
-                    relativePathToS3(src)
-                );
-
-                addedFonts.push(addedFont);
-            });
-        }
-
-        return () => {
-            addedFonts.forEach((font) => font.remove());
-        };
-    }, [result]);
 
     if (!name) {
         return <Redirect to="/proceso/nombre" />;
@@ -70,47 +44,61 @@ const ResultScreen = () => {
 
     const { colores, fuentes } = result;
 
-    const period = fuentes.length * fontTime;
-    const periodCount = Math.floor(elapsedTime / period);
-    const timeSinceLastPeriod = elapsedTime - periodCount * period;
-    const fontIndex = Math.floor(timeSinceLastPeriod / fontTime);
+    const isSaved = savedResults.find(
+        (item) =>
+            item.nombre_empresa === name && item.resultado_id === result.id
+    );
+
+    const handleSave = () => {
+        const onSuccess = (data) => {
+            dispatch(SavedResultActions.getList());
+        };
+
+        const data = new FormData();
+        data.append("nombre_empresa", name);
+        data.append("resultado_id", result.id);
+        data.append("logo_empresa", image);
+
+        dispatch(SavedResultActions.create(data, onSuccess));
+    };
 
     return (
         <div className="screen">
             <div className="overlay">
-                <img className="result-img" src={image} alt="uploaded logo" />
-                <p
-                    className="company-name"
-                    style={{ fontFamily: fuentes[fontIndex].nombre }}
-                >
-                    {name}
-                </p>
+                {image && (
+                    <img
+                        className="result-img"
+                        src={URL.createObjectURL(image)}
+                        alt="uploaded logo"
+                    />
+                )}
 
-                <div className="fonts">
-                    {fuentes.map(({ id, src, nombre }, index) => {
-                        return (
-                            <h2
-                                key={index}
-                                className="font"
-                                style={{ fontFamily: nombre }}
-                            >
-                                {nombre}
-                            </h2>
-                        );
-                    })}
-                </div>
+                <ResultName name={name} fonts={fuentes} />
+                <ResultFonts fonts={fuentes} />
+                <ResultColors colors={colores} />
 
-                <div className="colors">
-                    {colores.map((color, index) => (
-                        <ColorSample color={color} key={index} />
-                    ))}
-                </div>
+                {!user && (
+                    <Link to="/register">
+                        Registrate para poder guardar el resultado
+                    </Link>
+                )}
 
                 <div className="buttons">
                     <Link to="/proceso/resultados" className="btn btn-link">
                         Ir Atrás
                     </Link>
-                    <div></div>
+
+                    {user ? (
+                        <button
+                            className="btn"
+                            onClick={handleSave}
+                            disabled={isSaved}
+                        >
+                            {isSaved ? "¡Guardado!" : "Guardar"}
+                        </button>
+                    ) : (
+                        <div></div>
+                    )}
                 </div>
             </div>
         </div>

@@ -27,6 +27,10 @@ Route::middleware('auth:api')->group(function () {
     Route::get('me', [AuthController::class, 'me']);
     Route::get('logout', [AuthController::class, 'logout']);
 
+    Route::get('/resultados_guardados', [ResultadoController::class, 'resultado_user_index']);
+    Route::post('/resultados_guardados', [ResultadoController::class, 'resultado_user_store']);
+    Route::get('/resultados_guardados/{user_resultado}', [ResultadoController::class, 'resultado_user_show']);
+    Route::delete('/resultados_guardados/{user_resultado}', [ResultadoController::class, 'resultado_user_delete']);
 });
 
 // api rest
@@ -69,9 +73,3 @@ Route::delete('/resultados/{resultado}', [ResultadoController::class, 'destroy']
 /* Route::get('/resultados', [ResultadoController::class, 'index']); */
 
 //user_resultado acciones
-
-Route::get('/user_resultados', [ResultadoController::class, 'resultado_user_index']);
-Route::post('/user_resultados', [ResultadoController::class, 'resultado_user_store']);
-Route::get('/user_resultados/{user_resultado}', [ResultadoController::class, 'resultado_user_show']);
-Route::delete('/user_resultados/{user_resultado}', [ResultadoController::class, 'resultado_user_delete']);
-

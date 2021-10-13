@@ -61,7 +61,9 @@ class GenericCrudActions {
             return genericFormSubmit(dispatch, () =>
                 axios.post(`${API_URL}/${this.apiPath}`, data)
             ).then((response) => {
-                onSuccess(response);
+                if (onSuccess) {
+                    onSuccess(response);
+                }
             });
         };
     }
@@ -75,7 +77,9 @@ class GenericCrudActions {
 
                 return axios.put(`${API_URL}/${this.apiPath}/${id}`, data);
             }).then((response) => {
-                onSuccess(response);
+                if (onSuccess) {
+                    onSuccess(response);
+                }
             });
         };
     }

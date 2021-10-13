@@ -21,7 +21,7 @@ const ImageScreen = () => {
 
     useEffect(() => {
         if (acceptedFiles.length > 0) {
-            dispatch(setImage(URL.createObjectURL(acceptedFiles[0])));
+            dispatch(setImage(acceptedFiles[0]));
         }
 
         return () => {};
@@ -55,7 +55,7 @@ const ImageScreen = () => {
                             {image && (
                                 <img
                                     className="company-img"
-                                    src={image}
+                                    src={URL.createObjectURL(image)}
                                     alt="uploaded logo"
                                 />
                             )}
@@ -63,6 +63,7 @@ const ImageScreen = () => {
                     ) : (
                         <span>
                             ¡Suba el logo de su empresa haciendo clic aqui!
+                            (Opcional)
                         </span>
                     )}
                 </div>
@@ -76,11 +77,7 @@ const ImageScreen = () => {
                         Ir Atrás
                     </button>
 
-                    <button
-                        className="btn"
-                        onClick={handleNext}
-                        disabled={!image}
-                    >
+                    <button className="btn" onClick={handleNext}>
                         Siguiente
                     </button>
                 </div>
