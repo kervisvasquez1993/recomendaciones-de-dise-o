@@ -123,8 +123,8 @@ const HomePage = () => {
                     </div>
                 </div>
             </div>
-
-            <SavedResultList />
+            
+            {user && <SavedResultList />}
 
             <div className="section section-secondary section-padding">
                 <div className="container text-center">
