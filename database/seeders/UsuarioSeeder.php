@@ -17,7 +17,7 @@ class UsuarioSeeder extends Seeder
     public function run()
     {
         DB::table('users')->insert([
-            'name' => 'kervis vasquez',
+            'name' => 'admin',
             'rol' => "admin",
             'email' => 'pypageagency@gmail.com',
             'password' =>Hash::make("123456789"),
