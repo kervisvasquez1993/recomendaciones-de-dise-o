@@ -4,6 +4,33 @@ import { useUser } from "../../utils";
 import { useDispatch, useSelector } from "react-redux";
 import { setCompanyName } from "../../store/actions/companyActions";
 import SavedResultList from "./SavedResultList";
+import { MdPhoneIphone } from "react-icons/md";
+import { BsFillEnvelopeFill } from "react-icons/bs";
+import {
+    FaFacebookF,
+    FaLinkedinIn,
+    FaTwitter,
+    FaYoutube,
+} from "react-icons/fa";
+
+const socialMedias = [
+    {
+        icon: <FaTwitter className="icon-md" />,
+        link: "https://twitter.com/pypage",
+    },
+    {
+        icon: <FaYoutube className="icon-md" />,
+        link: "https://www.youtube.com/user/pypage",
+    },
+    {
+        icon: <FaLinkedinIn className="icon-md" />,
+        link: "https://www.linkedin.com/company/pypage",
+    },
+    {
+        icon: <FaFacebookF className="icon-md" />,
+        link: "https://www.facebook.com/pypage",
+    },
+];
 
 const HomePage = () => {
     const user = useUser();
@@ -104,6 +131,38 @@ const HomePage = () => {
                     <h2 className="heading mb-5 text-uppercase font-weight-bold">
                         Contactanos
                     </h2>
+                    <div className="contact-list-container">
+                        <div className="contact-item">
+                            <MdPhoneIphone className="icon icon-lg" />
+                            <div className="px-2">
+                                <h3 className="title">Telefono</h3>
+                                <p>0414 4205804</p>
+                            </div>
+                        </div>
+                        <div className="contact-item">
+                            <BsFillEnvelopeFill className="icon icon-lg" />
+                            <div className="px-2">
+                                <h3 className="title">Correo</h3>
+                                <p>pypageagency@gmail.com</p>
+                            </div>
+                        </div>
+                        <div className="contact-item">
+                            <div className="px-2">
+                                <h3 className="title">Redes</h3>
+                                <div>
+                                    {socialMedias.map(({ icon, link }) => (
+                                        <a
+                                            href={link}
+                                            target="_blank"
+                                            className="text-white p-2"
+                                        >
+                                            {icon}
+                                        </a>
+                                    ))}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
 
