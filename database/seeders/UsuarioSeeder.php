@@ -19,7 +19,7 @@ class UsuarioSeeder extends Seeder
         DB::table('users')->insert([
             'name' => 'kervis vasquez',
             'rol' => "admin",
-            'email' => 'kervisvasquez24@gmail.com',
+            'email' => 'pypageagency@gmail.com',
             'password' =>Hash::make("123456789"),
             'created_at' => Carbon::now()
         ]);
