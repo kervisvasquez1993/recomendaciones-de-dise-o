@@ -352,6 +352,12 @@ label {
 p {
     max-width: 500px;
     font-size: calc(0.8rem + 1vmin);
+    color: white;
+
+    a {
+        color: white;
+        text-decoration: underline;
+    }
 }
 
 .results {
