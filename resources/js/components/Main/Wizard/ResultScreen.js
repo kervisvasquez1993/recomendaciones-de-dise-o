@@ -54,18 +54,24 @@ const ResultScreen = () => {
             dispatch(SavedResultActions.getList());
         };
 
-        dispatch(
-            SavedResultActions.create(
-                { nombre_empresa: name, resultado_id: result.id },
-                onSuccess
-            )
-        );
+        const data = new FormData();
+        data.append("nombre_empresa", name);
+        data.append("resultado_id", result.id);
+        data.append("logo_empresa", image);
+
+        dispatch(SavedResultActions.create(data, onSuccess));
     };
 
     return (
         <div className="screen">
             <div className="overlay">
-                <img className="result-img" src={image} alt="uploaded logo" />
+                {image && (
+                    <img
+                        className="result-img"
+                        src={URL.createObjectURL(image)}
+                        alt="uploaded logo"
+                    />
+                )}
 
                 <ResultName name={name} fonts={fuentes} />
                 <ResultFonts fonts={fuentes} />

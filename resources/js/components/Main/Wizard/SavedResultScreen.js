@@ -6,6 +6,7 @@ import SavedResultActions from "../../../store/actions/SavedResultActions";
 import ResultFonts from "./Result/ResultFonts";
 import ResultColors from "./Result/ResultColors";
 import ResultName from "./Result/ResultName";
+import { relativePathToS3 } from "../../../utils";
 
 export const fontTime = 1500;
 
@@ -26,17 +27,20 @@ const SavedResultScreen = () => {
 
     const {
         nombre_empresa,
-        resultado: { colores, fuentes, logo_empresa },
+        logo_empresa,
+        resultado: { colores, fuentes },
     } = savedResult;
 
     return (
         <div className="screen">
             <div className="overlay">
-                <img
-                    className="result-img"
-                    src={logo_empresa}
-                    alt="uploaded logo"
-                />
+                {logo_empresa && (
+                    <img
+                        className="result-img"
+                        src={relativePathToS3(logo_empresa)}
+                        alt="uploaded logo"
+                    />
+                )}
 
                 <ResultName name={nombre_empresa} fonts={fuentes} />
                 <ResultFonts fonts={fuentes} />

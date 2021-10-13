@@ -127,7 +127,12 @@ class ResultadoController extends Controller
         $user_resultado = new UserResultado();
         $user_resultado->user_id = auth()->user()->id;
         $user_resultado->resultado_id = $resultado->id;
-        $user_resultado->logo_empresa = Storage::disk('s3')->put("ilustraciones", $request->file('logo_empresa'), 'public');
+        
+        $archivo = $request->file('logo_empresa');
+        if ($archivo) {
+            $user_resultado->logo_empresa = Storage::disk('s3')->put("ilustraciones", $archivo, 'public');
+        }
+
         $user_resultado->nombre_empresa = $request->nombre_empresa;
         $user_resultado->save();
         return $this->showOneResource(new UserResultadoResource($user_resultado));
