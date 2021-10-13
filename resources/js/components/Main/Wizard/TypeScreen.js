@@ -31,7 +31,7 @@ const TypeScreen = () => {
     };
 
     const handleBack = () => {
-        history.push("/proceso/imagen");
+        history.push("/proceso/nombre");
     };
 
     return (

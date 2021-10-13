@@ -43,7 +43,7 @@ const HomePage = () => {
     const handleSubmit = (e) => {
         e.preventDefault();
 
-        history.push("/proceso/imagen");
+        history.push("/proceso/sector");
     };
 
     return (

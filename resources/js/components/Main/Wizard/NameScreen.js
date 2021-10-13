@@ -20,11 +20,7 @@ const NameScreen = () => {
     }, []);
 
     const handleNext = () => {
-        history.push("/proceso/imagen");
-    };
-
-    const handleBack = () => {
-        history.push("/proceso/imagen");
+        history.push("/proceso/sector");
     };
 
     return (
