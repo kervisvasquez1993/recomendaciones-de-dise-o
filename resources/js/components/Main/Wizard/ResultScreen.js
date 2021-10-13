@@ -1,13 +1,14 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import ResultActions from "../../../store/actions/ResultActions";
-import { useUser } from "../../../utils";
+import { relativePathToS3, useUser } from "../../../utils";
 import { Link, Redirect } from "react-router-dom";
 import { useParams } from "react-router";
 import SavedResultActions from "../../../store/actions/SavedResultActions";
 import ResultName from "./Result/ResultName";
 import ResultFonts from "./Result/ResultFonts";
 import ResultColors from "./Result/ResultColors";
+import ResultInfo from "./Result/ResultInfo";
 
 export const fontTime = 1500;
 
@@ -42,8 +43,6 @@ const ResultScreen = () => {
         return null;
     }
 
-    const { colores, fuentes, descripcion, logotipo } = result;
-
     const isSaved = savedResults.find(
         (item) =>
             item.nombre_empresa === name && item.resultado_id === result.id
@@ -57,7 +56,7 @@ const ResultScreen = () => {
         const data = new FormData();
         data.append("nombre_empresa", name);
         data.append("resultado_id", result.id);
-        data.append("logo_empresa", image);
+        // data.append("logo_empresa", image);
 
         dispatch(SavedResultActions.create(data, onSuccess));
     };
@@ -65,18 +64,14 @@ const ResultScreen = () => {
     return (
         <div className="screen">
             <div className="overlay">
-                <p>{logotipo.nombre}</p>
-                {image && (
+                {/* {image && (
                     <img
                         className="result-img"
                         src={URL.createObjectURL(image)}
                         alt="uploaded logo"
                     />
-                )}
-                <ResultName name={name} fonts={fuentes} />
-                <ResultFonts fonts={fuentes} />
-                <ResultColors colors={colores} />
-                <p>{descripcion}</p>
+                )} */}
+                <ResultInfo name={name} result={result} />
 
                 {!user && (
                     <p className="text-white">

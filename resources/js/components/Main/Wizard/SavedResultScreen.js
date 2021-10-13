@@ -3,10 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { useParams } from "react-router";
 import SavedResultActions from "../../../store/actions/SavedResultActions";
-import ResultFonts from "./Result/ResultFonts";
-import ResultColors from "./Result/ResultColors";
-import ResultName from "./Result/ResultName";
-import { relativePathToS3 } from "../../../utils";
+import ResultInfo from "./Result/ResultInfo";
 
 export const fontTime = 1500;
 
@@ -27,24 +24,13 @@ const SavedResultScreen = () => {
 
     const {
         nombre_empresa,
-        logo_empresa,
-        resultado: { colores, fuentes },
+        resultado
     } = savedResult;
 
     return (
         <div className="screen">
             <div className="overlay">
-                {logo_empresa && (
-                    <img
-                        className="result-img"
-                        src={relativePathToS3(logo_empresa)}
-                        alt="uploaded logo"
-                    />
-                )}
-
-                <ResultName name={nombre_empresa} fonts={fuentes} />
-                <ResultFonts fonts={fuentes} />
-                <ResultColors colors={colores} />
+                <ResultInfo name={nombre_empresa} result={resultado} />
 
                 <div className="buttons">
                     <Link to="/" className="btn btn-link">
