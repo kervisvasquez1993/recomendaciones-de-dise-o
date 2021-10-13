@@ -73,3 +73,4 @@ Route::delete('/resultados/{resultado}', [ResultadoController::class, 'destroy']
 /* Route::get('/resultados', [ResultadoController::class, 'index']); */
 
 //user_resultado acciones
+// add est
