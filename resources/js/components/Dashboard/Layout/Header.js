@@ -1,6 +1,9 @@
 import React from "react";
 import { useDispatch } from "react-redux";
 import { setHideSidebar } from "../../../store/actions/layoutReducer";
+import avatar from "../../../../images/avatar.jpg";
+import { BiLogOut } from "react-icons/bi";
+import { Link } from "react-router-dom";
 
 const Header = () => {
     const dispatch = useDispatch();
@@ -18,7 +21,7 @@ const Header = () => {
                             <span></span>
                         </button>
                     </div>
-                    {/* <div className="top-menu d-flex align-items-center">
+                    <div className="top-menu d-flex align-items-center">
                         <div className="dropdown">
                             <a
                                 className="dropdown-toggle"
@@ -31,24 +34,23 @@ const Header = () => {
                             >
                                 <img
                                     className="avatar"
-                                    src="{{ asset('img/user.jpg')}}"
-                                    alt=""
+                                    src={avatar}
+                                    alt="avatar image"
                                 />
                             </a>
                             <div
                                 className="dropdown-menu dropdown-menu-right"
                                 aria-labelledby="userDropdown"
                             >
-                                <a
-                                    className="dropdown-item"
-                                    href="{{ url('logout') }}"
-                                >
-                                    <i className="ik ik-power dropdown-icon"></i>
-                                    Logout
-                                </a>
+                                <Link className="dropdown-item" to="/logout">
+                                    <i className="dropdown-icon">
+                                        <BiLogOut />
+                                    </i>
+                                    Cerrar sesión
+                                </Link>
                             </div>
                         </div>
-                    </div> */}
+                    </div>
                 </div>
             </div>
         </header>
