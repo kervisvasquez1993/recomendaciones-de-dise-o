@@ -12,7 +12,6 @@ use App\Models\Resultado;
 use App\Models\UserResultado;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 
@@ -25,6 +24,7 @@ class ResultadoController extends Controller
         'logotipo_id' => 'required',
         'colores' => 'required',
         'descripcion' => 'required',
+        'fuentes' => 'required|array|min:1'
     ];
 
     private function fuentes($fuentes, $resultado)

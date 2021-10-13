@@ -91,3 +91,15 @@ export const loadFonts = (fonts) => {
 
     return null;
 };
+
+export const loadFont = ({ nombre, src }) => {
+    useEffect(() => {
+        const addedFont = loadFontWithUrl(nombre, relativePathToS3(src));
+
+        return () => {
+            addedFont.remove();
+        };
+    }, [nombre, src]);
+
+    return null;
+};

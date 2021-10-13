@@ -96,7 +96,17 @@ const HomePage = () => {
                     </div>
                 </div>
             </div>
+
             <SavedResultList />
+
+            <div className="section section-secondary section-padding">
+                <div className="container text-center">
+                    <h2 className="heading mb-5 text-uppercase font-weight-bold">
+                        Contactanos
+                    </h2>
+                </div>
+            </div>
+
             <footer className="section section-padding">
                 <div className="container text-center">
                     <p>© Copyright 2021</p>
