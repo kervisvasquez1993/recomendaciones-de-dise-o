@@ -1,6 +1,6 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Route, Switch } from "react-router-dom";
+import { Redirect, Route, Switch } from "react-router-dom";
 import { lg } from "../../boostrapVariables";
 import { setHideSidebar } from "../../store/actions/layoutReducer";
 import DashboardHome from "./DashboardHome";
@@ -20,9 +20,11 @@ import LogoTypeList from "./LogoTypes/LogoTypeList";
 import LogoTypeForm from "./LogoTypes/LogoTypeForm";
 import ResultList from "./Results/ResultList";
 import ResultForm from "./Results/ResultForm";
+import { useUser } from "../../utils";
 
 const Dashboard = () => {
     const dispatch = useDispatch();
+    const user = useUser();
     // @ts-ignore
     const hideSidebar = useSelector((state) => state.layout.hideSidebar);
 
@@ -31,6 +33,10 @@ const Dashboard = () => {
             dispatch(setHideSidebar(true));
         }
     };
+
+    if (user.rol !== "admin") {
+        return <Redirect to="/" />;
+    }
 
     return (
         <div className="wrapper">

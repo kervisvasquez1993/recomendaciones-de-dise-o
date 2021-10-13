@@ -1,25 +1,16 @@
-import React, { useState } from "react";
+import React from "react";
 import { Link, useHistory } from "react-router-dom";
-import { TiThMenu } from "react-icons/ti";
-// @ts-ignore
-import logo from "../../../images/logo.png";
 import { useUser } from "../../utils";
 import { useDispatch, useSelector } from "react-redux";
-import Header from "./Layout/Header";
 import { setCompanyName } from "../../store/actions/companyActions";
 
 const HomePage = () => {
     const user = useUser();
     const history = useHistory();
     const dispatch = useDispatch();
-    // @ts-ignore
-    const isLoadingUser = useSelector((state) => state.auth.isLoadingUser);
+
     // @ts-ignore
     const name = useSelector((state) => state.company.name);
-
-    if (isLoadingUser) {
-        return null;
-    }
 
     const handleSubmit = (e) => {
         e.preventDefault();
