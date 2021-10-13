@@ -18,7 +18,7 @@ const Header = () => {
                             <span></span>
                         </button>
                     </div>
-                    <div className="top-menu d-flex align-items-center">
+                    {/* <div className="top-menu d-flex align-items-center">
                         <div className="dropdown">
                             <a
                                 className="dropdown-toggle"
@@ -48,7 +48,7 @@ const Header = () => {
                                 </a>
                             </div>
                         </div>
-                    </div>
+                    </div> */}
                 </div>
             </div>
         </header>

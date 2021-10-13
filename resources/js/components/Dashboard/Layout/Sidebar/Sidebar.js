@@ -9,12 +9,13 @@ import {
     AiOutlineHome,
 } from "react-icons/ai";
 import { RiPaintBrushFill } from "react-icons/ri";
-import { MdWorkOutline } from "react-icons/md";
+import { MdOutlineDomain, MdWorkOutline } from "react-icons/md";
 // @ts-ignore
 import logo from "../../../../../images/logo.png";
 import { useDispatch, useSelector } from "react-redux";
 import { setHideSidebar } from "../../../../store/actions/layoutReducer";
 import { FaClipboardCheck, FaPencilAlt } from "react-icons/fa";
+import { Link } from "react-router-dom";
 
 const Dashboard = () => {
     const dispatch = useDispatch();
@@ -45,7 +46,7 @@ const Dashboard = () => {
             }`}
         >
             <div className="sidebar-header">
-                <a className="header-brand" href="{{route('dashboard')}}">
+                <Link to="/dashboard" className="header-brand">
                     <div className="logo-img">
                         <img
                             height="30"
@@ -54,7 +55,7 @@ const Dashboard = () => {
                             title="RADMIN"
                         />
                     </div>
-                </a>
+                </Link>
                 <div className="sidebar-action">
                     <i className="ik ik-arrow-left-circle"></i>
                 </div>
@@ -102,9 +103,13 @@ const Dashboard = () => {
                             icon={<FaClipboardCheck />}
                         />
 
-                        <SidebarLabel label="Documentation" />
+                        <SidebarLabel label="Página" />
 
-                        <SidebarLink to="/dashboard" label="API" />
+                        <SidebarLink
+                            to="/"
+                            label="Página Principal"
+                            icon={<MdOutlineDomain />}
+                        />
                     </nav>
                 </div>
             </div>
