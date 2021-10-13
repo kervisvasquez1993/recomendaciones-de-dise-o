@@ -6,9 +6,8 @@ import InputText from "../Form/InputText";
 import PageHeader from "../Layout/PageHeader";
 import ErrorPage from "../ErrorPage";
 import { BASE_PATH } from "./LogoTypeList";
-import InputDropzone from "../Form/InputDropzone";
-import { AiFillFileImage } from "react-icons/ai";
 import LogoTypeActions from "../../../store/actions/LogoTypeActions";
+import { FaPencilAlt } from "react-icons/fa";
 
 const LogoTypeForm = ({ isEditor = false }) => {
     const dispatch = useDispatch();
@@ -60,7 +59,7 @@ const LogoTypeForm = ({ isEditor = false }) => {
                 description={`Utilice el formulario para ${
                     isEditor ? "editar el" : "crear un nuevo"
                 }  tipo de logotipo`}
-                icon={<AiFillFileImage />}
+                icon={<FaPencilAlt />}
             />
 
             <div className="row">

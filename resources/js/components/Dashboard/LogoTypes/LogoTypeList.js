@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { AiFillFileImage } from "react-icons/ai";
+import { FaPencilAlt } from "react-icons/fa";
 import { RiAddCircleLine } from "react-icons/ri";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
@@ -29,7 +29,7 @@ const LogoTypeList = () => {
             <PageHeader
                 title="Tipos de Logotipo"
                 description="Esta seccion sirve para crear, editar o eliminar tipos de logotipo"
-                icon={<AiFillFileImage />}
+                icon={<FaPencilAlt />}
             />
 
             <div className="row">

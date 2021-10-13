@@ -1,6 +1,7 @@
 import React from "react";
 import { useDispatch } from "react-redux";
 import { setHideSidebar } from "../../../store/actions/layoutReducer";
+// @ts-ignore
 import avatar from "../../../../images/avatar.jpg";
 import { BiLogOut } from "react-icons/bi";
 import { Link } from "react-router-dom";

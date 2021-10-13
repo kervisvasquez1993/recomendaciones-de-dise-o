@@ -1,5 +1,4 @@
 import React, { useEffect } from "react";
-import { MdWorkOutline } from "react-icons/md";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory, useParams } from "react-router";
 import GenericFormCard from "../Form/GenericFormCard";
@@ -7,13 +6,9 @@ import InputText from "../Form/InputText";
 import PageHeader from "../Layout/PageHeader";
 import ErrorPage from "../ErrorPage";
 import { BASE_PATH } from "./FontList";
-// import {
-//     createFont,
-//     getFont,
-//     updateFont,
-// } from "../../../store/actions/fontActions";
 import InputDropzone from "../Form/InputDropzone";
 import FontActions from "../../../store/actions/fontActions";
+import { AiOutlineFontSize } from "react-icons/ai";
 
 const FontForm = ({ isEditor = false }) => {
     const dispatch = useDispatch();
@@ -68,7 +63,7 @@ const FontForm = ({ isEditor = false }) => {
                 description={`Utilice el formulario para ${
                     isEditor ? "editar la" : "crear una nueva"
                 }  fuente`}
-                icon={<MdWorkOutline />}
+                icon={<AiOutlineFontSize />}
             />
 
             <div className="row">

@@ -1,5 +1,4 @@
 import React, { useEffect } from "react";
-import { MdWorkOutline } from "react-icons/md";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory, useParams } from "react-router";
 import GenericFormCard from "../Form/GenericFormCard";
@@ -11,6 +10,7 @@ import {
     getStyle,
     updateStyle,
 } from "../../../store/actions/styleActions";
+import { RiPaintBrushFill } from "react-icons/ri";
 
 const StyleForm = ({ isEditor = false }) => {
     const dispatch = useDispatch();
@@ -62,7 +62,7 @@ const StyleForm = ({ isEditor = false }) => {
                 description={`Utilice el formulario para ${
                     isEditor ? "editar el" : "crear un nuevo"
                 }  estilo de logotipo`}
-                icon={<MdWorkOutline />}
+                icon={<RiPaintBrushFill />}
             />
 
             <div className="row">

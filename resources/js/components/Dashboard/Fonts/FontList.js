@@ -1,9 +1,9 @@
 import React, { useEffect } from "react";
-import { RiAddCircleLine, RiPaintBrushFill } from "react-icons/ri";
+import { AiOutlineFontSize } from "react-icons/ai";
+import { RiAddCircleLine } from "react-icons/ri";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import FontActions from "../../../store/actions/fontActions";
-// import { getFonts } from "../../../store/actions/fontActions";
 import PageHeader from "../Layout/PageHeader";
 import FontItem from "./FontItem";
 
@@ -30,7 +30,7 @@ const FontList = () => {
             <PageHeader
                 title="Fuentes"
                 description="Esta seccion sirve para crear, editar o eliminar fuentes"
-                icon={<RiPaintBrushFill />}
+                icon={<AiOutlineFontSize />}
             />
 
             <div className="row">
