@@ -7,6 +7,7 @@ import illustrationReducer from "./illustrationReducer";
 import layoutReducer from "./layoutReducer";
 import logoTypeReducer from "./logoTypeReducer";
 import resultReducer from "./resultReducer";
+import savedResultReducer from "./savedResultReducer";
 import screenReducer from "./screenReducer";
 import specialityReducer from "./specialityReducer";
 import styleReducer from "./styleReducer";
@@ -23,6 +24,7 @@ const rootReducer = combineReducers({
     illustration: illustrationReducer,
     logoType: logoTypeReducer,
     result: resultReducer,
+    savedResult: savedResultReducer
 });
 
 export default rootReducer;

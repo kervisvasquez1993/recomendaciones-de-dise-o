@@ -1,17 +1,17 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import Buttons from "./Panels/Buttons";
 import ColorSample from "./ColorSample";
 import ResultActions from "../../../store/actions/ResultActions";
-import { loadFontWithUrl, relativePathToS3 } from "../../../utils";
+import { loadFontWithUrl, relativePathToS3, useUser } from "../../../utils";
 import { Link, Redirect } from "react-router-dom";
-import { result } from "lodash";
 import { useParams } from "react-router";
+import SavedResultActions from "../../../store/actions/SavedResultActions";
 
 export const fontTime = 1500;
 
 const ResultScreen = () => {
     const dispatch = useDispatch();
+    const user = useUser();
     // @ts-ignore
     const image = useSelector((state) => state.company.image);
     // @ts-ignore
@@ -24,6 +24,8 @@ const ResultScreen = () => {
     const name = useSelector((state) => state.company.name);
     // @ts-ignore
     const result = useSelector((state) => state.result.item);
+    // @ts-ignore
+    const savedResults = useSelector((state) => state.savedResult.list);
 
     const [elapsedTime, setElapsedTime] = useState(0);
 
@@ -39,6 +41,7 @@ const ResultScreen = () => {
 
     useEffect(() => {
         dispatch(ResultActions.get(id));
+        dispatch(SavedResultActions.getList());
     }, [type, style]);
 
     useEffect(() => {
@@ -75,6 +78,24 @@ const ResultScreen = () => {
     const timeSinceLastPeriod = elapsedTime - periodCount * period;
     const fontIndex = Math.floor(timeSinceLastPeriod / fontTime);
 
+    const isSaved = savedResults.find(
+        (item) =>
+            item.nombre_empresa === name && item.resultado_id === result.id
+    );
+
+    const handleSave = () => {
+        const onSuccess = (data) => {
+            dispatch(SavedResultActions.getList());
+        };
+
+        dispatch(
+            SavedResultActions.create(
+                { nombre_empresa: name, resultado_id: result.id },
+                onSuccess
+            )
+        );
+    };
+
     return (
         <div className="screen">
             <div className="overlay">
@@ -106,11 +127,28 @@ const ResultScreen = () => {
                     ))}
                 </div>
 
+                {!user && (
+                    <Link to="/register">
+                        Registrate para poder guardar el resultado
+                    </Link>
+                )}
+
                 <div className="buttons">
                     <Link to="/proceso/resultados" className="btn btn-link">
                         Ir Atrás
                     </Link>
-                    <div></div>
+
+                    {user ? (
+                        <button
+                            className="btn"
+                            onClick={handleSave}
+                            disabled={isSaved}
+                        >
+                            {isSaved ? "¡Guardado!" : "Guardar"}
+                        </button>
+                    ) : (
+                        <div></div>
+                    )}
                 </div>
             </div>
         </div>
