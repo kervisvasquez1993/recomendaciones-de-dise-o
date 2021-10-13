@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import SavedResultActions from "../../store/actions/SavedResultActions";
 import ResultCard from "./Wizard/ResultCard";
+import { CgPlayListRemove } from "react-icons/cg";
 
 const SavedResultList = () => {
     const dispatch = useDispatch();
@@ -18,6 +19,13 @@ const SavedResultList = () => {
                 <h2 className="heading mb-5 text-uppercase font-weight-bold">
                     Imagenes corportivas guardadas
                 </h2>
+
+                {savedResults.length === 0 && (
+                    <p className="text-center">
+                        <CgPlayListRemove className="icon-lg" /> Su lista de
+                        imagenes corportivas esta vacia...
+                    </p>
+                )}
 
                 <div className="wizard">
                     <div className="results">

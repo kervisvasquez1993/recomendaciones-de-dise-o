@@ -150,15 +150,18 @@ const HomePage = () => {
                             <div className="px-2">
                                 <h3 className="title">Redes</h3>
                                 <div>
-                                    {socialMedias.map(({ icon, link }) => (
-                                        <a
-                                            href={link}
-                                            target="_blank"
-                                            className="text-white p-2"
-                                        >
-                                            {icon}
-                                        </a>
-                                    ))}
+                                    {socialMedias.map(
+                                        ({ icon, link }, index) => (
+                                            <a
+                                                key={index}
+                                                href={link}
+                                                target="_blank"
+                                                className="text-white p-2"
+                                            >
+                                                {icon}
+                                            </a>
+                                        )
+                                    )}
                                 </div>
                             </div>
                         </div>
