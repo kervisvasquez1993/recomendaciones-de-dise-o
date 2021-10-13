@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import ResultActions from "../../../store/actions/ResultActions";
-import { loadFontWithUrl, relativePathToS3, useUser } from "../../../utils";
+import { useUser } from "../../../utils";
 import { Link, Redirect } from "react-router-dom";
 import { useParams } from "react-router";
 import SavedResultActions from "../../../store/actions/SavedResultActions";
@@ -33,25 +33,6 @@ const ResultScreen = () => {
         dispatch(ResultActions.get(id));
         dispatch(SavedResultActions.getList());
     }, [type, style]);
-
-    useEffect(() => {
-        const addedFonts = [];
-
-        if (result) {
-            result.fuentes.forEach(({ nombre, src }) => {
-                const addedFont = loadFontWithUrl(
-                    nombre,
-                    relativePathToS3(src)
-                );
-
-                addedFonts.push(addedFont);
-            });
-        }
-
-        return () => {
-            addedFonts.forEach((font) => font.remove());
-        };
-    }, [result]);
 
     if (!name) {
         return <Redirect to="/proceso/nombre" />;

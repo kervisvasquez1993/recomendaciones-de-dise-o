@@ -1,20 +1,12 @@
 import React from "react";
-import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
-import {
-    setCompanyName,
-    setImage,
-    setStyle,
-    setType,
-} from "../../../store/actions/companyActions";
-import { UseAlternator } from "../../../utils";
+import { loadFonts, useAlternator } from "../../../utils";
 import { fontTime } from "./ResultScreen";
 
 const ResultCard = ({ data, name, saved = undefined }) => {
-    const { id, colores, fuentes, especialidad_id, estilo_id } = data;
-    const dispatch = useDispatch();
-
-    const font = UseAlternator(fuentes, fontTime);
+    const { id, colores, fuentes } = data;
+    loadFonts(fuentes);
+    const font = useAlternator(fuentes, fontTime);
 
     return (
         <Link
