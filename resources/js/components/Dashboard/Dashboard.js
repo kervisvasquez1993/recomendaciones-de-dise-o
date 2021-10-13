@@ -34,7 +34,7 @@ const Dashboard = () => {
         }
     };
 
-    if (user.rol !== "admin") {
+    if (!user || user.rol !== "admin") {
         return <Redirect to="/" />;
     }
 

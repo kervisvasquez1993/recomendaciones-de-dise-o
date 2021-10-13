@@ -62,6 +62,13 @@ const HomePage = () => {
                     </p>
                     {user ? (
                         <div>
+                            {user.rol === "admin" && (
+                                <Link to="/dashboard">
+                                    <button className="btn btn-primary btn-lg btn-decoration">
+                                        Dashboard
+                                    </button>
+                                </Link>
+                            )}
                             <Link to="/logout">
                                 <button className="btn btn-link btn-lg btn-decoration">
                                     Cerrar Sesión
@@ -123,7 +130,7 @@ const HomePage = () => {
                     </div>
                 </div>
             </div>
-            
+
             {user && <SavedResultList />}
 
             <div className="section section-secondary section-padding">

@@ -10,6 +10,7 @@ import {
 } from "react-icons/ai";
 import { RiPaintBrushFill } from "react-icons/ri";
 import { MdOutlineDomain, MdWorkOutline } from "react-icons/md";
+import { BiLogOut } from "react-icons/bi";
 // @ts-ignore
 import logo from "../../../../../images/logo.png";
 import { useDispatch, useSelector } from "react-redux";
@@ -109,6 +110,12 @@ const Dashboard = () => {
                             to="/"
                             label="Página Principal"
                             icon={<MdOutlineDomain />}
+                        />
+
+                        <SidebarLink
+                            to="/logout"
+                            label="Cerrar Sesión"
+                            icon={<BiLogOut />}
                         />
                     </nav>
                 </div>
