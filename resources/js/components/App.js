@@ -28,11 +28,14 @@ const App = () => {
 
     return (
         <Switch>
-            {user && (
+            {/* {user && (
                 <Route path="/dashboard">
                     <Dashboard />
                 </Route>
-            )}
+            )} */}
+            <Route path="/dashboard">
+                <Dashboard />
+            </Route>
             <Route path="/">
                 <div className="home-page">
                     <Header />
