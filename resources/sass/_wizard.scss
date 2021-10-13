@@ -352,7 +352,7 @@ label {
 
 .company-name {
     font-size: calc(2.5rem + 1vw);
-    height: calc(7rem + 1vw);
+    min-height: calc(7rem + 1vw);
     text-transform: capitalize;
     text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
 }
