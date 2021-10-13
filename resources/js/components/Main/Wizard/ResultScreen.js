@@ -42,7 +42,7 @@ const ResultScreen = () => {
         return null;
     }
 
-    const { colores, fuentes } = result;
+    const { colores, fuentes, descripcion, logotipo } = result;
 
     const isSaved = savedResults.find(
         (item) =>
@@ -65,6 +65,7 @@ const ResultScreen = () => {
     return (
         <div className="screen">
             <div className="overlay">
+                <p>{logotipo.nombre}</p>
                 {image && (
                     <img
                         className="result-img"
@@ -72,10 +73,10 @@ const ResultScreen = () => {
                         alt="uploaded logo"
                     />
                 )}
-
                 <ResultName name={name} fonts={fuentes} />
                 <ResultFonts fonts={fuentes} />
                 <ResultColors colors={colores} />
+                <p>{descripcion}</p>
 
                 {!user && (
                     <p className="text-white">

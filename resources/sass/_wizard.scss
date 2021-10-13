@@ -12,6 +12,14 @@ select {
     letter-spacing: 1.2px;
 }
 
+input,
+select {
+    letter-spacing: 1.2px;
+    width: 100%;
+    min-width: 100px;
+    max-width: 600px;
+}
+
 .screens {
     margin: 0;
     font-family: "Roboto", sans-serif;
@@ -258,7 +266,7 @@ label {
 }
 
 .color-sample {
-    $size: calc(4rem + 5vw);
+    $size: calc(3rem + 4vw);
     width: $size;
     height: $size;
     margin: 0.5rem;
@@ -268,8 +276,12 @@ label {
     display: flex;
     justify-content: center;
     align-items: center;
-    font-size: 1rem;
     position: relative;
+
+    p {
+        font-size: 0.9rem;
+        font-weight: lighter;
+    }
 }
 
 .color-sample-wrapper {
@@ -323,9 +335,14 @@ label {
     }
 }
 
-.font {
-    font-size: calc(1.4rem + 1vw);
-    margin: 1rem 0;
+.fonts {
+    display: flex;
+    flex-wrap: wrap;
+
+    .font {
+        padding: 0.5rem;
+        font-size: calc(1.1rem + 1vw);
+    }
 }
 
 .result-img {
