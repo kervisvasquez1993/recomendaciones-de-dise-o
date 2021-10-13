@@ -78,9 +78,10 @@ const ResultScreen = () => {
                 <ResultColors colors={colores} />
 
                 {!user && (
-                    <Link to="/register">
-                        Registrate para poder guardar el resultado
-                    </Link>
+                    <p className="text-white">
+                        <Link to="/register">Registrate</Link> para poder
+                        guardar el resultado
+                    </p>
                 )}
 
                 <div className="buttons">
