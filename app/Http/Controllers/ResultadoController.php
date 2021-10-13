@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Resources\ResultadoResource;
+use App\Http\Resources\UserResultadoResource;
 use App\Models\Especialidad;
 use App\Models\Estilo;
 use App\Models\Ilustracion;
@@ -112,9 +113,9 @@ class ResultadoController extends Controller
 
     private $rules2 = [
         'resultado_id' => 'required',
-        'nombre_empresa' => 'required'
-
+        'nombre_empresa' => 'required',
     ];
+
     public function resultado_user_store(Request $request)
     {
         $this->validate($request, $this->rules2);
@@ -129,26 +130,28 @@ class ResultadoController extends Controller
         $user_resultado->logo_empresa = Storage::disk('s3')->put("ilustraciones", $request->file('logo_empresa'), 'public');
         $user_resultado->nombre_empresa = $request->nombre_empresa;
         $user_resultado->save();
-        return $this->showOne($user_resultado);
+        return $this->showOneResource(new UserResultadoResource($user_resultado));
     }
 
     public function resultado_user_show(UserResultado $user_resultado)
     {
-        return $this->showOne($user_resultado);
+        return $this->showOneResource(new UserResultadoResource($user_resultado));
     }
 
     public function resultado_user_delete(UserResultado $user_resultado)
     {
         $user_resultado->delete();
-        return $this->showOne($user_resultado);
+        return $this->showOneResource(new UserResultadoResource($user_resultado));
     }
 
     public function resultado_user_index(Request $request)
     {
-
         if (auth()->user()->rol === "admin") {
-            return $this->showAll(UserResultado::all());
+            $resultados = UserResultado::all();
+        } else {
+            $resultados = auth()->user()->UserResultado;
         }
-        return $this->showAll(auth()->user()->UserResultado);
+
+        return $this->showAllResources(UserResultadoResource::collection($resultados));
     }
 }

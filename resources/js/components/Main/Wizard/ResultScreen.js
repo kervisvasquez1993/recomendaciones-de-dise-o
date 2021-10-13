@@ -1,11 +1,13 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import ColorSample from "./ColorSample";
 import ResultActions from "../../../store/actions/ResultActions";
 import { loadFontWithUrl, relativePathToS3, useUser } from "../../../utils";
 import { Link, Redirect } from "react-router-dom";
 import { useParams } from "react-router";
 import SavedResultActions from "../../../store/actions/SavedResultActions";
+import ResultName from "./Result/ResultName";
+import ResultFonts from "./Result/ResultFonts";
+import ResultColors from "./Result/ResultColors";
 
 export const fontTime = 1500;
 
@@ -26,18 +28,6 @@ const ResultScreen = () => {
     const result = useSelector((state) => state.result.item);
     // @ts-ignore
     const savedResults = useSelector((state) => state.savedResult.list);
-
-    const [elapsedTime, setElapsedTime] = useState(0);
-
-    useEffect(() => {
-        const interval = setInterval(() => {
-            setElapsedTime((item) => item + 100);
-        }, 100);
-
-        return () => {
-            clearInterval(interval);
-        };
-    }, []);
 
     useEffect(() => {
         dispatch(ResultActions.get(id));
@@ -73,11 +63,6 @@ const ResultScreen = () => {
 
     const { colores, fuentes } = result;
 
-    const period = fuentes.length * fontTime;
-    const periodCount = Math.floor(elapsedTime / period);
-    const timeSinceLastPeriod = elapsedTime - periodCount * period;
-    const fontIndex = Math.floor(timeSinceLastPeriod / fontTime);
-
     const isSaved = savedResults.find(
         (item) =>
             item.nombre_empresa === name && item.resultado_id === result.id
@@ -100,32 +85,10 @@ const ResultScreen = () => {
         <div className="screen">
             <div className="overlay">
                 <img className="result-img" src={image} alt="uploaded logo" />
-                <p
-                    className="company-name"
-                    style={{ fontFamily: fuentes[fontIndex].nombre }}
-                >
-                    {name}
-                </p>
 
-                <div className="fonts">
-                    {fuentes.map(({ id, src, nombre }, index) => {
-                        return (
-                            <h2
-                                key={index}
-                                className="font"
-                                style={{ fontFamily: nombre }}
-                            >
-                                {nombre}
-                            </h2>
-                        );
-                    })}
-                </div>
-
-                <div className="colors">
-                    {colores.map((color, index) => (
-                        <ColorSample color={color} key={index} />
-                    ))}
-                </div>
+                <ResultName name={name} fonts={fuentes} />
+                <ResultFonts fonts={fuentes} />
+                <ResultColors colors={colores} />
 
                 {!user && (
                     <Link to="/register">

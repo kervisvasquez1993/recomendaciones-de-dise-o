@@ -3,6 +3,7 @@ import { Link, useHistory } from "react-router-dom";
 import { useUser } from "../../utils";
 import { useDispatch, useSelector } from "react-redux";
 import { setCompanyName } from "../../store/actions/companyActions";
+import SavedResultList from "./SavedResultList";
 
 const HomePage = () => {
     const user = useUser();
@@ -95,6 +96,7 @@ const HomePage = () => {
                     </div>
                 </div>
             </div>
+            <SavedResultList />
             <footer className="section section-padding">
                 <div className="container text-center">
                     <p>© Copyright 2021</p>
